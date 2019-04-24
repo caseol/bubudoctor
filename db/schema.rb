@@ -10,7 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_18_054054) do
+ActiveRecord::Schema.define(version: 2019_04_23_235553) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "patient_id"
+    t.datetime "appointment_date"
+    t.string "status"
+    t.text "obs"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.date "patient_since"
+    t.string "name"
+    t.date "birth"
+    t.string "age"
+    t.string "cpf"
+    t.string "gender"
+    t.string "etnia"
+    t.string "civil_status"
+    t.string "occupation"
+    t.integer "scholarity"
+    t.string "zip"
+    t.string "address"
+    t.string "district"
+    t.string "city"
+    t.string "uf"
+    t.string "telephone"
+    t.string "mobile"
+    t.string "email"
+    t.text "indication_by"
+    t.string "health_plan"
+    t.date "plan_validation"
+    t.string "plan_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,12 +59,17 @@ ActiveRecord::Schema.define(version: 2019_04_18_054054) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "name"
     t.integer "role"
+    t.string "mobile"
+    t.string "cpf"
+    t.string "crm"
+    t.string "speciality"
+    t.string "plan"
     t.string "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"

@@ -14,4 +14,8 @@
 //= require popper
 //= require rails-ujs
 //= require bootstrap-sprockets
-//= require_tree .
+// require_tree .
+//= require jquery.mask
+
+
+//= require generic.init

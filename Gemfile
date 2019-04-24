@@ -19,18 +19,20 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise_invitable'
 gem 'high_voltage'
 gem 'jquery-rails'
-gem 'therubyracer', :platform=>:ruby
+gem 'mini_racer', :platform=>:ruby
 group :development do
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'foreman'
   gem 'hub', :require=>nil
   gem 'rails_layout'
+  gem 'annotate'
 end
 group :development, :test do
   gem 'rubocop'
