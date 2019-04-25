@@ -30,10 +30,13 @@
 #
 
 class Patient < ApplicationRecord
+  has_many :appointments
+  has_many :users, through: :appointments
   
   GENDER = {
       male: "Masculino",
-      female: "Feminino"
+      female: "Feminino",
+      not_informed: "Não Informado"
   }
 
   CIVIL_STATUS = {

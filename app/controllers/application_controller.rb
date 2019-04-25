@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     # verificar a role do usuário para redirecionar para a página correta.
-    thankyou_path
+    #user_signed_in?
   end
 
   def set_locale

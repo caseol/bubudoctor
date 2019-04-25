@@ -32,6 +32,9 @@
 #
 
 class User < ApplicationRecord
+  has_many :appointments
+  has_many :patients, through: :appointments
+
   enum role: [:suspended, :operator, :doctor, :admin]
   after_initialize :set_default_role, :if => :new_record?
 

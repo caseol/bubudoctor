@@ -20,8 +20,9 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'no-reply@' + Rails.application.secrets.domain_name
 
+
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'BubuMailer'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'

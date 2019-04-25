@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :patients
   # config/routes.rb
   get "/pages/*id" => 'pages#show', as: :page, format: false
 
