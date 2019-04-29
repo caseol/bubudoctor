@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     # verificar a role do usuário para redirecionar para a página correta.
-    #user_signed_in?
+    if current_user.role == "suspended"
+      sign_out current_user
+      page_url(:about, :alert => "Seu usuário está suspenso. Por favor entre em contato com o administrador do sistema.")
+    else
+      protocol_protocol_path
+    end
   end
 
   def set_locale
@@ -36,8 +41,16 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role, :mobile, :cpf, :crm, :speciality, :plan])
-    #devise_parameter_sanitizer.permit(:sign_in, keys: [:username])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :role, :mobile, :cpf, :crm, :speciality, :plan])
+  end
+
+  def verify_suspension
+    if !current_user.blank? && current_user.role.to_sym == :suspended
+      redirect_to users_path, :alert => "Seu usuário está suspenso. Por favor entre em contato com o administrador do sistema."
+      false
+    else
+      :authenticate_user!
+    end
   end
 
 end

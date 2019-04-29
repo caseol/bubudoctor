@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :patients
+  devise_for :users
+  resources :users, path: "u", path_names: { edit: "e", new: "novo" }
+  resources :appointments, path: "consulta", path_names: { edit: "e", new: "novo" }
+  resources :patients, path: "p", path_names: { edit: "e", new: "novo" }
+
+  get 'protocol/protocol'
+  get 'protocol/historic'
+
   # config/routes.rb
   get "/pages/*id" => 'pages#show', as: :page, format: false
 
@@ -7,6 +14,5 @@ Rails.application.routes.draw do
   root to: 'pages#show', id: 'about'
 
   #root to: 'visitors#index'
-  devise_for :users
-  resources :users
+
 end

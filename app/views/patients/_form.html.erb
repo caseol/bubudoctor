@@ -1,7 +1,7 @@
 <%= form_with(model: patient, local: true) do |form| %>
   <% if patient.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(patient.errors.count, "error") %></h2>
+      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
 
       <ul>
       <% patient.errors.full_messages.each do |message| %>
@@ -11,6 +11,120 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= form.label :patient_since %>
+    <%= form.date_select :patient_since %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birth %>
+    <%= form.date_select :birth %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.number_field :age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cpf %>
+    <%= form.text_field :cpf %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.text_field :gender %>
+  </div>
+
+  <div class="field">
+    <%= form.label :etnia %>
+    <%= form.text_field :etnia %>
+  </div>
+
+  <div class="field">
+    <%= form.label :civil_status %>
+    <%= form.text_field :civil_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :occupation %>
+    <%= form.text_field :occupation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scholarity %>
+    <%= form.number_field :scholarity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zip %>
+    <%= form.text_field :zip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :uf %>
+    <%= form.text_field :uf %>
+  </div>
+
+  <div class="field">
+    <%= form.label :telephone %>
+    <%= form.text_field :telephone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mobile %>
+    <%= form.text_field :mobile %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :indication_by %>
+    <%= form.text_area :indication_by %>
+  </div>
+
+  <div class="field">
+    <%= form.label :health_plan %>
+    <%= form.text_field :health_plan %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plan_validation %>
+    <%= form.date_select :plan_validation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plan_number %>
+    <%= form.text_field :plan_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :created_at %>
+    <%= form.datetime_select :created_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :updated_at %>
+    <%= form.datetime_select :updated_at %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

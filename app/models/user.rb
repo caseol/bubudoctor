@@ -45,6 +45,10 @@ class User < ApplicationRecord
     self.role ||= :doctor
   end
 
+  def admin?
+    self.role.to_sym == :doctor || self.role.to_sym == :admin
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,

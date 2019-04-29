@@ -1,12 +1,22 @@
+<td scope="row">
+  <%= user.name %>
+</td>
+<td scope="row" >
+  <%= user.admin? ? (link_to user.email, edit_user_registration_path(user)) : user.email %>
+</td>
+
+<%= form_for(user) do |f| %>
 <td>
-  <%= link_to user.email, user %>
+    <% if current_user.admin? && user != current_user%>
+      <%#= f.select(:role, User.roles.keys.collect { |role| [User.human_enum_name(:role, role), role] }, {}, class: "form-control") %>
+        <%= f.select(:role, [[User.human_enum_name(:role, User.roles[0])[:suspended], :suspended], [User.human_enum_name(:role, User.roles[0])[:operator], :operator]] , {}, class: "form-control") %>
+    <% else %>
+      <%= User.human_enum_name(:role, user.role) %>
+    <% end %>
 </td>
 <td>
-  <%= form_for(user) do |f| %>
-    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
-    <%= f.submit 'Change Role', :class => 'button-xs' %>
-  <% end %>
+  <%= f.submit 'Alterar Acesso', :class => 'button-xs' unless user == current_user %>
+  <%= link_to("Criar conta para atendente", new_user_path(user), class: 'button-xs') if user.admin? %>
+  <%= link_to("Apagar usuário", user_path(user), :data => { :confirm => "Você tem certeza que deseja apagar o usuário #{user.name} ?" }, :method => :delete, :class => 'button-xs') unless user == current_user %>
 </td>
-<td>
-  <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') unless user == current_user %>
-</td>
+<% end %>

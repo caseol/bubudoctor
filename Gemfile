@@ -20,11 +20,14 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap'
+gem 'popper_js'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise_invitable'
 gem 'high_voltage'
 gem 'jquery-rails'
+gem 'jquery-datatables'
+gem 'ajax-datatables-rails'
 gem 'mini_racer', :platform=>:ruby
 group :development do
   gem 'better_errors'

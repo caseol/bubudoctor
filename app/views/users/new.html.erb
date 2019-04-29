@@ -1,0 +1,54 @@
+<div class="sectionform">
+  <%= form_for(@user, method: :post, :html => { :role => 'form'}) do |f| %>
+    <h3>Cadastro Atendente</h3>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+<!--        <h2><%#= pluralize(@user.errors.count, "error") %> prohibited this patient from being saved:</h2>-->
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+<!--    Campo hidden com o role == operator-->
+    <%= f.hidden_field :role, value: @user.role %>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, autofocus: true, tabindex: 1, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, tabindex: 3, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, autofocus: true, tabindex: 5, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <%= f.label :mobile %>
+            <%= f.text_field :mobile, autofocus: true, tabindex: 2, class: 'form-control masked_mobile' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :cpf %>
+            <%= f.text_field :cpf, autofocus: true, tabindex: 4, class: 'form-control masked_cpf' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, autofocus: true, tabindex: 6, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" style="alignment: center">
+        <%= f.submit 'Cadastrar', tabindex: 7, :class => 'btn btn-primary col-8' %>
+        <%= link_to 'Voltar', users_url, tabindex: 8, :class => 'btn btn-warning col-3' %>
+      </div>
+
+    </div>
+  <% end %>
+</div>

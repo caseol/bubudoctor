@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="sectionform">
+        <h3>Agenda</h3>
+        <table class="responsive nowrap table table-hover" id="dttb-appointments" data-sort="true" data-source="<%= appointments_url(format: :json)%>">
+          <thead>
+          <tr>
+            <!--            <th data-data="user">Médico</th>-->
+            <th data-data="patient">Paciente</th>
+            <th data-data="appointment_date">Horário Consulta</th>
+            <th data-data="appointment_kind">Tipo da Consulta</th>
+            <th data-data="status">Status</th>
+            <!--            <th data-data="obs">Obs</th>-->
+            <!--              <th data-data="created_at">Created at</th>-->
+            <!--              <th data-data="updated_at">Updated at</th>-->
+            <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+          </tr>
+          </thead>
+
+        </table>
+
+        <br>
+
+        <%= link_to 'Marcar Horário', new_appointment_path, class:"btn btn-primary" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="sectionform">
+        <h3>Pacientes</h3>
+        <table class="responsive table table-hover" id="dttb-patients" data-sort="true" data-source="<%=  patients_url(format: :json)%>">
+          <thead>
+          <tr>
+            <th data-data="patient_since">Patient since</th>
+            <th data-data="name">Name</th>
+            <th data-data="birth">Birth</th>
+            <th data-data="age">Age</th>
+            <th data-data="cpf">Cpf</th>
+            <th data-data="gender">Gender</th>
+            <th data-data="etnia">Etnia</th>
+            <th data-data="civil_status">Civil status</th>
+            <th data-data="occupation">Occupation</th>
+            <th data-data="scholarity">Scholarity</th>
+            <th data-data="zip">Zip</th>
+            <th data-data="address">Address</th>
+            <th data-data="city">City</th>
+            <th data-data="uf">Uf</th>
+            <th data-data="telephone">Telephone</th>
+            <th data-data="mobile">Mobile</th>
+            <th data-data="email">Email</th>
+            <th data-data="indication_by">Indication by</th>
+            <th data-data="health_plan">Health plan</th>
+            <th data-data="plan_validation">Plan validation</th>
+            <th data-data="plan_number">Plan number</th>
+            <th data-data="created_at">Created at</th>
+            <th data-data="updated_at">Updated at</th>
+            <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+          </tr>
+          </thead>
+        </table>
+        <br>
+
+        <%= link_to 'Novo Paciente', new_patient_path, class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

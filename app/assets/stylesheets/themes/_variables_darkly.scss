@@ -28,14 +28,16 @@ $green:   #00bc8c !default;
 $teal:    #20c997 !default;
 $cyan:    #3498DB !default;
 
+//$primary:       $blue !default; original
 $primary:       $blue !default;
 $secondary:     $gray-700 !default;
-$success:       $green !default;
+$success:       $blue !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
 $light:         $gray-800 !default;
 $dark:          $gray-500 !default;
+$principal-bg:   $blue !default;
 
 $yiq-contrasted-threshold:  175 !default;
 

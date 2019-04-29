@@ -1,38 +1,8 @@
-# == Schema Information
-#
-# Table name: patients
-#
-#  id              :integer          not null, primary key
-#  patient_since   :date
-#  name            :string
-#  birth           :date
-#  age             :string
-#  cpf             :string
-#  gender          :string
-#  etnia           :string
-#  civil_status    :string
-#  occupation      :string
-#  scholarity      :integer
-#  zip             :string
-#  address         :string
-#  district        :string
-#  city            :string
-#  uf              :string
-#  telephone       :string
-#  mobile          :string
-#  email           :string
-#  indication_by   :text
-#  health_plan     :string
-#  plan_validation :date
-#  plan_number     :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#
-
 class Patient < ApplicationRecord
   has_many :appointments
-  has_many :users, through: :appointments
-  
+  #has_many :users, through: :appointments
+  belongs_to :user
+
   GENDER = {
       male: "Masculino",
       female: "Feminino",

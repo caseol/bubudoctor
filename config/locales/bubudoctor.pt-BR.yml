@@ -1,0 +1,58 @@
+pt-BR:
+  boolean:
+    true: Sim
+    false: Não
+  activerecord:
+    models:
+      user:
+        one:  "Usuário"
+        other: "Usuários"
+      patient:
+        one: "Paciente"
+        other: "Pacientes"
+    attributes:
+      user:
+        name: "Nome"
+        email: "Email"
+        mobile: "Celular"
+        password: "Senha"
+        password_confirmation: "Confirmação de Senha"
+        current_password: "Senha atual"
+        remember_me: "Lembrar de mim"
+        created_at: "Criado em"
+        updated_at: "Alterado em"
+        last_sign_in_at: "Último acesso"
+        last_sign_in_ip: "IP último acesso"
+        active: "Ativo?"
+        speciality: "Especialidade"
+        cpf: "CPF"
+        crm: "CRM"
+        role: "Tipo Acesso"
+        roles:
+          admin: "Administrador"
+          doctor: "Médico"
+          operator: "Operador"
+          suspended: "Suspenso"
+      patient:
+        patient_since: "Paciente desde"
+        name: "Nome"
+        birth: "Nascimento"
+        age: "Idade"
+        cpf: "CPF"
+        gender: "Gênero"
+        etnia: "Etnia"
+        civil_status: "Status Civil"
+        occupation: "Profissão"
+        scholarity: "Escolaridade"
+        zip: "CEP"
+        address: "Endereço"
+        district: "Bairoo"
+        city: "Cidade"
+        uf: "UF"
+        telephone: "Telefone"
+        mobile: "Celular"
+        email: "Email"
+        indication_by: "Indicador por"
+        health_plan: "Plano de Saúde"
+        plan_validation: "Validade do Plano"
+        plan_number: "Número Carteirinha"

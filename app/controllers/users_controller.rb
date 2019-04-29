@@ -10,24 +10,42 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless current_user.admin?
       unless @user == current_user
-        redirect_to root_path, :alert => "Access denied."
+        redirect_to root_path, :alert => "Acesso NEGADO!"
+      end
+    end
+  end
+
+  def new
+    @user = User.new(role: User.roles[:operator])
+  end
+
+  def create
+    @user = User.new(secure_params)
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to users_url, notice: 'Atendente criado com sucesso!' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(secure_params)
-      redirect_to users_path, :notice => "User updated."
+    if @user.update_attributes(secure_params) && current_user.admin?
+      redirect_to users_path, :notice => "Usuário atualizado com sucesso!"
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      redirect_to users_path, :alert => "Este usuário não tem permissão de alterar dados"
     end
   end
 
   def destroy
     user = User.find(params[:id])
     user.destroy
-    redirect_to users_path, :notice => "User deleted."
+    redirect_to users_path, :notice => "Usuário excluído do sistema."
   end
 
   private
@@ -39,7 +57,7 @@ class UsersController < ApplicationController
   end
 
   def secure_params
-    params.require(:user).permit(:role)
+    params.require(:user).permit(:role, :name, :email, :password, :mobile, :cpf, :password_confirmation)
   end
 
 end
