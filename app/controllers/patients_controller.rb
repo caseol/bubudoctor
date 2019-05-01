@@ -15,6 +15,7 @@ class PatientsController < ApplicationController
   # GET /patients/new
   def new
     @patient = Patient.new
+    respond_to :html, :json, :js
   end
 
   # GET /patients/1/edit

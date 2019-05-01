@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin_only, :except => :show
+  before_action :admin_only, :except => [:show]
 
   def index
     @users = User.all
@@ -16,7 +16,15 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new(role: User.roles[:operator])
+    if current_user.admin?
+      @user = User.new(role: User.roles[:operator], parent: current_user.id)
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    else
+
+    end
   end
 
   def create
@@ -25,9 +33,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_url, notice: 'Atendente criado com sucesso!' }
+        format.js { flash.now[:notice] = 'Atendente criado com sucesso!' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
+        format.js { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +67,7 @@ class UsersController < ApplicationController
   end
 
   def secure_params
-    params.require(:user).permit(:role, :name, :email, :password, :mobile, :cpf, :password_confirmation)
+    params.require(:user).permit(:parent_id, :role, :name, :email, :password, :mobile, :cpf, :password_confirmation)
   end
 
 end

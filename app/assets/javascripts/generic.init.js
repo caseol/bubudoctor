@@ -1,3 +1,26 @@
+// Variável Global para montagem do Datepicker
+var datepicker_options = {
+    closeText: 'Fechar',
+    prevText: '&#x3c;Anterior',
+    nextText: 'Pr&oacute;ximo&#x3e;',
+    currentText: 'Hoje',
+    monthNames: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+    dayNames: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'],
+    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+    dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+    weekHeader: 'Sm',
+    dateFormat: 'dd/mm/yy HH:mm:ss',
+    altFormat: 'yyyy-mm-dd HH:mm:ss',
+    changeYear: true,
+    changeMonth: true,
+    yearRange: '1900:2040',
+    firstDay: 0,
+    showMonthAfterYear: false,
+    yearSuffix: ''
+};
+
+// Variável Global para DataTable
 var language_table_options = {
     "sEmptyTable": "Nenhum registro encontrado",
     "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_",
@@ -55,7 +78,7 @@ var default_table_options = {
         }
     } ],
     */
-    dom: 'BfrtiBp',
+    dom: 'frtiBp',
     buttons: [
         {
             extend: 'copy',
@@ -83,6 +106,9 @@ var simple_table_options = {
     ]
 }
 
+// objeto carrregado com dataTable
+var dttb = undefined;
+
 $(document).ready(function(){
     _init();
 
@@ -90,6 +116,9 @@ $(document).ready(function(){
 
 
 function _init(){
+    //dá 15seg e esconde qq div com mensagem de sucesso/erro
+    $(".alert").delay(12000).slideUp(200)
+
     // Definindo máscaras
     $(".masked_phone").mask("(99) 9999-9999");
     $(".masked_mobile").mask("(99) 99999-9999");
@@ -97,6 +126,11 @@ function _init(){
     // mácaras das infos pessoais CPF
     $(".masked_cpf").mask("999.999.999-99");
 
-    $("#dttb-patients").dataTable(default_table_options);
-    $("#dttb-appointments").dataTable(simple_table_options);
+    // iniciando datatables
+    if (dttb === undefined){
+        dttb = $(".dttb").dataTable(default_table_options);
+    }
+
+    // iniciando date picker
+    $('.date-picker').datepicker(datepicker_options);//.mask("9999-99-99");
 }

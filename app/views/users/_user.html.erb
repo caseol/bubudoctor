@@ -16,7 +16,7 @@
 </td>
 <td>
   <%= f.submit 'Alterar Acesso', :class => 'button-xs' unless user == current_user %>
-  <%= link_to("Criar conta para atendente", new_user_path(user), class: 'button-xs') if user.admin? %>
+  <%= link_to("Criar conta para atendente", new_user_path, {:remote => true, data:{toggle:  "modal", target: '#modal-operator'} , class:"btn btn-primary"}) if user.admin? %>
   <%= link_to("Apagar usuário", user_path(user), :data => { :confirm => "Você tem certeza que deseja apagar o usuário #{user.name} ?" }, :method => :delete, :class => 'button-xs') unless user == current_user %>
 </td>
 <% end %>

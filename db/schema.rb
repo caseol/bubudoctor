@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_04_27_085152) do
   end
 
   create_table "patients", force: :cascade do |t|
+    t.integer "user_id"
     t.date "patient_since"
     t.string "name"
     t.date "birth"
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_04_27_085152) do
     t.string "plan_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_patients_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_04_27_085152) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.integer "parent"
     t.string "name"
     t.integer "role"
     t.string "mobile"
