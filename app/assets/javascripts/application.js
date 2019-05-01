@@ -16,8 +16,9 @@
 //= require bootstrap-sprockets
 //= require jquery.mask
 //= require datatables
-//= require bootstrap-datepicker.js
-//= require bootstrap-datepicker.pt-BR.min
+
+// require bootstrap-datepicker.js
+// require bootstrap-datepicker.pt-BR.min
 
 
 //= require generic.init

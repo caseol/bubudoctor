@@ -10,13 +10,13 @@ var datepicker_options = {
     dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
     dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
     weekHeader: 'Sm',
-    dateFormat: 'dd/mm/yy HH:mm:ss',
-    altFormat: 'yyyy-mm-dd HH:mm:ss',
+    //dateFormat: 'dd/mm/yyyy',
+    //altFormat: 'yyyy-mm-dd',
     changeYear: true,
     changeMonth: true,
     yearRange: '1900:2040',
     firstDay: 0,
-    showMonthAfterYear: false,
+    showMonthAfterYear: true,
     yearSuffix: ''
 };
 
@@ -109,13 +109,16 @@ var simple_table_options = {
 // objeto carrregado com dataTable
 var dttb = undefined;
 
+// objeto carrregado com datePicker
+var date_picker = undefined;
+
 $(document).ready(function(){
     _init();
-
 });
 
 
 function _init(){
+    //alert('_init()');
     //dá 15seg e esconde qq div com mensagem de sucesso/erro
     $(".alert").delay(12000).slideUp(200)
 
@@ -132,5 +135,8 @@ function _init(){
     }
 
     // iniciando date picker
-    $('.date-picker').datepicker(datepicker_options);//.mask("9999-99-99");
+    //if (date_picker === undefined){
+    //date_picker = $('.date-picker').datepicker(datepicker_options).mask("99/99/9999");
+    date_picker = $('.date-picker').datepicker().mask("99/99/9999");
+    //}
 }
