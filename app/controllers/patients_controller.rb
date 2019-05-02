@@ -34,7 +34,7 @@ class PatientsController < ApplicationController
     respond_to do |format|
       if @patient.save
         format.html { redirect_to @patient, notice: 'Paciente criado com sucesso' }
-        format.js { render }
+        format.js { flash.now[:notice] = 'Paciente criado com sucesso!'}
         format.json { render :show, status: :created, location: @patient }
       else
         format.html { render :new }
