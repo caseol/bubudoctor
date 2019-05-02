@@ -30,7 +30,6 @@
 #  invited_by_id          :integer
 #  invitations_count      :integer          default(0)
 #
-
 class User < ApplicationRecord
   has_many :appointments
   has_many :patients, through: :appointments
@@ -38,7 +37,7 @@ class User < ApplicationRecord
   enum role: [:suspended, :operator, :doctor, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
-  validates_presence_of :mobile
+  validates_presence_of :email, :mobile
   validate :validate_format_of_document_number
 
   def set_default_role

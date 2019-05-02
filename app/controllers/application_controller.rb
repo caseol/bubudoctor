@@ -39,6 +39,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def admin_only
+    unless current_user.admin?
+      redirect_to root_path, :alert => "Acesso Negado! ##{request.remote_ip} IP gravado!"
+    end
+  end
+
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role, :mobile, :cpf, :crm, :speciality, :plan])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :role, :mobile, :cpf, :crm, :speciality, :plan])

@@ -1,20 +1,25 @@
-<%= form_with(model: patient, local: true) do |form| %>
+<%= form_with(model: patient, remote: true) do |form| %>
   <div class="container col-sm-12">
+    <% if patient.errors.any? %>
+      <div id="error_explanation">
+        <!--      <h2><%#= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>-->
+        <ul>
+          <% patient.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="row">
-      <% if patient.errors.any? %>
-        <div id="error_explanation">
-          <!--      <h2><%#= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>-->
-          <ul>
-            <% patient.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <div class="col-sm-4">
+      <div class="col-sm-4 patient-info">
         <div class="form-group">
           <%= form.label :patient_since %>
-          <%= form.text_field :patient_since, class:'form-control date-picker' %>
+          <div class="input-group date-picker" id="datepicker-pacient-since" data-target-input="nearest">
+            <%= form.text_field :patient_since, class:'form-control datetimepicker-input', data:{target:'#datepicker-pacient-since'} %>
+            <div class="input-group-append" data-target="#datepicker-pacient-since" data-toggle="datetimepicker">
+              <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
+            </div>
+          </div>
         </div>
 
         <div class="form-group">
@@ -23,7 +28,7 @@
         </div>
         <div class="form-group">
           <%= form.label :cpf %>
-          <%= form.text_field :cpf, class: 'form-control' %>
+          <%= form.text_field :cpf, class: 'form-control masked_cpf' %>
         </div>
         <div class="form-group">
           <%= form.label :email %>
@@ -31,21 +36,26 @@
         </div>
         <div class="form-group">
           <%= form.label :mobile %>
-          <%= form.text_field :mobile, class: 'form-control' %>
+          <%= form.text_field :mobile, class: 'form-control masked_mobile' %>
         </div>
         <div class="form-group">
           <%= form.label :telephone %>
-          <%= form.text_field :telephone, class: 'form-control' %>
+          <%= form.text_field :telephone, class: 'form-control masked_phone' %>
         </div>
         <div class="form-group">
           <%= form.label :indication_by %>
           <%= form.text_area :indication_by, class: 'form-control' %>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4 patient-address">
         <div class="form-group">
           <%= form.label :birth %>
-          <%= form.text_field :birth, class: 'form-control date-picker' %>
+          <div class="input-group date-picker" id="datepicker-pacient-birth" data-target-input="nearest">
+            <%= form.text_field :birth, class:'form-control datetimepicker-input', data:{target:'#datepicker-pacient-birth'} %>
+            <div class="input-group-append" data-target="#datepicker-pacient-birth" data-toggle="datetimepicker">
+              <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
+            </div>
+          </div>
         </div>
 
         <div class="form-group">
@@ -55,11 +65,11 @@
 
         <div class="form-group">
           <%= form.label :civil_status %>
-          <%= form.text_field :civil_status, class: 'form-control' %>
+          <%= form.select(:civil_status, Patient::CIVIL_STATUS.to_h.values, {}, class: "form-control") %>
         </div>
         <div class="form-group">
           <%= form.label :zip %>
-          <%= form.text_field :zip, class: 'form-control' %>
+          <%= form.text_field :zip, class: 'form-control masked_cep' %>
         </div>
         <div class="form-group">
           <%= form.label :uf %>
@@ -78,7 +88,8 @@
       <div class="col-sm-4">
         <div class="form-group">
           <%= form.label :gender %>
-          <%= form.text_field :gender, class: 'form-control' %>
+          <%= form.select(:gender, Patient::GENDER.to_h.values, {}, class: "form-control") %>
+
         </div>
         <div class="form-group">
           <%= form.label :occupation %>
@@ -87,11 +98,12 @@
 
         <div class="form-group">
           <%= form.label :scholarity %>
-          <%= form.number_field :scholarity, class: 'form-control' %>
+          <%= form.select(:scholarity, Patient::SCHOLARITY.to_h.values, {}, class: "form-control") %>
+
         </div>
         <div class="form-group">
           <%= form.label :etnia %>
-          <%= form.text_field :etnia, class: 'form-control' %>
+          <%= form.select(:etnia, Patient::ETNIA.to_h.values, {}, class: "form-control") %>
         </div>
         <div class="form-group">
           <%= form.label :health_plan %>
@@ -100,7 +112,12 @@
 
         <div class="form-group">
           <%= form.label :plan_validation %>
-          <%= form.date_select :plan_validation, class: 'form-control' %>
+          <div class="input-group date-picker" id="datepicker-plan_validation" data-target-input="nearest">
+            <%= form.text_field :plan_validation, class:'form-control datetimepicker-input', data:{target:'#datepicker-plan_validation'} %>
+            <div class="input-group-append" data-target="#datepicker-plan_validation" data-toggle="datetimepicker">
+              <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
+            </div>
+          </div>
         </div>
 
         <div class="form-group">
@@ -120,7 +137,7 @@
 <!--      </div>-->
     </div>
       <div class="actions col-12">
-        <%= form.submit ({class: 'btn btn-primary'}) %>
+        <%= form.submit({class: 'btn btn-primary'}) %>
       </div>
     </div>
   </div>

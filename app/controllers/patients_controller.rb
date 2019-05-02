@@ -1,5 +1,6 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :admin_only#, :except => [:show]
 
   # GET /patients
   # GET /patients.json
@@ -14,7 +15,7 @@ class PatientsController < ApplicationController
 
   # GET /patients/new
   def new
-    @patient = Patient.new
+    @patient = Patient.new()
     respond_to :html, :json, :js
   end
 
@@ -27,12 +28,17 @@ class PatientsController < ApplicationController
   def create
     @patient = Patient.new(patient_params)
 
+    # associa paciente ao médico
+    @patient.user_id = (current_user.admin? && current_user.parent.blank?) ? current_user.id : current_user.parent
+
     respond_to do |format|
       if @patient.save
-        format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
+        format.html { redirect_to @patient, notice: 'Paciente criado com sucesso' }
+        format.js { render }
         format.json { render :show, status: :created, location: @patient }
       else
         format.html { render :new }
+        format.js { render :new }
         format.json { render json: @patient.errors, status: :unprocessable_entity }
       end
     end

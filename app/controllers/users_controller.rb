@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(secure_params)
-
+    @user.confirmed_at = DateTime.now()
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_url, notice: 'Atendente criado com sucesso!' }
@@ -60,14 +60,8 @@ class UsersController < ApplicationController
 
   private
 
-  def admin_only
-    unless current_user.admin?
-      redirect_to root_path, :alert => "Access denied."
-    end
-  end
-
   def secure_params
-    params.require(:user).permit(:parent_id, :role, :name, :email, :password, :mobile, :cpf, :password_confirmation)
+    params.require(:user).permit(:parent, :role, :name, :email, :password, :mobile, :cpf, :password_confirmation)
   end
 
 end

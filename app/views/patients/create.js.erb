@@ -1,0 +1,8 @@
+//$('#modal-window').on('hidden.bs.modal', function () {
+//    location.reload();
+//});
+$("#modal-window").modal('toggle');
+$("#application-messages").html('<%= j render partial: 'layouts/messages' %>');
+$(".alert").delay(3000).slideUp(200, function () {
+    location.reload();
+})

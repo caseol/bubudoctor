@@ -116,9 +116,24 @@ $(document).ready(function(){
     _init();
 });
 
+$.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+        icons: {
+            time: 'far fa-clock',
+            date: 'far fa-calendar-alt',
+            up: 'fas fa-arrow-up',
+            down: 'fas fa-arrow-down',
+            previous: 'fas fa-chevron-left',
+            next: 'fas fa-chevron-right',
+            today: 'far fa-calendar-day',
+            clear: 'far fa-delete',
+            close: 'far fa-times'
+        }
+    }
+);
 
 function _init(){
     //alert('_init()');
+
     //dá 15seg e esconde qq div com mensagem de sucesso/erro
     $(".alert").delay(12000).slideUp(200)
 
@@ -129,14 +144,19 @@ function _init(){
     // mácaras das infos pessoais CPF
     $(".masked_cpf").mask("999.999.999-99");
 
+    // bind de campos CEP para buscar endereço.
+    bindZipField($(".patient-address"));
+
+    //Máscara CEP
+    $(".masked_cep").mask("99999-999");
+
     // iniciando datatables
     if (dttb === undefined){
         dttb = $(".dttb").dataTable(default_table_options);
     }
 
     // iniciando date picker
-    //if (date_picker === undefined){
-    //date_picker = $('.date-picker').datepicker(datepicker_options).mask("99/99/9999");
-    date_picker = $('.date-picker').datepicker().mask("99/99/9999");
-    //}
+    $('.date-picker').datetimepicker({locale: 'pt-BR', format: 'L'})
+    $('.date-time-picker').datetimepicker({locale: 'pt-BR'})
+
 }

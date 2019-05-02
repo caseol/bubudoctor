@@ -10,6 +10,9 @@ pt-BR:
       patient:
         one: "Paciente"
         other: "Pacientes"
+      appointment:
+        one: "Consulta"
+        other: "Consultas"
     attributes:
       user:
         name: "Nome"
@@ -34,6 +37,7 @@ pt-BR:
           operator: "Operador"
           suspended: "Suspenso"
       patient:
+        user_id: "Médico Responsável"
         patient_since: "Paciente desde"
         name: "Nome"
         birth: "Nascimento"
@@ -46,7 +50,7 @@ pt-BR:
         scholarity: "Escolaridade"
         zip: "CEP"
         address: "Endereço"
-        district: "Bairoo"
+        district: "Bairro"
         city: "Cidade"
         uf: "UF"
         telephone: "Telefone"
