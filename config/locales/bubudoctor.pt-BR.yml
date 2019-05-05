@@ -60,3 +60,22 @@ pt-BR:
         health_plan: "Plano de Saúde"
         plan_validation: "Validade do Plano"
         plan_number: "Número Carteirinha"
+      appointment:
+        user_id: "Médico"
+        patient_id: "Paciente"
+        appointment_date: "Data Consulta"
+        appointment_kind: "Tipo Consulta"
+        appointment_kinds:
+          first_time: "1a consulta"
+          return: "Retorno"
+          show_exam: "Mostrar Exames"
+          procedure: "Procedimento"
+        status_kinds:
+          scheduled: "Agendada"
+          done: "Realizada"
+          absence: "Falta"
+          canceled: "Cancelada"
+        status: "Status"
+        obs: "Observação"
+        created_at: "Criado em"
+        updated_at: "Última Atualização"

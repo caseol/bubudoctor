@@ -15,6 +15,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/new
   def new
     @appointment = Appointment.new
+    respond_to :html, :js
   end
 
   # GET /appointments/1/edit

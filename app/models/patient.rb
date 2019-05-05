@@ -1,3 +1,35 @@
+# == Schema Information
+#
+# Table name: patients
+#
+#  id              :integer          not null, primary key
+#  user_id         :integer
+#  patient_since   :date
+#  name            :string
+#  birth           :date
+#  age             :integer
+#  cpf             :string
+#  gender          :string
+#  etnia           :string
+#  civil_status    :string
+#  occupation      :string
+#  scholarity      :integer
+#  zip             :string
+#  district        :string
+#  address         :string
+#  city            :string
+#  uf              :string
+#  telephone       :string
+#  mobile          :string
+#  email           :string
+#  indication_by   :text
+#  health_plan     :string
+#  plan_validation :date
+#  plan_number     :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class Patient < ApplicationRecord
   has_many :appointments
   #has_many :users, through: :appointments
