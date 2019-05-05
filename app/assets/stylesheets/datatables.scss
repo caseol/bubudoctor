@@ -21,15 +21,24 @@
 
 .dtr-modal-display{
   //background-color: $body-bg;
-}
-
-.dtr-modal-content{
   background-color: $body-bg;
   height: 100%;
 }
 
+.dtr-details{
+  background-color: $body-bg;
+  height: 100%;
+}
+
+.dtr-modal-content{
+  background-color: $body-bg;
+  height: auto;
+  min-height: 100%;
+}
+
 .dtr-modal-background{
-  //background-color: $body-bg;
+  background-color: $body-bg;
+  height: 100%;
 }
 
 .dtr-modal-close{
