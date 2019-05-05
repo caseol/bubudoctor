@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :appointments, path: "consulta", path_names: { edit: "e", new: "novo" }
   resources :patients, path: "p", path_names: { edit: "e", new: "novo" }
 
-  get 'protocol/protocol'
-  get 'protocol/historic'
+  get '/protocolo' => 'protocol#protocol', as: :protocol#, format: false
+  get '/historico/*id' => 'protocol#historic', as: :historic#, format: false
 
   # config/routes.rb
   get "/pages/*id" => 'pages#show', as: :page, format: false

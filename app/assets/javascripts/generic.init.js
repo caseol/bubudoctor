@@ -47,7 +47,23 @@ var language_table_options = {
 
 var default_table_options = {
     language: language_table_options,
-    responsive: true,
+    responsive: {
+        details: {
+            display: $.fn.dataTable.Responsive.display.modal( {
+                header: function ( row ) {
+                    var data = row.data();
+                    if (data['name'] !==undefined){
+                        return 'Detalhes: '+ data['name'];
+                    }
+                    else{
+                        return '';
+                    }
+
+                }
+            } ),
+            renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+        }
+    },
     pageLength: 10,
     columnDefs: [
         {"targets": 'no-sort', "orderable": false}
@@ -116,6 +132,7 @@ $(document).ready(function(){
     _init();
 });
 
+// configurando icones do datapicker
 $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
         icons: {
             time: 'far fa-clock',

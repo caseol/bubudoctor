@@ -1,8 +1,8 @@
 <% if user_signed_in? %>
-  <li class='nav-item'><%= link_to 'Protocolo', protocol_protocol_path, class: 'nav-link' %></li>
+  <li class='nav-item'><%= link_to 'Protocolo', protocol_path, class: 'nav-link' %></li>
   <% if current_user.try(:admin?) %>
     <li class='nav-item'><%= link_to 'Usuários', users_path, class: 'nav-link' %></li>
-    <li class='nav-item'><%= link_to 'Editar Conta', edit_user_registration_path, class: 'nav-link' %></li>
+    <li class='nav-item'><%= link_to 'Minha Conta', edit_user_registration_path, class: 'nav-link' %></li>
   <% end %>
   <li class='nav-item'><%= link_to 'Sair', destroy_user_session_path, :method=>'delete', class: 'nav-link' %></li>
 <% else %>

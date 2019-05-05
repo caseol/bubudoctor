@@ -13,3 +13,29 @@
 //@import 'datatables/extensions/RowReorder/rowReorder.bootstrap4';
 //@import 'datatables/extensions/Scroller/scroller.bootstrap4';
 //@import 'datatables/extensions/Select/select.bootstrap4';
+
+// alterando valor padrão do background do modal de detalhes
+.dtr-modal{
+  //background-color: $body-bg;
+}
+
+.dtr-modal-display{
+  //background-color: $body-bg;
+}
+
+.dtr-modal-content{
+  background-color: $body-bg;
+  height: 100%;
+}
+
+.dtr-modal-background{
+  //background-color: $body-bg;
+}
+
+.dtr-modal-close{
+  background-color: $body-bg;
+}
+
+div.dtr-modal div.dtr-modal-close{
+  background-color: $body-bg;
+}

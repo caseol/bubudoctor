@@ -1,23 +1,25 @@
-<div class="container">
-  <div class="row sectionform">
-    <h3>Usuários do Sistema</h3>
-    <table class="table table-hover responsive nowrap dttb">
-      <thead>
-      <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">Email</th>
-        <th scope="col">Acesso</th>
-        <th scope="col">Ações</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @users.each do |user| %>
-        <tr class="table-active">
-          <%= render user %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 sectionform">
+      <h3>Usuários do Sistema</h3>
+      <table class="table table-hover responsive nowrap dttb">
+        <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Acesso</th>
+          <th scope="col">Ações</th>
         </tr>
-      <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr class="table-active">
+            <%= render user %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
