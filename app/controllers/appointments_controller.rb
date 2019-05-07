@@ -26,13 +26,15 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-
+    @appointment.user_id = (current_user.admin? && current_user.parent.blank?) ? current_user.id : current_user.parent
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
+        format.html { redirect_to @appointment, notice: 'Consulta agendada com sucesso' }
+        format.js { flash.now[:notice] = 'Consulta agendada com sucesso'}
         format.json { render :show, status: :created, location: @appointment }
       else
         format.html { render :new }
+        format.js { render :new }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end
@@ -70,6 +72,6 @@ class AppointmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:user_id, :patient_id, :appointment_date, :appointment_kind, :status, :obs, :created_at, :updated_at)
+      params.require(:appointment).permit(:user_id, :patient_id, :appointment_date, :appointment_kind, :status, :obs)
     end
 end

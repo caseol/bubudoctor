@@ -128,10 +128,6 @@ var dttb = undefined;
 // objeto carrregado com datePicker
 var date_picker = undefined;
 
-$(document).ready(function(){
-    _init();
-});
-
 // configurando icones do datapicker
 $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
         icons: {
@@ -147,6 +143,32 @@ $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Const
         }
     }
 );
+
+function bind_autocomplete(){
+    return $("input[data-autocomplete]").each(function() {
+        var url, target;
+        url = $(this).data('autocomplete');
+        target = $(this).data('hidden')['target']
+        var autocopmplete_field = $(this).autocomplete({
+            source: url,
+            appendTo: '.modal',
+            delay: 500,
+            position: { at: "left bottom" },
+            focus: function (event, ui) {
+                console.log(target);
+                $(target).val(ui.item.id);
+                console.log($(target).val());
+                // or $('#autocomplete-input').val(ui.item.label);
+
+                // Prevent the default focus behavior.
+                event.preventDefault();
+                // or return false;
+            }
+
+        });
+        //autocopmplete_field.autocomplete('option', 'appendTo', '.modal')
+    });
+}
 
 function _init(){
     //alert('_init()');
@@ -176,4 +198,12 @@ function _init(){
     $('.date-picker').datetimepicker({locale: 'pt-BR', format: 'L'})
     $('.date-time-picker').datetimepicker({locale: 'pt-BR'})
 
+    // Faz o bind de campos com autocomplete
+    bind_autocomplete();
+
 }
+
+// inicia scripts
+$(document).ready(function(){
+    _init();
+});

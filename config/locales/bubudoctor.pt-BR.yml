@@ -61,7 +61,9 @@ pt-BR:
         plan_validation: "Validade do Plano"
         plan_number: "Número Carteirinha"
       appointment:
+        user: "Médico"
         user_id: "Médico"
+        patient: "Paciente"
         patient_id: "Paciente"
         appointment_date: "Data Consulta"
         appointment_kind: "Tipo Consulta"
@@ -79,3 +81,23 @@ pt-BR:
         obs: "Observação"
         created_at: "Criado em"
         updated_at: "Última Atualização"
+    errors: &erros
+      format: ! ' %{message}'
+      models: &models
+        user:
+          attributes:
+            password:
+              too_short: " muito pequena"
+        patient:
+          attributes:
+            read_contract:
+              blank: " - É necessário aceitar os termos e condições docontrato."
+            internal_error: "" #ERro interno, por favor tente mais tarde
+        appointment:
+          attributes:
+            patient:
+              required: "é obrigatório"
+      messages:
+        success: "SUCESSO"
+        failure: "FALHA"
+        extension_whitelist_error: "Extensão de arquivo não permitida"

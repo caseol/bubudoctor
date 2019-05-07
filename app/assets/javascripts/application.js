@@ -11,8 +11,10 @@
 // about supported directives.
 //
 //= require jquery3
-//= require popper
+//= require jquery-ui
 //= require rails-ujs
+
+//= require popper
 //= require bootstrap-sprockets
 //= require jquery.mask
 //= require datatables

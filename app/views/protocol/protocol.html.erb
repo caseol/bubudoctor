@@ -20,7 +20,8 @@
           </thead>
         </table>
         <br>
-        <%= link_to 'Marcar Horário', new_appointment_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class:"btn btn-primary"} %>
+        <%#= link_to 'Marcar Horário', new_appointment_path,  {:local => true, class:"btn btn-primary"} %>
+        <%= link_to 'Marcar Horário', new_appointment_path,  {:remote => true, data:{toggle: "modal", target: '#modal-window'}, class:"btn btn-primary"} %>
       </div>
     </div>
     <div class="col-sm-6">
@@ -58,7 +59,7 @@
         </table>
         <br>
         <%#= link_to 'Novo Paciente', new_patient_path, class:"btn btn-primary" %>
-        <%= link_to 'Novo Paciente', new_patient_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class:"btn btn-primary"}  %>
+        <%= link_to 'Novo Paciente', new_patient_path,  {:remote => true, data:{toggle:  "modal", target: '#modal-window'}, class:"btn btn-primary"} %>
       </div>
     </div>
   </div>
