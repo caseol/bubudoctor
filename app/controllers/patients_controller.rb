@@ -22,6 +22,7 @@ class PatientsController < ApplicationController
 
   # GET /patients/1/edit
   def edit
+    respond_to :html, :js, :json#, layout: false
   end
 
   # POST /patients
@@ -50,10 +51,12 @@ class PatientsController < ApplicationController
   def update
     respond_to do |format|
       if @patient.update(patient_params)
-        format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
+        format.html { redirect_to @patient, notice: 'Paciente atualizado com sucesso!' }
+        format.js { flash.now[:notice] = 'Paciente atualizado com sucesso!'}
         format.json { render :show, status: :ok, location: @patient }
       else
         format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @patient.errors, status: :unprocessable_entity }
       end
     end
@@ -64,7 +67,8 @@ class PatientsController < ApplicationController
   def destroy
     @patient.destroy
     respond_to do |format|
-      format.html { redirect_to patients_url, notice: 'Patient was successfully destroyed.' }
+      format.html { redirect_to protocol_path, notice: 'Paciente apagado com sucesso!'}
+      format.js   { flash.now[:notice] = 'Paciente apagado com sucesso!'}
       format.json { head :no_content }
     end
   end

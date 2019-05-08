@@ -14,13 +14,13 @@
       <div class="col-sm-6">
         <div class="form-group">
           <%= form.label :patient_id %>
-          <%= form.hidden_field :patient_id, value: "", class: "autocomplete-target" %>
-          <%= text_field_tag :search_patient, params[:search_patient], data: { autocomplete: autocomplete_patient_name_patients_path, hidden:{target: ".autocomplete-target"} }, class: 'form-control' %>
+          <%= form.hidden_field :patient_id, value: "#{appointment.try(:patient).try(:id)}", class: "autocomplete-target" %>
+          <%= text_field_tag :search_patient, (appointment.try(:patient).try(:name) || params[:search_patient]), data: { autocomplete: autocomplete_patient_name_patients_path, hidden:{target: ".autocomplete-target"} }, class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= form.label :appointment_date %>
           <div class="input-group date-time-picker" id="datepicker-appointment-date" data-target-input="nearest">
-            <%= form.text_field :appointment_date, class:'form-control datetimepicker-input', data:{target:'#datepicker-appointment-date'} %>
+            <%= form.text_field :appointment_date, value:"#{appointment.appointment_date.strftime('%d/%m/%Y %H:%M') unless appointment.try(:appointment_date).blank?}", class:'form-control datetimepicker-input', data:{target:'#datepicker-appointment-date'} %>
             <div class="input-group-append" data-target="#datepicker-appointment-date" data-toggle="datetimepicker">
               <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
             </div>

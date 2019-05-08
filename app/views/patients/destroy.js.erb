@@ -1,0 +1,11 @@
+//Fecha o fundo do modal com detalhes do datatable
+$(".dtr-modal").toggle(false)
+//Fecha a div de detalhes do modal do datatable
+$(".dtr-modal-display").toggle(false)
+
+//Renderiza as mensagens
+$("#application-messages").html('<%= j render partial: 'layouts/messages' %>');
+$(".alert").delay(3000).slideUp(200, function () {
+    //atualiza datatable
+    $('#dttb-patients').DataTable().ajax.reload();
+})

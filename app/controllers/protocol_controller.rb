@@ -4,5 +4,8 @@ class ProtocolController < ApplicationController
   end
 
   def historic
+    # recupera histórico do paciente
+    @patient = Patient.find(params[:id])
+
   end
 end

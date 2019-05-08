@@ -11,7 +11,7 @@ class CreatePatients < ActiveRecord::Migration[5.2]
       t.string :etnia
       t.string :civil_status
       t.string :occupation
-      t.integer :scholarity
+      t.string :scholarity
       t.string :zip
       t.string :district
       t.string :address

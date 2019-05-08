@@ -1,5 +1,4 @@
-<div class="
-">
+<div class="">
   <div class="row">
     <div class="col-sm-6">
       <div class="sectionform">
@@ -8,14 +7,17 @@
           <thead>
           <tr>
             <!--            <th data-data="user">Médico</th>-->
-            <th data-data="patient">Paciente</th>
             <th data-data="appointment_date">Horário Consulta</th>
+            <th data-data="name">Paciente</th>
             <th data-data="appointment_kind">Tipo da Consulta</th>
             <th data-data="status">Status</th>
             <!--            <th data-data="obs">Obs</th>-->
-            <!--              <th data-data="created_at">Created at</th>-->
-            <!--              <th data-data="updated_at">Updated at</th>-->
-            <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+            <!--            <th data-data="created_at">Created at</th>-->
+            <!--            <th data-data="updated_at">Updated at</th>-->
+            <!--            <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" >Ações</th>-->
+
+            <th data-data="url" data-orderable="false" data-searchable="false" class="skip-export">Ações</th>
+
           </tr>
           </thead>
         </table>
@@ -30,12 +32,12 @@
         <table class="responsive table table-hover dttb" id="dttb-patients" data-sort="true" data-source="<%=  patients_url(format: :json)%>">
           <thead>
           <tr>
-            <th data-data="patient_since">Paciente Desde</th>
             <th data-data="name">Nome</th>
             <th data-data="birth">Nascimento</th>
             <th data-data="age">Idade</th>
             <th data-data="cpf">CPF</th>
             <th data-data="gender">Gênero</th>
+            <th data-data="patient_since">Paciente Desde</th>
             <th data-data="etnia">Etnia</th>
             <th data-data="civil_status">Estado Civil</th>
             <th data-data="occupation">Profissão</th>
@@ -53,7 +55,7 @@
             <th data-data="plan_number">Número Carteirinha</th>
 <!--            <th data-data="created_at">Created at</th>-->
 <!--            <th data-data="updated_at">Updated at</th>-->
-<!--            <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>-->
+            <th data-data="url" data-orderable="false" data-searchable="false" class="skip-export" width="100px">Ações</th>
           </tr>
           </thead>
         </table>

@@ -1,0 +1,6 @@
+// Some com o modal onde se acionou o link
+$("#dtr-modal").toggle();
+
+$("#modal-window").find(".modal-content").html("<%= j (render 'edit') %>");
+$("#modal-window").modal(_init()).animate({ scrollTop: 0 }, 'slow');
+// reinicia configurações para a pagina modal

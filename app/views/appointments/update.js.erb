@@ -1,9 +1,11 @@
 //$('#modal-window').on('hidden.bs.modal', function () {
 //    location.reload();
 //});
+$(".dtr-modal").toggle(false)
+$(".dtr-modal-display").toggle(false)
 $("#modal-window").modal('toggle');
 $("#application-messages").html('<%= j render partial: 'layouts/messages' %>');
 $(".alert").delay(3000).slideUp(200, function () {
     //location.reload();
-    $('#dttb-patients').DataTable().ajax.reload();
+    $('#dttb-appointments').DataTable().ajax.reload();
 })

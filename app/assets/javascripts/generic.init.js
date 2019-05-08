@@ -53,7 +53,7 @@ var default_table_options = {
                 header: function ( row ) {
                     var data = row.data();
                     if (data['name'] !==undefined){
-                        return 'Detalhes: '+ data['name'];
+                        return data['name'];
                     }
                     else{
                         return '';

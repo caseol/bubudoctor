@@ -5,6 +5,8 @@ class AppointmentsController < ApplicationController
   # GET /appointments.json
   def index
     @appointments = Appointment.all
+
+    #Date.today.all_day #.first.to_datetime
   end
 
   # GET /appointments/1
@@ -20,6 +22,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1/edit
   def edit
+    respond_to :html, :js, :json#, layout: false
   end
 
   # POST /appointments
@@ -45,10 +48,12 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
+        format.html { redirect_to @appointment, notice: 'Consulta atualizada com sucesso' }
+        format.js { flash.now[:notice] = 'Consulta atualizada com sucesso'}
         format.json { render :show, status: :ok, location: @appointment }
       else
         format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end
@@ -59,7 +64,8 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
+      format.html { redirect_to appointments_url, notice: 'Consulta apagada com sucesso' }
+      format.js { render :destroy, flash.now[:notice] = 'Consulta apagada com sucesso'}
       format.json { head :no_content }
     end
   end

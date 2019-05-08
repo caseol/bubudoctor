@@ -15,7 +15,7 @@
         <div class="form-group">
           <%= form.label :patient_since %>
           <div class="input-group date-picker" id="datepicker-pacient-since" data-target-input="nearest">
-            <%= form.text_field :patient_since, class:'form-control datetimepicker-input', data:{target:'#datepicker-pacient-since'} %>
+            <%= form.text_field :patient_since, value:"#{patient.patient_since.strftime('%d/%m/%Y %H:%M') unless patient.try(:patient_since).blank?}", class:'form-control datetimepicker-input', data:{target:'#datepicker-pacient-since'} %>
             <div class="input-group-append" data-target="#datepicker-pacient-since" data-toggle="datetimepicker">
               <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
             </div>
@@ -51,7 +51,7 @@
         <div class="form-group">
           <%= form.label :birth %>
           <div class="input-group date-picker" id="datepicker-pacient-birth" data-target-input="nearest">
-            <%= form.text_field :birth, class:'form-control datetimepicker-input', data:{target:'#datepicker-pacient-birth'} %>
+            <%= form.text_field :birth, value:"#{patient.birth.strftime('%d/%m/%Y %H:%M') unless patient.try(:birth).blank?}", class:'form-control datetimepicker-input', data:{target:'#datepicker-pacient-birth'} %>
             <div class="input-group-append" data-target="#datepicker-pacient-birth" data-toggle="datetimepicker">
               <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
             </div>
@@ -113,7 +113,8 @@
         <div class="form-group">
           <%= form.label :plan_validation %>
           <div class="input-group date-picker" id="datepicker-plan_validation" data-target-input="nearest">
-            <%= form.text_field :plan_validation, class:'form-control datetimepicker-input', data:{target:'#datepicker-plan_validation'} %>
+            <%= form.text_field :plan_validation, value:"#{patient.plan_validation.strftime('%d/%m/%Y %H:%M') unless patient.try(:plan_validation).blank?}", class:'form-control datetimepicker-input', data:{target:'#datepicker-plan_validation'} %>
+
             <div class="input-group-append" data-target="#datepicker-plan_validation" data-toggle="datetimepicker">
               <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
             </div>
