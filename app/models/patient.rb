@@ -35,6 +35,18 @@ class Patient < ApplicationRecord
   #has_many :users, through: :appointments
   belongs_to :user
 
+  serialize :history_current_disease, Hash
+  store_accessor :history_current_disease,
+                 :main_complaint, :history_of_disease
+
+  serialize :previous_pathological_history, Hash
+  store_accessor :previous_pathological_history,
+         :suffered_accidents, :have_allergy, :suffers_asthma,:cardiopathies,
+                 :previous_surgeries, :convulsions, :diabetes_mellitus, :dyslipidemia,
+                 :childhood, :enteropathies, :gastropathy, :previous_hospitalizations,
+                 :history_has, :metabolic_diseases, :nephropathy, :pneumopathy, :osteopathy,
+                 :thyroid_disease, :suffered_transfusions, :other_diseases, :use_medications
+
   validates_presence_of :email, :mobile
   validate :validate_format_of_document_number
 
@@ -75,6 +87,10 @@ class Patient < ApplicationRecord
       doctorate_degree: "Doutorado",
       pos_doctorate: "Pós Doutorado"
   }
+
+  def options
+    OpenStruct.new self[:options] || {}
+  end
 
   def validate_format_of_document_number(cpf=self.cpf)
     return errors.add(:cpf, " não é válido") if cpf.nil?

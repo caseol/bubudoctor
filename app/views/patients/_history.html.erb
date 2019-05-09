@@ -1,0 +1,123 @@
+<%= form_with(model: patient, remote: true) do |form| %>
+  <div class="container col-sm-12">
+    <% if patient.errors.any? %>
+      <div id="error_explanation">
+        <!--      <h2><%#= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>-->
+        <ul>
+          <% patient.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-sm-4">
+        <fieldset>
+          <legend>História da doença</legend>
+          <div class="form-group">
+            <%= form.label :main_complaint %>
+            <%= form.text_area :main_complaint, size: "25x10", class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :history_of_disease %>
+            <%= form.text_area :history_of_disease, size: "25x10", class: 'form-control' %>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <%= form.label :suffered_accidents %>
+          <%= form.text_field :suffered_accidents, class: 'form-control', title: "Quais?" %>
+        </div>
+        <div class="form-group">
+          <%= form.label :have_allergy %>
+          <%= form.text_field :have_allergy, class: 'form-control', title: 'Quais?' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :suffers_asthma %>
+          <%= form.text_field :suffers_asthma, class: 'form-control', title: 'Explique' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :cardiopathies %>
+          <%= form.text_field :cardiopathies, class: 'form-control', title: 'Quais?' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :previous_surgeries %>
+          <%= form.text_field :previous_surgeries, class: 'form-control', title: 'Quais?' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :convulsions %>
+          <%= form.text_field :convulsions, class: 'form-control', title: 'Explique' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :diabetes_mellitus %>
+          <%= form.text_field :diabetes_mellitus, class: 'form-control', title: 'Explique' %>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <%= form.label :dyslipidemia %>
+          <%= form.text_field :dyslipidemia, class: 'form-control', title: 'Explique' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :childhood %>
+          <%= form.text_field :childhood, class: 'form-control', title: 'Quais?' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :enteropathies %>
+          <%= form.text_field :enteropathies, class: 'form-control', title: 'Quais?' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :gastropathy %>
+          <%= form.text_field :gastropathy, class: 'form-control', title: 'Quais?' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :nephropathy %>
+          <%= form.text_field :nephropathy, class: 'form-control', title: 'Quais?' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :pneumopathy %>
+          <%= form.text_field :pneumopathy, class: 'form-control', title: 'Quais?' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :metabolic_diseases %>
+          <%= form.text_field :metabolic_diseases, class: 'form-control', title: 'Quais?' %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <%= form.label :previous_hospitalizations %>
+          <%= form.text_field :previous_hospitalizations, class: 'form-control', title: 'Explique' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :history_has %>
+          <%= form.text_field :history_has, class: 'form-control', title: 'Explique' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :osteopathy %>
+          <%= form.text_field :osteopathy, class: 'form-control', title: 'Quais?' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :thyroid_disease %>
+          <%= form.text_field :thyroid_disease, class: 'form-control', title: 'Quais?' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :suffered_transfusions %>
+          <%= form.text_field :suffered_transfusions, class: 'form-control', title: 'Explique' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :other_diseases %>
+          <%= form.text_field :other_diseases, class: 'form-control', title: 'Quais?' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :use_medications %>
+          <%= form.text_field :use_medications, class: 'form-control', title: 'Quais?' %>
+        </div>
+      </div>
+      <div class="actions col-12" style="right: auto">
+        <%= form.submit({class: 'btn btn-primary'}) %>
+      </div>
+    </div>
+  </div>
+<% end %>

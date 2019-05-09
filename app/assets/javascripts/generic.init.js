@@ -173,8 +173,9 @@ function bind_autocomplete(){
 function _init(){
     //alert('_init()');
 
+    //coloca o foco no alert,
     //dá 15seg e esconde qq div com mensagem de sucesso/erro
-    $(".alert").delay(12000).slideUp(200)
+    $(".alert").delay(12000).slideUp(200);
 
     // Definindo máscaras
     $(".masked_phone").mask("(99) 9999-9999");

@@ -81,6 +81,12 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:search_patient, :patient_since, :name, :birth, :age, :cpf, :gender, :etnia, :civil_status, :occupation, :scholarity, :zip, :address, :city, :uf, :telephone, :mobile, :email, :indication_by, :health_plan, :plan_validation, :plan_number, :created_at, :updated_at)
+      params.require(:patient).permit(:search_patient, :patient_since, :name, :birth, :age, :cpf, :gender, :etnia, :civil_status, :occupation, :scholarity, :zip, :address, :city, :uf, :telephone, :mobile, :email, :indication_by, :health_plan, :plan_validation, :plan_number, :created_at, :updated_at,
+                                      :main_complaint, :history_of_disease,
+                                      :suffered_accidents, :have_allergy, :suffers_asthma,:cardiopathies,
+                                      :previous_surgeries, :convulsions, :diabetes_mellitus, :dyslipidemia,
+                                      :childhood, :enteropathies, :gastropathy, :previous_hospitalizations,
+                                      :history_has, :metabolic_diseases, :nephropathy, :pneumopathy, :osteopathy,
+                                      :thyroid_disease, :suffered_transfusions, :other_diseases, :use_medications)
     end
 end
