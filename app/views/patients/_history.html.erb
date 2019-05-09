@@ -12,8 +12,8 @@
     <% end %>
     <div class="row">
       <div class="col-sm-4">
-        <fieldset>
-          <legend>História da doença</legend>
+<!--        <fieldset>-->
+<!--          <legend>História da doença</legend>-->
           <div class="form-group">
             <%= form.label :main_complaint %>
             <%= form.text_area :main_complaint, size: "25x10", class: 'form-control' %>
@@ -22,7 +22,7 @@
             <%= form.label :history_of_disease %>
             <%= form.text_area :history_of_disease, size: "25x10", class: 'form-control' %>
           </div>
-        </fieldset>
+<!--        </fieldset>-->
       </div>
       <div class="col-sm-2">
         <div class="form-group">
@@ -115,8 +115,8 @@
           <%= form.text_field :use_medications, class: 'form-control', title: 'Quais?' %>
         </div>
       </div>
-      <div class="actions col-12" style="right: auto">
-        <%= form.submit({class: 'btn btn-primary'}) %>
+      <div class="actions col-12" style="width: 100%">
+        <%= form.submit('Atualizar História Pregressa',{class: 'btn btn-primary'}) %>
       </div>
     </div>
   </div>
