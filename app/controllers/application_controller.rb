@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
       sign_out current_user
       page_url(:about, :alert => "Seu usuário está suspenso. Por favor entre em contato com o administrador do sistema.")
     else
-      protocol_protocol_path
+      protocol_path
     end
   end
 

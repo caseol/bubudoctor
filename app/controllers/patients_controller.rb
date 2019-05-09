@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
-  before_action :admin_only#, :except => [:show]
+  #before_action :admin_only#, :except => [:show]
   autocomplete :patient, :name, :display_value => :funky_method#, label_method: :name, full_mode: true #, scopes: [:active_users]
 
   # GET /patients
