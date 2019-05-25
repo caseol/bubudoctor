@@ -33,6 +33,7 @@ $.extend( $.fn.dataTable.defaults, {
   //  "<'row'<'col-sm-4 text-left'f><'right-action col-sm-8 text-right'<'buttons'B> <'select-info'> >>" +
   //  "<'row'<'dttb col-12 px-0'tr>>" +
   //  "<'row'<'col-sm-12 table-footer'lip>>"
+
 });
 
 

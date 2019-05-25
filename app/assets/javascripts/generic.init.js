@@ -1,3 +1,10 @@
+// objeto carrregado com dataTable
+var dttb = undefined;
+var dttb_editor = undefined;
+
+// objeto carrregado com datePicker
+var date_picker = undefined;
+
 // Variável Global para montagem do Datepicker
 var datepicker_options = {
     closeText: 'Fechar',
@@ -19,7 +26,6 @@ var datepicker_options = {
     showMonthAfterYear: true,
     yearSuffix: ''
 };
-
 // Variável Global para DataTable
 var language_table_options = {
     "sEmptyTable": "Nenhum registro encontrado",
@@ -47,6 +53,28 @@ var language_table_options = {
 
 var default_table_options = {
     language: language_table_options,
+    pageLength: 10,
+    columnDefs: [
+        {"targets": 'no-sort', "orderable": false}
+    ],
+    dom: 'frtiBp',
+    buttons: [
+        {
+            extend: 'copy',
+            text: 'Copiar'
+        },
+        {
+            extend: 'csv',
+            text: 'CSV'
+        },
+        {
+            extend: 'print',
+            text: 'Imprimir'
+        }
+    ]
+}
+var default_table_modal_options = {
+    language: language_table_options,
     responsive: {
         details: {
             display: $.fn.dataTable.Responsive.display.modal( {
@@ -58,7 +86,6 @@ var default_table_options = {
                     else{
                         return '';
                     }
-
                 }
             } ),
             renderer: $.fn.dataTable.Responsive.renderer.tableAll()
@@ -122,12 +149,6 @@ var simple_table_options = {
     ]
 }
 
-// objeto carrregado com dataTable
-var dttb = undefined;
-
-// objeto carrregado com datePicker
-var date_picker = undefined;
-
 // configurando icones do datapicker
 $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
         icons: {
@@ -190,9 +211,64 @@ function _init(){
     //Máscara CEP
     $(".masked_cep").mask("99999-999");
 
+    /*editor = new $.fn.dataTable.Editor({
+        ajax: "/patients",
+        table: "#dttb-patients",
+    });
+
+    // ativando edição na linha para do datatable
+    $('#dttb-patients').on( 'click', 'tbody td:not(:first-child)', function (e) {
+        editor.inline( this );
+    } );*/
+
     // iniciando datatables
     if (dttb === undefined){
-        dttb = $(".dttb").dataTable(default_table_options);
+        dttb = $(".dttb").DataTable(default_table_modal_options);
+        dttbAppointments = $('#dttb-appointments').DataTable(default_table_options);
+        dttbAppointments.MakeCellsEditable({
+            "onUpdate": myDttbCallbackFunction,
+            "inputCss":'form-control',
+            "columns": [1,2,3,4],
+            "allowNulls": {
+                "columns": [3],
+                "errorClass": 'error'
+            },
+            "confirmationButton": false,
+            "listenToKeys":  true,
+            "inputTypes": [
+                {
+                    "column": 1,
+                    "type": "datetimepicker", // requires jQuery UI: http://http://jqueryui.com/download/
+                },
+                {
+                    "column": 2,
+                    "type": "text",
+                    "options": null
+                },
+                {
+                    "column":3,
+                    "type": "list",
+                    "options":[
+                        { "value": "first_time", "display": "1a Consulta" },
+                        { "value": "return", "display": "Retorno" },
+                        { "value": "exam", "display": "Mostrar Exame" },
+                        { "value": "procedure", "display": "Procedimento" }
+                    ]
+                },
+                {
+                    "column":4,
+                    "type": "list",
+                    "options":[
+                        { "value": "scheduled", "display": "Agendada" },
+                        { "value": "done", "display": "Realizada" },
+                        { "value": "absence", "display": "Falta" },
+                        { "value": "canceled", "display": "Cancelada" }
+                    ]
+                }
+                // Nothing specified for column 3 so it will default to text
+
+            ]
+        });
     }
 
     // iniciando date picker
@@ -203,6 +279,15 @@ function _init(){
     bind_autocomplete();
 
 }
+
+function myDttbCallbackFunction (updatedCell, updatedRow, oldValue, newValue) {
+
+    console.log("The new value for the cell is: " + newValue);
+    console.log("The new TEXT for the cell is: " + updatedCell.data());
+    console.log("The old value for that cell was: " + oldValue);
+    console.log("The values for each cell in that row are: " + updatedRow.data());
+}
+
 
 // inicia scripts
 $(document).ready(function(){

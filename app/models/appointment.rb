@@ -16,6 +16,8 @@ class Appointment < ApplicationRecord
   belongs_to :user
   belongs_to :patient
 
+  attr_accessor :empty_collumn
+
   enum appointment_kinds: [:first_time, :return, :show_exam, :procedure]
   enum status_kinds: [:scheduled, :done, :absence, :canceled]
   # Uso na view:

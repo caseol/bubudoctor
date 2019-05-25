@@ -18,6 +18,7 @@
 //= require bootstrap-sprockets
 //= require jquery.mask
 //= require datatables
+//= require dataTables.cellEdit
 
 // require bootstrap-datepicker.js
 // require bootstrap-datepicker.pt-BR.min
@@ -29,7 +30,6 @@
 
 
 //= require generic.init
-
 function bindZipField(address_div){
     // pega o campo zip dentro da div passada
     var address_zip = address_div.find("#address_zip");

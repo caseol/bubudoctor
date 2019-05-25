@@ -3,13 +3,14 @@
     <div class="col-sm-6">
       <div class="sectionform">
         <h3>Agenda</h3>
-        <table class="responsive nowrap table table-hover dttb" id="dttb-appointments" data-sort="true" data-source="<%= appointments_url(format: :json)%>">
+        <table class="responsive nowrap table table-hover" id="dttb-appointments" data-sort="true" data-source="<%= appointments_url(format: :json)%>">
           <thead>
           <tr>
             <!--            <th data-data="user">Médico</th>-->
-            <th data-data="appointment_date">Horário Consulta</th>
+            <th data-data="empty_collumn"></th>
+            <th data-data="appointment_date">Horário</th>
             <th data-data="name">Paciente</th>
-            <th data-data="appointment_kind">Tipo da Consulta</th>
+            <th data-data="appointment_kind">Tipo</th>
             <th data-data="status">Status</th>
             <!--            <th data-data="obs">Obs</th>-->
             <!--            <th data-data="created_at">Created at</th>-->
