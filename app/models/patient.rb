@@ -57,6 +57,9 @@ class Patient < ApplicationRecord
   store_accessor :father_history,
                  :about_father, :father_lives, :father_cardiac, :father_diabetes,
                  :father_congenital_disease, :father_has, :father_neoplasms, :father_obesity, :father_surgeries
+  serialize :social_history, Hash
+  store_accessor :social_history,
+                 :alcoholism, :smoking, :stop_smoking, :ilicit_drugs, :physical_activity, :aerobic_activity, :other_activity
 
   validates_presence_of :email, :mobile
   validate :validate_format_of_document_number

@@ -60,10 +60,8 @@ pt-BR:
         health_plan: "Plano de Saúde"
         plan_validation: "Validade do Plano"
         plan_number: "Número Carteirinha"
-        #history_current_disease: serialized HASH
         main_complaint: "Queixa Principal"
         history_of_disease: "História da doença atual"
-        #previous_pathological_history: serialized HASH
         suffered_accidents: "Já sofreu acidentes?"
         have_allergy: "Tem alergia?"
         suffers_asthma: "Sofre de Asma?"
@@ -103,6 +101,13 @@ pt-BR:
         father_neoplasms: "Neoplasias?"
         father_obesity: "Obesidade?"
         father_surgeries: "Já fez cirurgia?"
+        alcoholism: "Quanto ao Etilismo?"
+        smoking: "Quanto ao tabagismo?"
+        stop_smoking: "Parou de Fumar?"
+        ilicit_drugs: "Usa drogas ilícitas?"
+        physical_activity: "Pratica exercício físico?"
+        aerobic_activity: "Exercícios aeróbicos?"
+        other_activity: "Outras atividades?"
       appointment:
         user: "Médico"
         user_id: "Médico"

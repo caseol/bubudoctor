@@ -91,6 +91,8 @@ class PatientsController < ApplicationController
                                       :about_mother, :mother_lives, :mother_cardiac, :mother_diabetes,
                                       :mother_congenital_disease, :mother_has, :mother_neoplasms, :mother_obesity,
                                       :mother_surgeries, :about_father, :father_lives, :father_cardiac, :father_diabetes,
-                                      :father_congenital_disease, :father_has, :father_neoplasms, :father_obesity, :father_surgeries)
+                                      :father_congenital_disease, :father_has, :father_neoplasms, :father_obesity,
+                                      :father_surgeries, :alcoholism, :smoking, :stop_smoking, :ilicit_drugs, :physical_activity,
+                                      :aerobic_activity, :other_activity)
     end
 end
