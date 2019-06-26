@@ -2,32 +2,34 @@
 #
 # Table name: patients
 #
-#  id              :integer          not null, primary key
-#  user_id         :integer
-#  patient_since   :date
-#  name            :string
-#  birth           :date
-#  age             :integer
-#  cpf             :string
-#  gender          :string
-#  etnia           :string
-#  civil_status    :string
-#  occupation      :string
-#  scholarity      :integer
-#  zip             :string
-#  district        :string
-#  address         :string
-#  city            :string
-#  uf              :string
-#  telephone       :string
-#  mobile          :string
-#  email           :string
-#  indication_by   :text
-#  health_plan     :string
-#  plan_validation :date
-#  plan_number     :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                            :integer          not null, primary key
+#  user_id                       :integer
+#  patient_since                 :date
+#  name                          :string
+#  birth                         :date
+#  age                           :integer
+#  cpf                           :string
+#  gender                        :string
+#  etnia                         :string
+#  civil_status                  :string
+#  occupation                    :string
+#  scholarity                    :string
+#  zip                           :string
+#  district                      :string
+#  address                       :string
+#  city                          :string
+#  uf                            :string
+#  telephone                     :string
+#  mobile                        :string
+#  email                         :string
+#  indication_by                 :text
+#  health_plan                   :string
+#  plan_validation               :date
+#  plan_number                   :string
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#  history_current_disease       :text
+#  previous_pathological_history :text
 #
 
 class Patient < ApplicationRecord
@@ -46,6 +48,15 @@ class Patient < ApplicationRecord
                  :childhood, :enteropathies, :gastropathy, :previous_hospitalizations,
                  :history_has, :metabolic_diseases, :nephropathy, :pneumopathy, :osteopathy,
                  :thyroid_disease, :suffered_transfusions, :other_diseases, :use_medications
+
+  serialize :mother_history, Hash
+  store_accessor :mother_history,
+                 :about_mother, :mother_lives, :mother_cardiac, :mother_diabetes,
+                        :mother_congenital_disease, :mother_has, :mother_neoplasms, :mother_obesity, :mother_surgeries
+  serialize :father_history, Hash
+  store_accessor :father_history,
+                 :about_father, :father_lives, :father_cardiac, :father_diabetes,
+                 :father_congenital_disease, :father_has, :father_neoplasms, :father_obesity, :father_surgeries
 
   validates_presence_of :email, :mobile
   validate :validate_format_of_document_number

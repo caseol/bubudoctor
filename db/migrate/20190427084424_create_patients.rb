@@ -27,6 +27,9 @@ class CreatePatients < ActiveRecord::Migration[5.2]
 
       t.text :history_current_disease
       t.text :previous_pathological_history
+      t.text :mother_history
+      t.text :father_history
+      t.text :social_history
 
       t.datetime :created_at
       t.datetime :updated_at

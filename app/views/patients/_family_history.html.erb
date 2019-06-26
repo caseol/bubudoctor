@@ -1,0 +1,101 @@
+<%= form_with(model: patient, remote: true) do |form| %>
+  <div class="container col-sm-12">
+    <% if patient.errors.any? %>
+      <div id="error_explanation">
+        <!--      <h2><%#= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>-->
+        <ul>
+          <% patient.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-sm-6">
+        <fieldset>
+          <legend>História da Mãe</legend>
+          <div class="form-group">
+            <%= form.label :about_mother %>
+            <%= form.text_area :about_mother, size: "25x10", class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :mother_lives %>
+            <%= form.text_field :mother_lives, class: 'form-control', title: 'Qual idade?' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :mother_cardiac %>
+            <%= form.text_field :mother_cardiac, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :mother_diabetes %>
+            <%= form.text_field :mother_diabetes, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :mother_congenital_disease %>
+            <%= form.text_field :mother_congenital_disease, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :mother_has %>
+            <%= form.text_field :mother_has, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :mother_neoplasms %>
+            <%= form.text_field :mother_neoplasms, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :mother_obesity %>
+            <%= form.text_field :mother_obesity, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :mother_surgeries %>
+            <%= form.text_field :mother_surgeries, class: 'form-control', title: 'Explique' %>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-sm-6">
+        <fieldset>
+          <legend>História do Pai</legend>
+          <div class="form-group">
+            <%= form.label :about_father %>
+            <%= form.text_area :about_mother, size: "25x10", class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :father_lives %>
+            <%= form.text_field :father_lives, class: 'form-control', title: 'Qual idade?' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :father_cardiac %>
+            <%= form.text_field :father_cardiac, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :father_diabetes %>
+            <%= form.text_field :father_diabetes, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :father_congenital_disease %>
+            <%= form.text_field :father_congenital_disease, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :father_has %>
+            <%= form.text_field :father_has, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :father_neoplasms %>
+            <%= form.text_field :father_neoplasms, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :father_obesity %>
+            <%= form.text_field :father_obesity, class: 'form-control', title: 'Explique' %>
+          </div>
+          <div class="form-group">
+            <%= form.label :father_surgeries %>
+            <%= form.text_field :father_surgeries, class: 'form-control', title: 'Explique' %>
+          </div>
+        </fieldset>
+      </div>
+      <div class="actions col-12" style="width: 100%; margin-top: 10px">
+        <%= form.submit('Atualizar Histórico Familiar',{class: 'btn btn-primary'}) %>
+      </div>
+    </div>
+  </div>
+<% end %>

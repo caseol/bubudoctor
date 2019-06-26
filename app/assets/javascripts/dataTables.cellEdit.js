@@ -41,6 +41,11 @@ jQuery.fn.dataTable.Api.register('MakeCellsEditable()', function (settings) {
                 newText = $(inputField).find('option:selected').text()
             }
 
+            var oldValue = cell.data();
+            if (inputField.is('select')){
+                oldValue = inputField.val();
+            }
+
             if (!newValue && ((settings.allowNulls) && settings.allowNulls != true)) {
                 // If columns specified
                 if (settings.allowNulls.columns) {
@@ -74,7 +79,6 @@ jQuery.fn.dataTable.Api.register('MakeCellsEditable()', function (settings) {
                 }
             }
             function _update(newValue, newText) {
-                var oldValue = cell.data();
                 cell.data(newText);
                 //Return cell & row.
                 settings.onUpdate(cell, row, oldValue, newValue);

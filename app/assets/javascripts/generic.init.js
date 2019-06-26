@@ -80,8 +80,8 @@ var default_table_modal_options = {
             display: $.fn.dataTable.Responsive.display.modal( {
                 header: function ( row ) {
                     var data = row.data();
-                    if (data['name'] !==undefined){
-                        return data['name'];
+                    if (data['url'] !==undefined){
+                        return data['url'];
                     }
                     else{
                         return '';
@@ -211,21 +211,13 @@ function _init(){
     //Máscara CEP
     $(".masked_cep").mask("99999-999");
 
-    /*editor = new $.fn.dataTable.Editor({
-        ajax: "/patients",
-        table: "#dttb-patients",
-    });
-
-    // ativando edição na linha para do datatable
-    $('#dttb-patients').on( 'click', 'tbody td:not(:first-child)', function (e) {
-        editor.inline( this );
-    } );*/
-
     // iniciando datatables
     if (dttb === undefined){
         dttb = $(".dttb").DataTable(default_table_modal_options);
         dttbAppointments = $('#dttb-appointments').DataTable(default_table_options);
-        dttbAppointments.MakeCellsEditable({
+
+        // Fazendo a tabela ser editada diretamente na celula
+        /*dttbAppointments.MakeCellsEditable({
             "onUpdate": myDttbCallbackFunction,
             "inputCss":'form-control',
             "columns": [1,2,3,4],
@@ -268,7 +260,7 @@ function _init(){
                 // Nothing specified for column 3 so it will default to text
 
             ]
-        });
+        });*/
     }
 
     // iniciando date picker
@@ -281,7 +273,6 @@ function _init(){
 }
 
 function myDttbCallbackFunction (updatedCell, updatedRow, oldValue, newValue) {
-
     console.log("The new value for the cell is: " + newValue);
     console.log("The new TEXT for the cell is: " + updatedCell.data());
     console.log("The old value for that cell was: " + oldValue);
