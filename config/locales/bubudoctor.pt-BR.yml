@@ -93,7 +93,7 @@ pt-BR:
         mother_has: "H.A.S"
         mother_neoplasms: "Neoplasias?"
         mother_obesity: "Obesidade?"
-        mother_surgeries: "Já fe cirurgia?"
+        mother_surgeries: "Já fez cirurgia?"
         about_father: "Sobre o pai"
         father_lives: "É vivo?"
         father_cardiac: "É cardiaco?"
@@ -102,7 +102,7 @@ pt-BR:
         father_has: "H.A.S"
         father_neoplasms: "Neoplasias?"
         father_obesity: "Obesidade?"
-        father_surgeries: "Já fe cirurgia?"
+        father_surgeries: "Já fez cirurgia?"
       appointment:
         user: "Médico"
         user_id: "Médico"

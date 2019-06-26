@@ -87,6 +87,10 @@ class PatientsController < ApplicationController
                                       :previous_surgeries, :convulsions, :diabetes_mellitus, :dyslipidemia,
                                       :childhood, :enteropathies, :gastropathy, :previous_hospitalizations,
                                       :history_has, :metabolic_diseases, :nephropathy, :pneumopathy, :osteopathy,
-                                      :thyroid_disease, :suffered_transfusions, :other_diseases, :use_medications)
+                                      :thyroid_disease, :suffered_transfusions, :other_diseases, :use_medications,
+                                      :about_mother, :mother_lives, :mother_cardiac, :mother_diabetes,
+                                      :mother_congenital_disease, :mother_has, :mother_neoplasms, :mother_obesity,
+                                      :mother_surgeries, :about_father, :father_lives, :father_cardiac, :father_diabetes,
+                                      :father_congenital_disease, :father_has, :father_neoplasms, :father_obesity, :father_surgeries)
     end
 end
