@@ -30,6 +30,7 @@ class CreatePatients < ActiveRecord::Migration[5.2]
       t.text :mother_history
       t.text :father_history
       t.text :social_history
+      t.text :physiological_history
 
       t.datetime :created_at
       t.datetime :updated_at

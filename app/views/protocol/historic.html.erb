@@ -14,7 +14,7 @@
             <a class="nav-link" data-toggle="tab" href="#family-history" style="font-size: 1.2em; text-align: left">Histórico Familiar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#social-history" style="font-size: 1.2em; text-align: left">Histórico Social</a>
+            <a class="nav-link" data-toggle="tab" href="#social-history" style="font-size: 1.2em; text-align: left">Histórico Fisiológio e Social</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#consultation" style="font-size: 1.2em; text-align: left">Consultas</a>
@@ -44,7 +44,7 @@
             <%= render 'patients/family_history', patient: @patient %>
           </div>
           <div class="tab-pane fade" id="social-history">
-            <%= render 'patients/social_history', patient: @patient %>
+            <%= render 'patients/physiological_social_history', patient: @patient %>
           </div>
           <div class="tab-pane fade" id="consultation">
             <%#= render text: "Aqui entra index das consultas" %>

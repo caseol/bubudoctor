@@ -93,6 +93,7 @@ class PatientsController < ApplicationController
                                       :mother_surgeries, :about_father, :father_lives, :father_cardiac, :father_diabetes,
                                       :father_congenital_disease, :father_has, :father_neoplasms, :father_obesity,
                                       :father_surgeries, :alcoholism, :smoking, :stop_smoking, :ilicit_drugs, :physical_activity,
-                                      :aerobic_activity, :other_activity)
+                                      :aerobic_activity, :other_activity, :sleep_weel, :has_appetite, :intestinal_function,
+                                      :renal_function, :menstrual_cycle)
     end
 end

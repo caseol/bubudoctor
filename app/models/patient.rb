@@ -60,6 +60,8 @@ class Patient < ApplicationRecord
   serialize :social_history, Hash
   store_accessor :social_history,
                  :alcoholism, :smoking, :stop_smoking, :ilicit_drugs, :physical_activity, :aerobic_activity, :other_activity
+  serialize :physiological_history, Hash
+  store_accessor :physiological_history, :sleep_weel, :has_appetite, :intestinal_function, :renal_function, :menstrual_cycle
 
   validates_presence_of :email, :mobile
   validate :validate_format_of_document_number
