@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="sectionform">
+        <h1>Exams</h1>
+
+        <table class="responsive nowrap table table-hover" id="dttb-exams" data-sort="true" data-source="<%= url_for(format: :json)%>">
+          <thead>
+            <tr>
+                      <th data-data="patient">Patient</th>
+                      <th data-data="title">Title</th>
+                      <th data-data="conclusion">Conclusion</th>
+                      <th data-data="exam_hash">Exam hash</th>
+                      <th data-data="date_done">Date done</th>
+                      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+            </tr>
+          </thead>
+
+        </table>
+
+        <br>
+
+        <%= link_to 'New Exam', new_exam_path %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :exams
   devise_for :users
   resources :users, path: "u", path_names: { edit: "e", new: "novo" }
   resources :appointments, path: "consulta", path_names: { edit: "e", new: "novo" }

@@ -1,0 +1,34 @@
+<%= form_with(model: patient, remote: true) do |form| %>
+  <div class="container col-sm-12">
+    <% if patient.errors.any? %>
+      <div id="error_explanation">
+        <!--      <h2><%#= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>-->
+        <ul>
+          <% patient.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-sm-6">
+        <fieldset>
+          <legend>Consultas</legend>
+
+        </fieldset>
+      </div>
+      <div class="col-sm-6">
+        <fieldset>
+          <legend>Exames</legend>
+          <%#= link_to 'Atualizar Modal', exams_path,  {:remote => true, data:{toggle: "modal", target: '#modal-exames'}, class:"btn btn-primary"} %>
+          <div id="div-exames" data-url="<%= exams_path %>">
+
+          </div>
+        </fieldset>
+      </div>
+      <div class="actions col-12" style="width: 100%; margin-top: 10px">
+        <%= form.submit('Atualizar Histórico Familiar',{class: 'btn btn-primary'}) %>
+      </div>
+    </div>
+  </div>
+<% end %>

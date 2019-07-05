@@ -108,6 +108,11 @@ pt-BR:
         physical_activity: "Pratica exercício físico?"
         aerobic_activity: "Exercícios aeróbicos?"
         other_activity: "Outras atividades?"
+        sleep_weel: "Dorme bem?"
+        has_appetite: "Tem apetite?"
+        intestinal_function: "Função intestinal?"
+        renal_function: "Função Renal"
+        menstrual_cycle: "Ciclo Mestrual"
       appointment:
         user: "Médico"
         user_id: "Médico"

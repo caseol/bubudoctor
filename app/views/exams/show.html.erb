@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @exam.patient %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @exam.title %>
+</p>
+
+<p>
+  <strong>Conclusion:</strong>
+  <%= @exam.conclusion %>
+</p>
+
+<p>
+  <strong>Exam hash:</strong>
+  <%= @exam.exam_hash %>
+</p>
+
+<p>
+  <strong>Date done:</strong>
+  <%= @exam.date_done %>
+</p>
+
+<%= link_to 'Edit', edit_exam_path(@exam) %> |
+<%= link_to 'Back', exams_path %>

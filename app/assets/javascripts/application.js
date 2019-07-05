@@ -30,6 +30,8 @@
 
 
 //= require generic.init
+//= require exams
+
 function bindZipField(address_div){
     // pega o campo zip dentro da div passada
     var address_zip = address_div.find("#address_zip");
