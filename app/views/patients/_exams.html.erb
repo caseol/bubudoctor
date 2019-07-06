@@ -21,13 +21,10 @@
         <fieldset>
           <legend>Exames</legend>
           <%#= link_to 'Atualizar Modal', exams_path,  {:remote => true, data:{toggle: "modal", target: '#modal-exames'}, class:"btn btn-primary"} %>
-          <div id="div-exames" data-url="<%= exams_path %>">
+          <div id="div-exames" class="col-12" data-url="<%= exams_path(patient_id: patient.id) %>">
 
           </div>
         </fieldset>
-      </div>
-      <div class="actions col-12" style="width: 100%; margin-top: 10px">
-        <%= form.submit('Atualizar Histórico Familiar',{class: 'btn btn-primary'}) %>
       </div>
     </div>
   </div>

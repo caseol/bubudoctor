@@ -1,0 +1,3 @@
+$("#modal-exames").find(".modal-content").html("<%= j (render 'new') %>");
+$("#modal-exames").modal(_init()).animate({ scrollTop: 0 }, 'slow');
+_init_exams(); //reinicia componentes js da página

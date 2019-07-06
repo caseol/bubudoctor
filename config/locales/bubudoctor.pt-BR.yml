@@ -134,6 +134,16 @@ pt-BR:
         obs: "Observação"
         created_at: "Criado em"
         updated_at: "Última Atualização"
+      exam:
+        patient: "Paciente"
+        patient_id: "Paciente"
+        title: "Nome do exame"
+        conclusion: "Laudo"
+        exam_table: "Valores do exame"
+        date_done: "Data do exame"
+        created_at: "Criado em"
+        updated_at: "Ultima atualização"
+        attributes: ""
     errors: &erros
       format: ! ' %{message}'
       models: &models
@@ -147,6 +157,10 @@ pt-BR:
               blank: " - É necessário aceitar os termos e condições docontrato."
             internal_error: "" #ERro interno, por favor tente mais tarde
         appointment:
+          attributes:
+            patient:
+              required: "é obrigatório"
+        exam:
           attributes:
             patient:
               required: "é obrigatório"

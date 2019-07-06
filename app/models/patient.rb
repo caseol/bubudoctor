@@ -30,12 +30,18 @@
 #  updated_at                    :datetime         not null
 #  history_current_disease       :text
 #  previous_pathological_history :text
+#  mother_history                :text
+#  social_history                :text
+#  father_history                :text
+#  physiological_history         :text
 #
 
 class Patient < ApplicationRecord
   has_many :appointments, dependent: :destroy
+  has_many :exams, inverse_of: :patient, dependent: :destroy
   #has_many :users, through: :appointments
   belongs_to :user
+
 
   serialize :history_current_disease, Hash
   store_accessor :history_current_disease,

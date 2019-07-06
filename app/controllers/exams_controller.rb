@@ -4,7 +4,12 @@ class ExamsController < ApplicationController
   # GET /exams
   # GET /exams.json
   def index
-    @exams = Exam.all
+    if params[:patient_id]
+      @exams = Exam.where(patient_id: params[:patient_id]).all
+      @patient = Patient.find(params[:patient_id])
+    else
+      @exams = Exam.all
+    end
     respond_to :html, :json, :js
   end
 
@@ -15,7 +20,12 @@ class ExamsController < ApplicationController
 
   # GET /exams/new
   def new
-    @exam = Exam.new
+    if params[:patient_id]
+      @patient = Patient.find(params[:patient_id])
+      @exam = Exam.new(patient_id: @patient.id)
+    else
+      @exam = Exam.new()
+    end
     respond_to :html, :json, :js
   end
 
@@ -36,6 +46,7 @@ class ExamsController < ApplicationController
         format.json { render :show, status: :created, location: @exam }
       else
         format.html { render :new }
+        format.js { render :new }
         format.json { render json: @exam.errors, status: :unprocessable_entity }
       end
     end
@@ -47,9 +58,11 @@ class ExamsController < ApplicationController
     respond_to do |format|
       if @exam.update(exam_params)
         format.html { redirect_to @exam, notice: 'Exame atualizado com sucesso!' }
+        format.js { flash.now[:notice] = 'Exame atualizado com sucesso!'}
         format.json { render :show, status: :ok, location: @exam }
       else
         format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @exam.errors, status: :unprocessable_entity }
       end
     end
@@ -73,6 +86,6 @@ class ExamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exam_params
-      params.require(:exam).permit(:patient_id, :title, :conclusion, :exam_hash, :date_done)
+      params.require(:exam).permit(:patient_id, :title, :conclusion, :exam_table, :date_done)
     end
 end

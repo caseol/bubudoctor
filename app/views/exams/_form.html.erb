@@ -1,42 +1,61 @@
-<%= form_with(model: exam, local: true) do |form| %>
-  <% if exam.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
+<%= form_with(model: exam, remote: true) do |form| %>
+  <div class="container col-sm-12">
+    <% if exam.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% exam.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <%= form.label :patient_id %>
+          <%= form.hidden_field :patient_id, value: exam.try(:patient).try(:id) %>
+          <%= text_field_tag :patient_text, exam.try(:patient).try(:name), {disabled: true, class: 'form-control'} %>
+        </div>
+        <div class="form-group">
+          <%= form.label :date_done %>
+          <div class="input-group date-picker" id="datepicker-date-done" data-target-input="nearest">
+            <%= form.text_field :date_done, value:"#{exam.date_done.strftime('%d/%m/%Y %H:%M') unless exam.try(:date_done).blank?}", class:'form-control datetimepicker-input', data:{target:'#datepicker-date-done'} %>
+            <div class="input-group-append" data-target="#datepicker-date-done" data-toggle="datetimepicker">
+              <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= form.label :title %>
+          <%= form.text_field :title, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="form-group">
+          <%= form.label :conclusion %>
+          <%= form.text_area :conclusion, class: 'form-control', rows: 3%>
+        </div>
 
-      <ul>
-      <% exam.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <%= form.label :exam_table %><br />
+          <%#= form.text_area :exam_table, class: 'form-control' %>
+          <%= button_tag "Incluir valor", {id:'add-exam-row', class:"btn btn-primary", type:"button"} %><br clear="all"/>
+          <table class="responsive nowrap table table-hover" id="dttb-exam-table" data-sort="true" data-data="<%=  exam.exam_table %>">
+            <thead>
+            <tr>
+              <th >Sigla Exame</th>
+              <th >Valor</th>
+            </tr>
+          </table>
+      </div>
     </div>
-  <% end %>
+    <div class="row">
+      <div class="col-sm-12">
 
-  <div class="field">
-    <%= form.label :patient_id %>
-    <%= form.text_field :patient_id %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :conclusion %>
-    <%= form.text_area :conclusion %>
-  </div>
-
-  <div class="field">
-    <%= form.label :exam_hash %>
-    <%= form.text_area :exam_hash %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date_done %>
-    <%= form.datetime_select :date_done %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions col-12">
+    <%= form.submit("Salvar", {class: 'btn btn-primary right'}) %>
   </div>
 <% end %>
