@@ -1,0 +1,4 @@
+$("#modal-exams").find(".modal-content").html("<%= j (render 'show') %>");
+$("#modal-exams").modal().animate({ scrollTop: 0 }, 'slow');
+//reinicia componentes js da página
+setExamTable();

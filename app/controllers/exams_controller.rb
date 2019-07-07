@@ -16,6 +16,7 @@ class ExamsController < ApplicationController
   # GET /exams/1
   # GET /exams/1.json
   def show
+    respond_to :html, :json, :js
   end
 
   # GET /exams/new
@@ -37,7 +38,11 @@ class ExamsController < ApplicationController
   # POST /exams
   # POST /exams.json
   def create
-    @exam = Exam.new(exam_params)
+    _exam_table = exam_params["exam_table"]
+    _exam_params = exam_params.except('exam_table')
+
+    @exam = Exam.new(_exam_params)
+    @exam.exam_table = eval(_exam_table)
 
     respond_to do |format|
       if @exam.save
@@ -56,7 +61,12 @@ class ExamsController < ApplicationController
   # PATCH/PUT /exams/1.json
   def update
     respond_to do |format|
-      if @exam.update(exam_params)
+      _exam_table = exam_params["exam_table"]
+      _exam_params = exam_params.except('exam_table')
+
+      if @exam.update(_exam_params)
+        @exam.exam_table = eval(_exam_table)
+        @exam.save
         format.html { redirect_to @exam, notice: 'Exame atualizado com sucesso!' }
         format.js { flash.now[:notice] = 'Exame atualizado com sucesso!'}
         format.json { render :show, status: :ok, location: @exam }
@@ -74,6 +84,7 @@ class ExamsController < ApplicationController
     @exam.destroy
     respond_to do |format|
       format.html { redirect_to exams_url, notice: 'Exame removido com sucesso!' }
+      format.js   { flash.now[:notice] = 'Exame removido com sucesso!'}
       format.json { head :no_content }
     end
   end
@@ -86,6 +97,6 @@ class ExamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exam_params
-      params.require(:exam).permit(:patient_id, :title, :conclusion, :exam_table, :date_done)
+      params.require(:exam).permit(:patient_id, :title, :conclusion, :exam_table, :date_done, exam_files: [])
     end
 end

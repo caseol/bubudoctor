@@ -20,6 +20,7 @@ class Exam < ApplicationRecord
   has_many_attached :exam_files
 
   serialize :exam_table, Array
+  #store_accessor :exam_table, :data
 
   validates_presence_of :patient_id, :date_done, :title
 

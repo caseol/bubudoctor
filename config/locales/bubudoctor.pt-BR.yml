@@ -143,7 +143,7 @@ pt-BR:
         date_done: "Data do exame"
         created_at: "Criado em"
         updated_at: "Ultima atualização"
-        attributes: ""
+        exam_files: "Arquivos Relacionados"
     errors: &erros
       format: ! ' %{message}'
       models: &models

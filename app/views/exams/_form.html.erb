@@ -1,4 +1,4 @@
-<%= form_with(model: exam, remote: true) do |form| %>
+<%= form_with(model: exam, remote: true, class:'form-exam') do |form| %>
   <div class="container col-sm-12">
     <% if exam.errors.any? %>
       <div id="error_explanation">
@@ -19,7 +19,7 @@
         <div class="form-group">
           <%= form.label :date_done %>
           <div class="input-group date-picker" id="datepicker-date-done" data-target-input="nearest">
-            <%= form.text_field :date_done, value:"#{exam.date_done.strftime('%d/%m/%Y %H:%M') unless exam.try(:date_done).blank?}", class:'form-control datetimepicker-input', data:{target:'#datepicker-date-done'} %>
+            <%= form.text_field :date_done, disabled: disable_field, value:"#{exam.date_done.strftime('%d/%m/%Y %H:%M') unless exam.try(:date_done).blank?}", class:'form-control datetimepicker-input', data:{target:'#datepicker-date-done'} %>
             <div class="input-group-append" data-target="#datepicker-date-done" data-toggle="datetimepicker">
               <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
             </div>
@@ -27,35 +27,26 @@
         </div>
         <div class="form-group">
           <%= form.label :title %>
-          <%= form.text_field :title, class: 'form-control' %>
+          <%= form.text_field :title, class: 'form-control', disabled: disable_field %>
         </div>
-      </div>
-      <div class="col-sm-8">
         <div class="form-group">
           <%= form.label :conclusion %>
-          <%= form.text_area :conclusion, class: 'form-control', rows: 3%>
+          <%= form.text_area :conclusion, class: 'form-control', rows: 6, disabled: disable_field %>
         </div>
-
-          <%= form.label :exam_table %><br />
-          <%#= form.text_area :exam_table, class: 'form-control' %>
-          <%= button_tag "Incluir valor", {id:'add-exam-row', class:"btn btn-primary", type:"button"} %><br clear="all"/>
-          <table class="responsive nowrap table table-hover" id="dttb-exam-table" data-sort="true" data-data="<%=  exam.exam_table %>">
-            <thead>
-            <tr>
-              <th >Sigla Exame</th>
-              <th >Valor</th>
-            </tr>
-          </table>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-
+      <div class="col-sm-4">
+        <%= form.label :exam_files%><br />
+      </div>
+      <div class="col-sm-4">
+        <%= form.label :exam_table %><br />
+        <%= form.hidden_field :exam_table, value: exam.try(:exam_table) %>
+        <%= button_tag "Incluir valor", {id:'add-exam-row', class:"btn btn-primary", type:"button"} unless disable_field %><br clear="all"/>
+        <table class="responsive nowrap table table-hover" id="dttb-exam-table" data-sort="true" data-data="<%=  exam.exam_table %>" <%= disable_field ? 'disabled' : '' %>></table>
       </div>
     </div>
   </div>
 
   <div class="actions col-12">
-    <%= form.submit("Salvar", {class: 'btn btn-primary right'}) %>
+    <%= form.submit("Salvar", {class: 'btn btn-primary right'}) unless disable_field %>
   </div>
 <% end %>
