@@ -37,6 +37,15 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_locale
 
+  def delete_file
+    file_id = params[:id]
+    active_storage_file = ActiveStorage::Attachment.find(file_id)
+    respond_to do |format|
+      active_storage_file.purge
+      format.json { head :no_content, status: 200 }
+    end
+  end
+
   protected
 
   def admin_only

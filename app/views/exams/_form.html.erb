@@ -35,13 +35,76 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <%= form.label :exam_files%><br />
+        <div class="form-group">
+          <%= form.label :exam_files %>
+          <%= form.file_field :exam_files, multiple: true, class: 'form-control', disabled: disable_field %>
+        </div>
+        <div class="form-group">
+          <% if exam.exam_files.size > 0 %>
+            <div id="accordion">
+              <% exam.exam_files.each_with_index do |upload, idx| %>
+                <div class="card">
+                  <div class="card-header" id="heading-<%= idx %>">
+                    <a class="" data-toggle="collapse" data-target="#collapse-<%= idx %>" aria-expanded="true" aria-controls="collapse-<%= idx %>">
+                        <%= upload.filename %>
+                    </a>
+                    <button type="button" class="close delete-exam-file" data-id="<%= upload.id %>" data-name="<%= upload.filename %>" autofocus="true" tabindex="1" aria-label="Apagar">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div id="collapse-<%= idx %>" class="collapse show" aria-labelledby="heading-<%= idx %>" data-parent="#accordion">
+                    <div class="card-body" style="text-align: center">
+                      <% if upload.variable? %>
+                        <%= link_to image_tag(upload.variant(resize: "300x300"), class: 'd-block w-100'), upload, target: "_blank" %>
+                        <small style="text-align: center">
+                          <%= link_to 'download', rails_blob_path(upload, disposition: :attachment), target: "_blank" %>
+                        </small>
+                      <% elsif upload.previewable? %>
+                        <%= link_to image_tag(upload.preview(resize: "300x300"), class: 'd-block w-100'), rails_blob_path(upload), target: "_blank" %>
+                        <small style="text-align: center">
+                          <%= link_to 'download', rails_blob_path(upload, disposition: :attachment), target: "_blank" %>
+                        </small>
+                      <% elsif upload.image? %>
+                        <%= link_to image_tag(upload, width: 300, class: 'd-block w-100'), upload, target: "_blank" %>
+                        <small style="text-align: center">
+                          <%= link_to 'download', rails_blob_path(upload, disposition: :attachment), target: "_blank" %>
+                        </small>
+                      <% else %>
+                        <%= link_to upload.filename, rails_blob_path(upload, disposition: :attachment), class: 'd-block w-100', target: "_blank" %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+<!--            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">-->
+<!--              <div class="carousel-inner">-->
+                <%# exam.exam_files.each_with_index do |upload, idx| %>
+<!--                  <div class="carousel-item <%#= (idx==0 ? 'active' : '') %>">-->
+                    <%# if upload.variable? %>
+                      <%#= link_to image_tag(upload.variant(resize: "300x300"), class: 'd-block w-100'), upload %>
+                    <%# elsif upload.previewable? %>
+                      <%#= link_to image_tag(upload.preview(resize: "300x300"), class: 'd-block w-100'), rails_blob_path(upload, disposition: :attachment) %>
+                    <%# elsif upload.image? %>
+                      <%#= link_to image_tag(upload, width: 300, class: 'd-block w-100'), upload %>
+                    <%# else %>
+                      <%#= link_to upload.filename, rails_blob_path(upload, disposition: :attachment), class: 'd-block w-100' %>
+                    <%# end %>
+<!--                  </div>-->
+                <%# end %>
+<!--              </div>-->
+<!--            </div>-->
+          <% else %>
+            <span>Nenhum arquivo encontrado.</span>
+          <% end %>
+
+        </div>
       </div>
       <div class="col-sm-4">
-        <%= form.label :exam_table %><br />
-        <%= form.hidden_field :exam_table, value: exam.try(:exam_table) %>
-        <%= button_tag "Incluir valor", {id:'add-exam-row', class:"btn btn-primary", type:"button"} unless disable_field %><br clear="all"/>
-        <table class="responsive nowrap table table-hover" id="dttb-exam-table" data-sort="true" data-data="<%=  exam.exam_table %>" <%= disable_field ? 'disabled' : '' %>></table>
+          <%= form.label :exam_table %><br />
+          <%= form.hidden_field :exam_table, value: exam.try(:exam_table) %>
+          <%= button_tag "Incluir valor", {id:'add-exam-row', class:"btn btn-primary", type:"button"} unless disable_field %><br clear="all"/>
+          <table class="responsive nowrap table table-hover" id="dttb-exam-table" data-sort="true" data-data="<%=  exam.exam_table %>" <%= disable_field ? 'disabled' : '' %>></table>
       </div>
     </div>
   </div>

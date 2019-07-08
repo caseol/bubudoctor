@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   # if routing the root path, update for your controller
   root to: 'pages#show', id: 'about'
 
+  delete "/file/:id" => 'application#delete_file', as: :delete_file
+
   #root to: 'visitors#index'
 
 end

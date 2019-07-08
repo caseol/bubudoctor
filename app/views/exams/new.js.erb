@@ -1,3 +1,2 @@
 $("#modal-exams").find(".modal-content").html("<%= j (render 'new') %>");
-$("#modal-exams").modal().animate({ scrollTop: 0 }, 'slow');
-setExamTable();
+$("#modal-exams").modal(setExamDetails()).animate({ scrollTop: 0 }, 'slow');
