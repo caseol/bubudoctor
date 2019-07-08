@@ -74,6 +74,9 @@ function setExamDetails(){
             return "<button type='button' onclick='alert(row.ID)'><span aria-hidden='true'>&times;</span></button>"
         } }];
     if ($("#dttb-exam-table").attr('disabled')){
+        exam_table_options["columns"] = [
+            { title: "Sigla Exame" },
+            { title: "Valor" }];
         exam_table_options["data"] = JSON.stringify($("#exam_exam_table").val());
     }
     dttbExamTable = $("#dttb-exam-table").DataTable(exam_table_options);
