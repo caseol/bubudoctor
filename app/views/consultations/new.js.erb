@@ -1,0 +1,2 @@
+$("#modal-consultations").find(".modal-content").html("<%= j (render 'new') %>");
+$("#modal-consultations").modal(_init_consultations()).animate({ scrollTop: 0 }, 'slow');

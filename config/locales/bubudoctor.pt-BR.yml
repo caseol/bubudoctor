@@ -13,6 +13,12 @@ pt-BR:
       appointment:
         one: "Consulta"
         other: "Consultas"
+      exam:
+        one: "Exame"
+        other: "Exames"
+      consultation:
+        one: "Consulta"
+        other: "Consultas"
     attributes:
       user:
         name: "Nome"
@@ -143,7 +149,17 @@ pt-BR:
         date_done: "Data do exame"
         created_at: "Criado em"
         updated_at: "Ultima atualização"
-        exam_files: "Arquivos Relacionados"
+        exam_files: "Arquivos relacionados"
+      consultation:
+        patient_id: "Paciente"
+        biometric_exam: "Exame biométrico"
+        thoracil_exam: "Exame torácico"
+        abdominal_exam: "Exame abdominal"
+        members: "Membros"
+        diagnostic_hypothesis: "Hipótese diagnóstica"
+        conduct_adopt: "Conduta adotada"
+        created_at: "Criado em"
+        updated_at: "Alterado em"
     errors: &erros
       format: ! ' %{message}'
       models: &models
@@ -161,6 +177,10 @@ pt-BR:
             patient:
               required: "é obrigatório"
         exam:
+          attributes:
+            patient:
+              required: "é obrigatório"
+        consultation:
           attributes:
             patient:
               required: "é obrigatório"

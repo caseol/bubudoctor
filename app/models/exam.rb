@@ -6,7 +6,7 @@
 #  patient_id :integer
 #  title      :string
 #  conclusion :text
-#  exam_hash  :text
+#  exam_table :text
 #  date_done  :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

@@ -1,0 +1,17 @@
+<table class="responsive nowrap table table-hover" id="dttb-consultations" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+  <tr>
+    <th data-data="date_done">Data</th>
+    <th data-data="biometric_exam">Biometric exam</th>
+    <th data-data="thoracil_exam">Thoracil exam</th>
+    <th data-data="abdominal_exam">Abdominal exam</th>
+    <th data-data="members">Members</th>
+    <th data-data="diagnostic_hypothesis">Diagnostic hypothesis</th>
+    <th data-data="conduct_adopt">Conduct adopt</th>
+    <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+  </tr>
+  </thead>
+</table>
+<br>
+<%= link_to 'Incluir Consulta', new_consultation_path(patient_id: @patient.try(:id)),  {:remote => true, data:{toggle:  "modal", target: '#modal-consultations'}, class:"btn btn-primary"} %>
+

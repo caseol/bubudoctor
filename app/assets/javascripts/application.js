@@ -31,6 +31,7 @@
 
 //= require generic.init
 //= require exams
+//= require consultations
 
 function bindZipField(address_div){
     // pega o campo zip dentro da div passada

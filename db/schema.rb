@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_29_192019) do
+ActiveRecord::Schema.define(version: 2019_07_08_053216) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,11 +46,24 @@ ActiveRecord::Schema.define(version: 2019_06_29_192019) do
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
+  create_table "consultations", force: :cascade do |t|
+    t.integer "patient_id"
+    t.text "biometric_exam"
+    t.text "thoracil_exam"
+    t.text "abdominal_exam"
+    t.text "members"
+    t.text "diagnostic_hypothesis"
+    t.text "conduct_adopt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_consultations_on_patient_id"
+  end
+
   create_table "exams", force: :cascade do |t|
     t.integer "patient_id"
     t.string "title"
     t.text "conclusion"
-    t.text "exam_hash"
+    t.text "exam_table"
     t.datetime "date_done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

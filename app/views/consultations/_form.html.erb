@@ -1,0 +1,52 @@
+<%= form_with(model: consultation, local: true) do |form| %>
+  <% if consultation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(consultation.errors.count, "error") %> prohibited this consultation from being saved:</h2>
+
+      <ul>
+      <% consultation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :patient_id %>
+    <%= form.text_field :patient_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :biometric_exam %>
+    <%= form.text_area :biometric_exam %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thoracil_exam %>
+    <%= form.text_area :thoracil_exam %>
+  </div>
+
+  <div class="field">
+    <%= form.label :abdominal_exam %>
+    <%= form.text_area :abdominal_exam %>
+  </div>
+
+  <div class="field">
+    <%= form.label :members %>
+    <%= form.text_area :members %>
+  </div>
+
+  <div class="field">
+    <%= form.label :diagnostic_hypothesis %>
+    <%= form.text_area :diagnostic_hypothesis %>
+  </div>
+
+  <div class="field">
+    <%= form.label :conduct_adopt %>
+    <%= form.text_area :conduct_adopt %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

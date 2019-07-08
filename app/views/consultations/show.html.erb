@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @consultation.patient %>
+</p>
+
+<p>
+  <strong>Biometric exam:</strong>
+  <%= @consultation.biometric_exam %>
+</p>
+
+<p>
+  <strong>Thoracil exam:</strong>
+  <%= @consultation.thoracil_exam %>
+</p>
+
+<p>
+  <strong>Abdominal exam:</strong>
+  <%= @consultation.abdominal_exam %>
+</p>
+
+<p>
+  <strong>Members:</strong>
+  <%= @consultation.members %>
+</p>
+
+<p>
+  <strong>Diagnostic hypothesis:</strong>
+  <%= @consultation.diagnostic_hypothesis %>
+</p>
+
+<p>
+  <strong>Conduct adopt:</strong>
+  <%= @consultation.conduct_adopt %>
+</p>
+
+<%= link_to 'Edit', edit_consultation_path(@consultation) %> |
+<%= link_to 'Back', consultations_path %>
