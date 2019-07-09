@@ -1,0 +1,9 @@
+//$('#modal-window').on('hidden.bs.modal', function () {
+//    location.reload();
+//});
+$("#modal-consultations").modal('toggle');
+$("#application-messages").html('<%= j render partial: 'layouts/messages' %>');
+$(".alert").delay(3000).slideUp(200, function () {
+    //location.reload();
+    $('#dttb-consultations').DataTable().ajax.reload();
+})

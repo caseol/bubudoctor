@@ -1,52 +1,152 @@
-<%= form_with(model: consultation, local: true) do |form| %>
-  <% if consultation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(consultation.errors.count, "error") %> prohibited this consultation from being saved:</h2>
-
-      <ul>
-      <% consultation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_with(model: consultation, remote: true) do |form| %>
+  <div class="container col-sm-12">
+    <% if consultation.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% consultation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <%= form.label :date_done %>
+          <div class="input-group date-picker" id="datepicker-date-done" data-target-input="nearest">
+            <%= form.text_field :date_done, disabled: disable_field, value:"#{consultation.date_done.strftime('%d/%m/%Y') unless consultation.try(:date_done).blank?}", class:'form-control datetimepicker-input', data:{target:'#datepicker-date-done'} %>
+            <div class="input-group-append" data-target="#datepicker-date-done" data-toggle="datetimepicker">
+              <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
+            </div>
+          </div>
+        </div>
+        <h5><%= form.label :consultation_files %></h5>
+        <div class="form-group">
+          <%= form.file_field :consultation_files, multiple: true, class: 'form-control', disabled: disable_field %>
+        </div>
+        <div class="form-group">
+          <% if consultation.consultation_files.size > 0 %>
+            <div id="accordion">
+              <% consultation.consultation_files.each_with_index do |upload, idx| %>
+                <div class="card">
+                  <div class="card-header" id="heading-<%= idx %>">
+                    <a class="" data-toggle="collapse" data-target="#collapse-<%= idx %>" aria-expanded="true" aria-controls="collapse-<%= idx %>">
+                      <%= upload.filename %>
+                    </a>
+                    <% if !disable_field %>
+                      <button type="button" class="close delete-file" data-id="<%= upload.id %>" data-name="<%= upload.filename %>" autofocus="true" tabindex="1" aria-label="Apagar">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    <% end %>
+                  </div>
+                  <div id="collapse-<%= idx %>" class="collapse show" aria-labelledby="heading-<%= idx %>" data-parent="#accordion">
+                    <div class="card-body" style="text-align: center">
+                      <% if upload.variable? %>
+                        <%= link_to image_tag(upload.variant(resize: "300x300"), class: 'd-block w-100'), upload, target: "_blank" %>
+                        <small style="text-align: center">
+                          <%= link_to 'download', rails_blob_path(upload, disposition: :attachment), target: "_blank" %>
+                        </small>
+                      <% elsif upload.previewable? %>
+                        <%= link_to image_tag(upload.preview(resize: "300x300"), class: 'd-block w-100'), rails_blob_path(upload), target: "_blank" %>
+                        <small style="text-align: center">
+                          <%= link_to 'download', rails_blob_path(upload, disposition: :attachment), target: "_blank" %>
+                        </small>
+                      <% elsif upload.image? %>
+                        <%= link_to image_tag(upload, width: 300, class: 'd-block w-100'), upload, target: "_blank" %>
+                        <small style="text-align: center">
+                          <%= link_to 'download', rails_blob_path(upload, disposition: :attachment), target: "_blank" %>
+                        </small>
+                      <% else %>
+                        Clique para baixar o arquivo: <%= link_to upload.filename, rails_blob_path(upload, disposition: :attachment), class: 'd-block w-100', target: "_blank" %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <span>Nenhum arquivo encontrado.</span>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-9">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#biometric-exam" style="font-size: 1em; text-align: left">Exame Biométrico</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#thoracil-exam" style="font-size: 1em; text-align: left">Exame Torácico/Abdominal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#diagnostic" style="font-size: 1em; text-align: left">Diagnóstico e Conduta</a>
+            </li>
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade show active" id="biometric-exam">
+              <div class="row">
+                <div class="col-6 form-group">
+                  <%= form.label :weight %>
+                  <%= form.text_field :weight, size: "25x10", class: 'form-control' %>
+                </div>
+                <div class="col-6 form-group">
+                  <%= form.label :height %>
+                  <%= form.text_field :height, size: "25x10", class: 'form-control' %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 form-group">
+                  <%= form.label :imc %>
+                  <%= form.text_field :imc, size: "25x10", class: 'form-control' %>
+                </div>
+                <div class="col-6 form-group">
+                  <%= form.label :general_state %>
+                  <%= form.text_field :general_state, size: "25x10", class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade show" id="thoracil-exam">
+              <div class="row">
+                <div class="col-6 form-group">
+                  <%= form.hidden_field :patient_id, value: patient.id %>
+                  <%= form.label :pulmonary_artery %>
+                  <%= form.text_area :pulmonary_artery, rows: 8, cols:'100%', class: 'form-control' %>
+                </div>
+                <div class="col-6 form-group">
+                  <%= form.label :carotid_artery %>
+                  <%= form.text_area :carotid_artery, rows: 8, cols:'100%', class: 'form-control' %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 form-group">
+                  <%= form.label :abdominal_exam %>
+                  <%= form.text_area :abdominal_exam, rows: 8, cols:'100%', class: 'form-control' %>
+                </div>
+                <div class="col-6 form-group">
+                  <%= form.label :members %>
+                  <%= form.text_area :members, rows: 8, cols:'100%', class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade show" id="diagnostic">
+              <div class="row">
+                <div class="form-group">
+                  <%= form.label :diagnostic_hypothesis %>
+                  <%= form.text_area :diagnostic_hypothesis, rows: 8, cols: '100%', class: 'form-control' %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <%= form.label :conduct_adopt %>
+                  <%= form.text_area :conduct_adopt, rows: 8, cols: '100%',class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :patient_id %>
-    <%= form.text_field :patient_id %>
   </div>
 
-  <div class="field">
-    <%= form.label :biometric_exam %>
-    <%= form.text_area :biometric_exam %>
-  </div>
-
-  <div class="field">
-    <%= form.label :thoracil_exam %>
-    <%= form.text_area :thoracil_exam %>
-  </div>
-
-  <div class="field">
-    <%= form.label :abdominal_exam %>
-    <%= form.text_area :abdominal_exam %>
-  </div>
-
-  <div class="field">
-    <%= form.label :members %>
-    <%= form.text_area :members %>
-  </div>
-
-  <div class="field">
-    <%= form.label :diagnostic_hypothesis %>
-    <%= form.text_area :diagnostic_hypothesis %>
-  </div>
-
-  <div class="field">
-    <%= form.label :conduct_adopt %>
-    <%= form.text_area :conduct_adopt %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions col-12">
+    <%= form.submit("Salvar", {class: 'btn btn-primary right'}) unless disable_field %>
   </div>
 <% end %>

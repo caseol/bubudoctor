@@ -21,15 +21,23 @@ function _init_consultations() {
     $('.nav-tabs').find('a').on('shown.bs.tab', function () {
         // Some code you want to run after the tab is shown (callback)
     });
+
+    setDeleteButton();
+
+    set_date_picker();
+
+    // inicializa todos os cards sanfona.
+    $('.collapse').collapse();
 }
 
 function setConsultations() {
     // tabela com a lista de todos os exames
-    var exams_options = $.extend({}, default_table_options);
-    exams_options["columnDefs"] = [{
+    var consultation_options = $.extend({}, default_table_options);
+    consultation_options["columnDefs"] = [{
         targets: 0, render: function (data) {
             return moment(data).format('DD/MM/YYYY');
         }
     }];
-    dttbConsultations = $("#dttb-consultations").DataTable(exams_options);
+    dttbConsultations = $("#dttb-consultations").DataTable(consultation_options);
+    set_date_picker();
 }

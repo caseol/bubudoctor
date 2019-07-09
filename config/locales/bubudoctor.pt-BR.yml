@@ -152,14 +152,22 @@ pt-BR:
         exam_files: "Arquivos relacionados"
       consultation:
         patient_id: "Paciente"
+        date_done: "Data da consulta"
         biometric_exam: "Exame biométrico"
+        weight: "Peso"
+        height: "Altura"
+        imc: "IMC"
+        general_state: "Estado geral"
         thoracil_exam: "Exame torácico"
+        pulmonary_artery: "Artéria pulmonar"
+        carotid_artery: "Artéria Carótida"
         abdominal_exam: "Exame abdominal"
         members: "Membros"
         diagnostic_hypothesis: "Hipótese diagnóstica"
         conduct_adopt: "Conduta adotada"
         created_at: "Criado em"
         updated_at: "Alterado em"
+        consultation_files: "Arquivos relacionados"
     errors: &erros
       format: ! ' %{message}'
       models: &models

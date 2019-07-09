@@ -24,5 +24,6 @@ class Consultation < ApplicationRecord
   serialize :thoracil_exam
   store_accessor :thoracil_exam, :pulmonary_artery, :carotid_artery
 
+  validates_presence_of :date_done
 
 end

@@ -191,6 +191,12 @@ function bind_autocomplete(){
     });
 }
 
+function set_date_picker() {
+// iniciando date picker
+    $('.date-picker').datetimepicker({locale: 'pt-BR', format: 'L'})
+    $('.date-time-picker').datetimepicker({locale: 'pt-BR'})
+}
+
 function _init(){
     //alert('_init()');
 
@@ -263,9 +269,9 @@ function _init(){
         });*/
     }
 
-    // iniciando date picker
-    $('.date-picker').datetimepicker({locale: 'pt-BR', format: 'L'})
-    $('.date-time-picker').datetimepicker({locale: 'pt-BR'})
+    set_date_picker();
+
+    setDeleteButton();
 
     // Faz o bind de campos com autocomplete
     bind_autocomplete();
@@ -277,6 +283,38 @@ function myDttbCallbackFunction (updatedCell, updatedRow, oldValue, newValue) {
     console.log("The new TEXT for the cell is: " + updatedCell.data());
     console.log("The old value for that cell was: " + oldValue);
     console.log("The values for each cell in that row are: " + updatedRow.data());
+}
+
+function setDeleteButton(){
+    // verifica se algum botão de apagar arquivo foi clicado
+    $(".delete-file").on('click', function(){
+        _id = $(this).data("id");
+        _filename = $(this).data("name");
+        if (confirm("Deseja apagar " + _filename + " ?")) {
+            var option = {
+                type: "DELETE",
+                method: "DELETE",
+                url: "/file/" + _id + ".json",
+                dataType: "json",
+                complete: handleDeleteFile($(this))
+            }
+            $.ajax(option);
+            console.log ("Arquivo " + _filename + " apagado.");
+        }else{
+            console.log ("Segue o jogo");
+        }
+    })
+
+    function handleDeleteFile(elem){
+        console.log('elem.parent() = ' + $(elem).parent())
+        if (elem.parents().length > 1) {
+            $(elem.parents()[0]).hide();
+            $(elem.parents()[1]).hide();
+        }else{
+            $(elem.parent()).hide();
+        }
+        return false;
+    }
 }
 
 

@@ -1,0 +1,5 @@
+$("#modal-consultations").modal('toggle');
+$("#application-messages").html('<%= j render partial: 'layouts/messages' %>');
+$(".alert").delay(3000).slideUp(200, function () {
+    dttbConsultations.ajax.reload();
+})

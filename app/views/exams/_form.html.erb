@@ -43,13 +43,13 @@
           <% if exam.exam_files.size > 0 %>
             <div id="accordion">
               <% exam.exam_files.each_with_index do |upload, idx| %>
-                <div class="card">
+                <div class="card-<%= idx %>">
                   <div class="card-header" id="heading-<%= idx %>">
                     <a class="" data-toggle="collapse" data-target="#collapse-<%= idx %>" aria-expanded="true" aria-controls="collapse-<%= idx %>">
                         <%= upload.filename %>
                     </a>
                     <% if !disable_field %>
-                      <button type="button" class="close delete-exam-file" data-id="<%= upload.id %>" data-name="<%= upload.filename %>" autofocus="true" tabindex="1" aria-label="Apagar">
+                      <button type="button" class="close delete-file" data-id="<%= upload.id %>" data-name="<%= upload.filename %>" autofocus="true" tabindex="1" aria-label="Apagar">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     <% end %>

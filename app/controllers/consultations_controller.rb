@@ -40,13 +40,14 @@ class ConsultationsController < ApplicationController
   # POST /consultations.json
   def create
     @consultation = Consultation.new(consultation_params)
-
+    @patient = @consultation.patient
     respond_to do |format|
-      if @consultation.save
-        format.html { redirect_to @consultation, notice: 'Consultation was successfully created.' }
+      if (!@patient.blank? && @consultation.save)
+        format.js { flash.now[:notice] = 'Consulta incluída com sucesso!'}
         format.json { render :show, status: :created, location: @consultation }
       else
-        format.html { render :new }
+        @patient = @consultation.patient
+        format.js { render :new }
         format.json { render json: @consultation.errors, status: :unprocessable_entity }
       end
     end
@@ -57,10 +58,12 @@ class ConsultationsController < ApplicationController
   def update
     respond_to do |format|
       if @consultation.update(consultation_params)
-        format.html { redirect_to @consultation, notice: 'Consultation was successfully updated.' }
+        format.html { redirect_to @consultation, notice: 'Consulta alterada com sucesso!' }
+        format.js { flash.now[:notice] = 'Consulta alterada com sucesso!'}
         format.json { render :show, status: :ok, location: @consultation }
       else
         format.html { render :edit }
+        format.js { render :edit }
         format.json { render json: @consultation.errors, status: :unprocessable_entity }
       end
     end
@@ -85,8 +88,9 @@ class ConsultationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def consultation_params
-      params.require(:consultation).permit(:patient_id, :biometric_exam, :weight, :height, :imc, :general_state,
+      params.require(:consultation).permit(:patient_id, :date_done, :biometric_exam, :weight, :height, :imc, :general_state,
                                            :thoracil_exam, :pulmonary_artery, :carotid_artery,
-                                           :abdominal_exam, :members, :diagnostic_hypothesis, :conduct_adopt)
+                                           :abdominal_exam, :members, :diagnostic_hypothesis, :conduct_adopt,
+                                           consultation_files: [])
     end
 end

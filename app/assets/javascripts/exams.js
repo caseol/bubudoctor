@@ -50,7 +50,6 @@ function _init_exams(){
     // tabela com a lista de todos os exames
     setExams();
     // fim
-
 }
 
 function setExams() {
@@ -109,28 +108,9 @@ function setExamDetails(){
         $("#exam_exam_table").val(JSON.stringify(dttbExamTable.data().toArray()));
     });
 
+    setDeleteButton();
 
-    // $('.carousel').carousel({
-    //     interval: 2000
-    // })
-
-    $(".delete-exam-file").on('click', function(){
-        _id = $(this).data("id");
-        _filename = $(this).data("name");
-        if (confirm("Deseja apagar " + _filename + " ?")) {
-            var option = {
-                type: "DELETE",
-                method: "DELETE",
-                url: "/file/" + _id + ".json",
-                dataType: "json",
-                complete: handleDeleteFile($(this))
-            }
-            $.ajax(option);
-            console.log ("Arquivo " + _filename + " apagado.");
-        }else{
-            console.log ("Segue o jogo");
-        }
-    })
+    set_date_picker();
 
     // inicializa todos os cards sanfona.
     $('.collapse').collapse();
@@ -141,10 +121,4 @@ function myDttbExamTableCallbackFunction(updatedCell, updatedRow, oldValue, newV
     $("#exam_exam_table").val(JSON.stringify(dttbExamTable.data().toArray()));
     $("#exam_data").val(JSON.stringify(dttbExamTable.data().toArray()));
     console.log(JSON.stringify(dttbExamTable.data().toArray()))
-}
-
-function handleDeleteFile(elem){
-    console.log('elem.parent() = ' + $(elem).parent().id)
-    $(elem).parent().hide();
-    return false;
 }
