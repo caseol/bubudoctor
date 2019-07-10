@@ -1,22 +1,16 @@
-<div class="container">
+<div class="sectionform">
   <div class="row">
-    <div class="col"></div>
-    <div class="col-6">
-      <div class="sectionform">
-          <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-            <h3>Altere sua senha</h3>
-            <%= devise_anser_error_messages! %>
-            <%= f.hidden_field :reset_password_token %>
-            <div class="form-group">
-              <%= f.label :password, 'Nova senha' %>
-                <%= f.password_field :password, autofocus: true, autocomplete: 'off', class: 'form-control' %>
-              <%= f.label :password_confirmation, 'Confirmar Nova Senha' %>
-                <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
-            </div>
-             <%= f.submit 'Alterar Minha Senha', :class => 'button right' %>
-          <% end %>
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+      <h3>Altere sua senha</h3>
+      <%= devise_anser_error_messages! %>
+      <%= f.hidden_field :reset_password_token %>
+      <div class="form-group">
+        <%= f.label :password, 'Nova senha' %>
+          <%= f.password_field :password, autofocus: true, autocomplete: 'off', class: 'form-control' %>
+        <%= f.label :password_confirmation, 'Confirmar Nova Senha' %>
+          <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
       </div>
-      <div class="col"></div>
-    </div>
+       <%= f.submit 'Alterar Minha Senha', :class => 'button right' %>
+    <% end %>
   </div>
 </div>

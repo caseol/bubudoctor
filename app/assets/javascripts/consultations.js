@@ -27,7 +27,7 @@ function _init_consultations() {
     set_date_picker();
 
     // inicializa todos os cards sanfona.
-    $('.collapse').collapse();
+    //$('.collapse').collapse();
 }
 
 function setConsultations() {

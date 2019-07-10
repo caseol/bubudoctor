@@ -1,73 +1,70 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="sectionform">
-        <h3>Agenda</h3>
-        <table class="responsive nowrap table table-hover" id="dttb-appointments" data-sort="true" data-source="<%= appointments_url(format: :json)%>">
-          <thead>
-          <tr>
-            <!--            <th data-data="user">Médico</th>-->
-            <th data-data="empty_collumn"></th>
-            <th data-data="appointment_date">Horário</th>
-            <th data-data="name">Paciente</th>
-            <th data-data="appointment_kind">Tipo</th>
-            <th data-data="status">Status</th>
-            <!--            <th data-data="obs">Obs</th>-->
-            <!--            <th data-data="created_at">Created at</th>-->
-            <!--            <th data-data="updated_at">Updated at</th>-->
-            <!--            <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" >Ações</th>-->
+<div class="row">
+  <div class="col-sm-6">
+    <div class="sectionform">
+      <h3>Agenda</h3>
+      <table class="responsive nowrap table table-hover" id="dttb-appointments" data-sort="true" data-source="<%= appointments_url(format: :json)%>">
+        <thead>
+        <tr>
+          <!--            <th data-data="user">Médico</th>-->
+          <th data-data="empty_collumn"></th>
+          <th data-data="appointment_date">Horário</th>
+          <th data-data="name">Paciente</th>
+          <th data-data="appointment_kind">Tipo</th>
+          <th data-data="status">Status</th>
+          <!--            <th data-data="obs">Obs</th>-->
+          <!--            <th data-data="created_at">Created at</th>-->
+          <!--            <th data-data="updated_at">Updated at</th>-->
+          <!--            <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" >Ações</th>-->
 
-            <th data-data="url" data-orderable="false" data-searchable="false" class="skip-export">Ações</th>
+          <th data-data="url" data-orderable="false" data-searchable="false" class="skip-export">Ações</th>
 
-          </tr>
-          </thead>
-        </table>
-        <br>
-        <%#= link_to 'Marcar Horário', new_appointment_path,  {:local => true, class:"btn btn-primary"} %>
-        <%= link_to 'Marcar Horário', new_appointment_path,  {:remote => true, data:{toggle: "modal", target: '#modal-window'}, class:"btn btn-primary"} %>
-      </div>
+        </tr>
+        </thead>
+      </table>
+      <br>
+      <%#= link_to 'Marcar Horário', new_appointment_path,  {:local => true, class:"btn btn-primary"} %>
+      <%= link_to 'Marcar Horário', new_appointment_path,  {:remote => true, data:{toggle: "modal", target: '#modal-window'}, class:"btn btn-primary"} %>
     </div>
-    <div class="col-sm-6">
-      <div class="sectionform">
-        <h3>Pacientes</h3>
-        <table class="responsive table table-hover dttb" id="dttb-patients" data-sort="true" data-source="<%=  patients_url(format: :json)%>">
-          <thead>
-          <tr>
-            <th data-data="name">Nome</th>
-            <th data-data="birth">Nascimento</th>
-            <th data-data="age">Idade</th>
-            <th data-data="cpf">CPF</th>
-            <th data-data="gender">Gênero</th>
-            <th data-data="patient_since">Paciente Desde</th>
-            <th data-data="etnia">Etnia</th>
-            <th data-data="civil_status">Estado Civil</th>
-            <th data-data="occupation">Profissão</th>
-            <th data-data="scholarity">Escolaridade</th>
-            <th data-data="zip">CEP</th>
-            <th data-data="address">Endereço</th>
-            <th data-data="city">Cidade</th>
-            <th data-data="uf">UF</th>
-            <th data-data="telephone">Telefone</th>
-            <th data-data="mobile">Celular</th>
-            <th data-data="email">Email</th>
-            <th data-data="indication_by">Indicado por</th>
-            <th data-data="health_plan">Convênio</th>
-            <th data-data="plan_validation">Valido até</th>
-            <th data-data="plan_number">Número Carteirinha</th>
+  </div>
+  <div class="col-sm-6">
+    <div class="sectionform">
+      <h3>Pacientes</h3>
+      <table class="responsive table table-hover dttb" id="dttb-patients" data-sort="true" data-source="<%=  patients_url(format: :json)%>">
+        <thead>
+        <tr>
+          <th data-data="name">Nome</th>
+          <th data-data="birth">Nascimento</th>
+          <th data-data="age">Idade</th>
+          <th data-data="cpf">CPF</th>
+          <th data-data="gender">Gênero</th>
+          <th data-data="patient_since">Paciente Desde</th>
+          <th data-data="etnia">Etnia</th>
+          <th data-data="civil_status">Estado Civil</th>
+          <th data-data="occupation">Profissão</th>
+          <th data-data="scholarity">Escolaridade</th>
+          <th data-data="zip">CEP</th>
+          <th data-data="address">Endereço</th>
+          <th data-data="city">Cidade</th>
+          <th data-data="uf">UF</th>
+          <th data-data="telephone">Telefone</th>
+          <th data-data="mobile">Celular</th>
+          <th data-data="email">Email</th>
+          <th data-data="indication_by">Indicado por</th>
+          <th data-data="health_plan">Convênio</th>
+          <th data-data="plan_validation">Valido até</th>
+          <th data-data="plan_number">Número Carteirinha</th>
 <!--            <th data-data="created_at">Created at</th>-->
 <!--            <th data-data="updated_at">Updated at</th>-->
-            <th data-data="url" data-orderable="false" data-searchable="false" class="skip-export" width="100px">Ações</th>
-          </tr>
-          </thead>
-        </table>
-        <br>
-        <%#= link_to 'Novo Paciente', new_patient_path, class:"btn btn-primary" %>
-        <%= link_to 'Novo Paciente', new_patient_path,  {:remote => true, data:{toggle:  "modal", target: '#modal-window'}, class:"btn btn-primary"} %>
-      </div>
+          <th data-data="url" data-orderable="false" data-searchable="false" class="skip-export" width="100px">Ações</th>
+        </tr>
+        </thead>
+      </table>
+      <br>
+      <%#= link_to 'Novo Paciente', new_patient_path, class:"btn btn-primary" %>
+      <%= link_to 'Novo Paciente', new_patient_path,  {:remote => true, data:{toggle:  "modal", target: '#modal-window'}, class:"btn btn-primary"} %>
     </div>
   </div>
 </div>
-
 <%#= link_to 'TESTE MODAL', new_patient_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-appointment', class: 'btn btn-primary btn-lg'}  %>
 <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog mw-100 w-75" role="document">

@@ -1,48 +1,46 @@
-<div class="container-fluid">
+<div class="sectionform">
   <div class="row">
     <div class="col-sm-12">
-      <div class="sectionform">
-        <h3>Histórico: <%= @patient.name.camelcase %></h3>
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#profile" style="font-size: 1.2em; text-align: left">Dados Pessoais</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#current-history" style="font-size: 1.2em; text-align: left">Queixa Principal e História</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#family-history" style="font-size: 1.2em; text-align: left">Histórico Familiar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#social-history" style="font-size: 1.2em; text-align: left">Histórico Fisiológio e Social</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#consultation" style="font-size: 1.2em; text-align: left">Consultas e Exames</a>
-          </li>
-        </ul>
-        <div id="myTabContent" class="tab-content">
-          <div class="tab-pane fade show active" id="profile">
-            <%= render 'patients/form', patient: @patient %>
-          </div>
-          <div class="tab-pane fade" id="current-history">
-            <%= render 'patients/history', patient: @patient %>
-          </div>
-          <div class="tab-pane fade" id="family-history">
-            <%= render 'patients/family_history', patient: @patient %>
-          </div>
-          <div class="tab-pane fade" id="social-history">
-            <%= render 'patients/physiological_social_history', patient: @patient %>
-          </div>
-          <div class="tab-pane fade" id="consultation">
-            <%= render 'patients/exams', patient: @patient %>
-          </div>
+      <h3>Histórico: <%= @patient.name.camelcase %></h3>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#profile" style="font-size: 1.2em; text-align: left">Dados Pessoais</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#current-history" style="font-size: 1.2em; text-align: left">Queixa Principal e História</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#family-history" style="font-size: 1.2em; text-align: left">Histórico Familiar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#social-history" style="font-size: 1.2em; text-align: left">Histórico Fisiológio e Social</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#consultation" style="font-size: 1.2em; text-align: left">Consultas e Exames</a>
+        </li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade show active" id="profile">
+          <%= render 'patients/form', patient: @patient %>
+        </div>
+        <div class="tab-pane fade" id="current-history">
+          <%= render 'patients/history', patient: @patient %>
+        </div>
+        <div class="tab-pane fade" id="family-history">
+          <%= render 'patients/family_history', patient: @patient %>
+        </div>
+        <div class="tab-pane fade" id="social-history">
+          <%= render 'patients/physiological_social_history', patient: @patient %>
+        </div>
+        <div class="tab-pane fade" id="consultation">
+          <%= render 'patients/exams', patient: @patient %>
+        </div>
 <!--          <div class="tab-pane fade" id="dropdown1">-->
 <!--            <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>-->
 <!--          </div>-->
 <!--          <div class="tab-pane fade" id="dropdown2">-->
 <!--            <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>-->
 <!--          </div>-->
-        </div>
       </div>
     </div>
   </div>

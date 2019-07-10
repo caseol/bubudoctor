@@ -113,7 +113,7 @@ function setExamDetails(){
     set_date_picker();
 
     // inicializa todos os cards sanfona.
-    $('.collapse').collapse();
+    //$('.collapse').collapse();
 }
 
 function myDttbExamTableCallbackFunction(updatedCell, updatedRow, oldValue, newValue) {
