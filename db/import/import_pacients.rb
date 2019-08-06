@@ -13,10 +13,13 @@ def self.read_sheet(sheet)
     else
       # pega cada linha e cria um nome paciente
       patient = Patient.new()
+      patient.user_id= 6
       patient.name = row[7]
       patient.email= row[22]
-      patient.patient_since= Date::strptime(row[1], "%Y-%m-%d")
-      patient.birth= Date::strptime(row[1], "%Y-%m-%d")
+      #patient.patient_since= Date::strptime(row[1], "%Y-%m-%d") unless row[1].blank?
+      patient.patient_since= row[1] unless row[1].blank?
+      #patient.birth= Date::strptime(row[8], "%Y-%m-%d") unless row[8].blank?
+      patient.birth= row[8] unless row[8].blank?
       patient.age= row[9]
       patient.cpf= row[14]
       patient.gender= row[10].to_s == '1' ? Patient::GENDER[:male] : (row[10].to_s == '2' ? Patient::GENDER[:female] : '')
@@ -37,6 +40,8 @@ def self.read_sheet(sheet)
       patient.plan_number= row[4]
 
       patient.save(validate: false)
+
+      p "#{patient.name}|#{patient.email}|#{patient.birth}|#{patient.patient_since}"
     end
   end
 end
@@ -61,5 +66,5 @@ sheet = book.worksheets[0]
 #mas_rx = book.worksheets[6]
 
 # apaga todos os atletlas existentes
-p "Qtd de registros em RX MASCULINO: #{sheet.count}"
+p "Qtd de PACIENTES: #{sheet.count}"
 read_sheet(sheet)

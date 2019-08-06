@@ -26,6 +26,7 @@ gem 'ajax-datatables-rails'
 gem 'mini_racer', :platform=>:ruby
 gem 'autocomplete_rails'
 gem 'mini_magick'
+gem 'spreadsheet'
 
 
 group :development, :test do
