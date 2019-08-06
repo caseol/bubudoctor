@@ -72,17 +72,30 @@
       <div class="col-sm-9">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#biometric-exam" style="font-size: 1em; text-align: left">Exame Biométrico</a>
+              <a class="nav-link active" data-toggle="tab" href="#main-complain" style="font-size: 1em; text-align: left">Queixa Principal</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#biometric-exam" style="font-size: 1em; text-align: left">Exame Biométrico</a>
+            </li>
+            <!--
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#thoracil-exam" style="font-size: 1em; text-align: left">Exame Torácico/Abdominal</a>
             </li>
+            -->
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#diagnostic" style="font-size: 1em; text-align: left">Diagnóstico e Conduta</a>
             </li>
           </ul>
           <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade show active" id="biometric-exam">
+            <div class="tab-pane fade show active" id="main-complain">
+              <div class="row">
+                <div class="col-12 form-group">
+                  <%= form.label :main_complain %>
+                  <%= form.text_area :main_complain, size: "25x10", class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="biometric-exam">
               <div class="row">
                 <div class="col-6 form-group">
                   <%= form.label :weight %>
@@ -104,29 +117,31 @@
                 </div>
               </div>
             </div>
+            <!--
             <div class="tab-pane fade show" id="thoracil-exam">
               <div class="row">
                 <div class="col-6 form-group">
-                  <%= form.hidden_field :patient_id, value: patient.id %>
-                  <%= form.label :pulmonary_artery %>
-                  <%= form.text_area :pulmonary_artery, rows: 8, cols:'100%', class: 'form-control' %>
+                  <%#= form.hidden_field :patient_id, value: patient.id %>
+                  <%#= form.label :pulmonary_artery %>
+                  <%#= form.text_area :pulmonary_artery, rows: 8, cols:'100%', class: 'form-control' %>
                 </div>
                 <div class="col-6 form-group">
-                  <%= form.label :carotid_artery %>
-                  <%= form.text_area :carotid_artery, rows: 8, cols:'100%', class: 'form-control' %>
+                  <%#= form.label :carotid_artery %>
+                  <%#= form.text_area :carotid_artery, rows: 8, cols:'100%', class: 'form-control' %>
                 </div>
               </div>
               <div class="row">
                 <div class="col-6 form-group">
-                  <%= form.label :abdominal_exam %>
-                  <%= form.text_area :abdominal_exam, rows: 8, cols:'100%', class: 'form-control' %>
+                  <%#= form.label :abdominal_exam %>
+                  <%#= form.text_area :abdominal_exam, rows: 8, cols:'100%', class: 'form-control' %>
                 </div>
                 <div class="col-6 form-group">
-                  <%= form.label :members %>
-                  <%= form.text_area :members, rows: 8, cols:'100%', class: 'form-control' %>
+                  <%#= form.label :members %>
+                  <%#= form.text_area :members, rows: 8, cols:'100%', class: 'form-control' %>
                 </div>
               </div>
             </div>
+            -->
             <div class="tab-pane fade show" id="diagnostic">
               <div class="row">
                 <div class="form-group">

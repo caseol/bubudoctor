@@ -3,6 +3,7 @@ class CreateConsultations < ActiveRecord::Migration[5.2]
     create_table :consultations do |t|
       t.references :patient, foreign_key: true
       t.date :date_done
+      t.text :main_complain
       t.text :biometric_exam
       t.text :thoracil_exam
       t.text :abdominal_exam

@@ -152,6 +152,7 @@ pt-BR:
         exam_files: "Arquivos relacionados"
       consultation:
         patient_id: "Paciente"
+        main_complain: "Queixa Principal"
         date_done: "Data da consulta"
         biometric_exam: "Exame biométrico"
         weight: "Peso"
