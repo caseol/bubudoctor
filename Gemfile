@@ -23,7 +23,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-datatables'
 gem 'ajax-datatables-rails'
-gem 'mini_racer', :platform=>:ruby
+gem 'mini_racer', platform: :ruby
 gem 'autocomplete_rails'
 gem 'mini_magick'
 gem 'spreadsheet'

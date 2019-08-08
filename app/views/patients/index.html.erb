@@ -8,6 +8,7 @@
         <table class="responsive table table-hover" id="dttb-patients" data-sort="true" data-source="<%= url_for(format: :json)%>">
           <thead>
             <tr>
+              <th data-data="protocol_number">Num. Protocolo</th>
               <th data-data="patient_since">Patient since</th>
               <th data-data="name">Name</th>
               <th data-data="birth">Birth</th>
@@ -36,7 +37,6 @@
           </thead>
         </table>
         <br>
-
         <%= link_to 'Novo Paciente', new_patient_path, class: "btn btn-primary" %>
       </div>
     </div>

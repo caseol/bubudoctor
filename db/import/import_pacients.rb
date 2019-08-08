@@ -13,9 +13,10 @@ def self.read_sheet(sheet)
     else
       # pega cada linha e cria um nome paciente
       patient = Patient.new()
-      patient.user_id= 6
+      patient.user_id= 1
       patient.name = row[7]
       patient.email= row[22]
+      patient.protocol_number= row[2].to_i
       #patient.patient_since= Date::strptime(row[1], "%Y-%m-%d") unless row[1].blank?
       patient.patient_since= row[1] unless row[1].blank?
       #patient.birth= Date::strptime(row[8], "%Y-%m-%d") unless row[8].blank?

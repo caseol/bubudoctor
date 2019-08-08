@@ -24,6 +24,7 @@ class CreatePatients < ActiveRecord::Migration[5.2]
       t.string :health_plan
       t.date :plan_validation
       t.string :plan_number
+      t.integer :protocol_number
 
       t.text :history_current_disease
       t.text :previous_pathological_history

@@ -12,17 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2019_07_08_053216) do
 
-  create_table "active_storage_attachments", force: :cascade do |t|
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 2019_07_08_053216) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "appointments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "patient_id"
+  create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "patient_id"
     t.datetime "appointment_date"
     t.string "appointment_kind"
     t.string "status"
@@ -46,8 +46,10 @@ ActiveRecord::Schema.define(version: 2019_07_08_053216) do
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
-  create_table "consultations", force: :cascade do |t|
-    t.integer "patient_id"
+  create_table "consultations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "patient_id"
+    t.date "date_done"
+    t.text "main_complain"
     t.text "biometric_exam"
     t.text "thoracil_exam"
     t.text "abdominal_exam"
@@ -59,8 +61,8 @@ ActiveRecord::Schema.define(version: 2019_07_08_053216) do
     t.index ["patient_id"], name: "index_consultations_on_patient_id"
   end
 
-  create_table "exams", force: :cascade do |t|
-    t.integer "patient_id"
+  create_table "exams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "patient_id"
     t.string "title"
     t.text "conclusion"
     t.text "exam_table"
@@ -70,8 +72,8 @@ ActiveRecord::Schema.define(version: 2019_07_08_053216) do
     t.index ["patient_id"], name: "index_exams_on_patient_id"
   end
 
-  create_table "patients", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "patients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
     t.date "patient_since"
     t.string "name"
     t.date "birth"
@@ -94,18 +96,19 @@ ActiveRecord::Schema.define(version: 2019_07_08_053216) do
     t.string "health_plan"
     t.date "plan_validation"
     t.string "plan_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "protocol_number"
     t.text "history_current_disease"
     t.text "previous_pathological_history"
     t.text "mother_history"
-    t.text "social_history"
     t.text "father_history"
+    t.text "social_history"
     t.text "physiological_history"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_patients_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -131,7 +134,7 @@ ActiveRecord::Schema.define(version: 2019_07_08_053216) do
     t.datetime "invitation_accepted_at"
     t.integer "invitation_limit"
     t.string "invited_by_type"
-    t.integer "invited_by_id"
+    t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
@@ -141,4 +144,10 @@ ActiveRecord::Schema.define(version: 2019_07_08_053216) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "appointments", "patients"
+  add_foreign_key "appointments", "users"
+  add_foreign_key "consultations", "patients"
+  add_foreign_key "exams", "patients"
+  add_foreign_key "patients", "users"
 end

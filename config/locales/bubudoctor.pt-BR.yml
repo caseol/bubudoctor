@@ -45,6 +45,7 @@ pt-BR:
       patient:
         user_id: "Médico Responsável"
         patient_since: "Paciente desde"
+        protocol_number: "Número de Protocolo"
         name: "Nome"
         birth: "Nascimento"
         age: "Idade"

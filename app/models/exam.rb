@@ -17,7 +17,7 @@ class Exam < ApplicationRecord
   #after_save       :add_field_accessors
   #after_initialize :set_exam_table
   belongs_to :patient, inverse_of: :exams
-  has_many_attached :exam_files
+  has_many_attached :exam_files, dependent: :destroy_all
 
   serialize :exam_table, Array
   #store_accessor :exam_table, :data
