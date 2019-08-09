@@ -6,7 +6,15 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.all
+    respond_to :html, :json, :js
+    if current_user.admin?
+      @patients = Patient.filter(current_user.id, params["search"]["value"])
+    else
+      @patients = Patient.filter(current_user.parent, params["search"]["value"])
+    end
+    @patients.order(protocol_number: :desc).all
+    # faz a paginação
+
   end
 
   # GET /patients/1

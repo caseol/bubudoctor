@@ -54,6 +54,7 @@ var language_table_options = {
 var default_table_options = {
     language: language_table_options,
     pageLength: 10,
+    //searchDelay: 850,
     columnDefs: [
         {"targets": 'no-sort', "orderable": false}
     ],
@@ -73,6 +74,7 @@ var default_table_options = {
         }
     ]
 }
+
 var default_table_modal_options = {
     language: language_table_options,
     responsive: {
@@ -92,6 +94,7 @@ var default_table_modal_options = {
         }
     },
     pageLength: 10,
+    searchDelay: 550,
     columnDefs: [
         {"targets": 'no-sort', "orderable": false}
     ],

@@ -72,6 +72,14 @@ class Patient < ApplicationRecord
   validates_presence_of :email, :mobile
   validate :validate_format_of_document_number
 
+  scope :filter, -> (user_id, term) {
+    limit(10)
+    .where(user_id: user_id)
+    .where("name like '%#{term}%' or protocol_number like '%#{term}%' or cpf like '%#{term}%' or email like '%#{term}%' or birth like '%#{term}%'")
+    .order(protocol_number: :desc)
+  }
+
+
   GENDER = {
       male: "Masculino",
       female: "Feminino",

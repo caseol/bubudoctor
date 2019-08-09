@@ -1,3 +1,6 @@
+json.set! draw: 1
+json.set! recordsTotal: 57
+json.set! recordsFiltered: 57
 json.set! :data do
   json.array! @patients do |patient|
     json.partial! 'patients/patient', patient: patient

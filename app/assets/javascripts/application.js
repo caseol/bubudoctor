@@ -30,6 +30,7 @@
 
 
 //= require generic.init
+//= require protocol
 //= require exams
 //= require consultations
 

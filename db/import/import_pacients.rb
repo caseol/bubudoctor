@@ -13,7 +13,7 @@ def self.read_sheet(sheet)
     else
       # pega cada linha e cria um nome paciente
       patient = Patient.new()
-      patient.user_id= 1
+      patient.user_id= @user_id
       patient.name = row[7]
       patient.email= row[22]
       patient.protocol_number= row[2].to_i
@@ -48,8 +48,8 @@ def self.read_sheet(sheet)
 end
 
 inicio = DateTime.now()
-p "INICIO #{inicio}
-  "
+p "INICIO #{inicio}"
+@user_id = $ARGV.first
 import_file_path = File.join(Rails.root, 'db', 'source')
 
 #descriptions = CSV.read(File.join(import_file_path, 'categories_description.csv'), "r:ISO-8859-15:UTF-8")
