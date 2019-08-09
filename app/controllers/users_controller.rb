@@ -3,7 +3,12 @@ class UsersController < ApplicationController
   before_action :admin_only, :except => [:show]
 
   def index
-    @users = User.all
+    respond_to :html, :json, :js
+    if current_user.admin?
+      @users = User.where("parent=? or id=?", current_user.id, current_user.id).all
+    else
+      redirect_to edit_user_path(current_user)
+    end
   end
 
   def show
