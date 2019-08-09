@@ -49,7 +49,7 @@ end
 
 inicio = DateTime.now()
 p "INICIO #{inicio}"
-@user_id = $ARGV.first
+@user_id = ARGV.first
 import_file_path = File.join(Rails.root, 'db', 'source')
 
 #descriptions = CSV.read(File.join(import_file_path, 'categories_description.csv'), "r:ISO-8859-15:UTF-8")
