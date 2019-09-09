@@ -9,7 +9,7 @@ function _init_consultations() {
     // carrega via ajax o index nas divs corretas
     $('.nav-tabs').find('a').on('shown.bs.tab', function (e) {
         // verifica se é a aba com id consultation
-        if ($(this).attr("href") == "#consultation") {
+        if ($(this).attr("href") == "#consultations") {
             url = $("fieldset").find("#div-consultations").data("url")
             $.getScript(url, function (script, textStatus, XHR) {
                 // executa o script retornado por index.js.erb
@@ -18,6 +18,7 @@ function _init_consultations() {
         }
     });
 
+    //executa alguma ação qdo o usuário muda de TAB
     $('.nav-tabs').find('a').on('shown.bs.tab', function () {
         // Some code you want to run after the tab is shown (callback)
     });

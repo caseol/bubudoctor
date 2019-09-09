@@ -31,7 +31,7 @@ function _init_exams(){
     // carrega via ajax o index nas divs corretas
     $('.nav-tabs').find('a').on('shown.bs.tab', function (e) {
         // verifica se é a aba com id consultation
-        if ($(this).attr("href")=="#consultation") {
+        if ($(this).attr("href")=="#exams") {
             url=$("fieldset").find("#div-exams").data("url")
             $.getScript(url, function(script, textStatus, XHR){
                 // executa o script retornado por index.js.erb
@@ -40,8 +40,9 @@ function _init_exams(){
         }
     });
 
+    //executa alguma ação qdo o usuário muda de TAB
     $('.nav-tabs').find('a').on('shown.bs.tab', function () {
-        // Some code you want to run after the tab is shown (callback)
+
     });
 
     // inicializa tabela de um determinado exame

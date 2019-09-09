@@ -4,7 +4,11 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.all
+    if current_user.admin?
+      @appointments = Appointment.where(user_id: current_user.id).all
+    else
+      @appointments = Appointment.where(user_id: current_user.parent).all
+    end
 
     #Date.today.all_day #.first.to_datetime
   end

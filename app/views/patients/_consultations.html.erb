@@ -2,7 +2,6 @@
   <div class="container col-sm-12">
     <% if patient.errors.any? %>
       <div id="error_explanation">
-        <!--      <h2><%#= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>-->
         <ul>
           <% patient.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -10,11 +9,11 @@
         </ul>
       </div>
     <% end %>
+    <div class="row">
       <div class="col-sm-12">
         <fieldset>
-          <legend>Exames</legend>
-          <%#= link_to 'Atualizar Modal', exams_path,  {:remote => true, data:{toggle: "modal", target: '#modal-exames'}, class:"btn btn-primary"} %>
-          <div id="div-exams" class="col-12" data-url="<%= exams_path(patient_id: patient.id) %>">
+          <legend>Prontuários</legend>
+          <div id="div-consultations" class="col-12" data-url="<%= consultations_path(patient_id: patient.id) %>">
 
           </div>
         </fieldset>

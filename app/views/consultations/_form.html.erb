@@ -10,8 +10,9 @@
       </div>
     <% end %>
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-12 col-md-6">
         <div class="form-group">
+          <%= form.hidden_field :patient_id, value: @patient.id %>
           <%= form.label :date_done %>
           <div class="input-group date-picker" id="datepicker-date-done" data-target-input="nearest">
             <%= form.text_field :date_done, disabled: disable_field, value:"#{consultation.date_done.strftime('%d/%m/%Y') unless consultation.try(:date_done).blank?}", class:'form-control datetimepicker-input', data:{target:'#datepicker-date-done'} %>
@@ -24,11 +25,13 @@
         <div class="form-group">
           <%= form.file_field :consultation_files, multiple: true, class: 'form-control', disabled: disable_field %>
         </div>
+      </div>
+      <div class="col-sm-12 col-md-6">
         <div class="form-group">
           <% if consultation.consultation_files.size > 0 %>
             <div id="accordion">
               <% consultation.consultation_files.each_with_index do |upload, idx| %>
-                <div class="card">
+                <div class="card collapse in">
                   <div class="card-header" id="heading-<%= idx %>">
                     <a class="" data-toggle="collapse" data-target="#collapse-<%= idx %>" aria-expanded="true" aria-controls="collapse-<%= idx %>">
                       <%= upload.filename %>
@@ -69,6 +72,7 @@
           <% end %>
         </div>
       </div>
+      <!--
       <div class="col-sm-9">
           <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -77,11 +81,6 @@
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#biometric-exam" style="font-size: 1em; text-align: left">Exame Biométrico</a>
             </li>
-            <!--
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#thoracil-exam" style="font-size: 1em; text-align: left">Exame Torácico/Abdominal</a>
-            </li>
-            -->
             <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#diagnostic" style="font-size: 1em; text-align: left">Diagnóstico e Conduta</a>
             </li>
@@ -90,34 +89,34 @@
             <div class="tab-pane fade show active" id="main-complain">
               <div class="row">
                 <div class="col-12 form-group">
-                  <%= form.label :main_complain %>
-                  <%= form.text_area :main_complain, size: "25x10", class: 'form-control' %>
+                  <%#= form.label :main_complain %>
+                  <%#= form.text_area :main_complain, size: "25x10", class: 'form-control' %>
                 </div>
               </div>
             </div>
             <div class="tab-pane fade" id="biometric-exam">
               <div class="row">
                 <div class="col-6 form-group">
-                  <%= form.label :weight %>
-                  <%= form.text_field :weight, size: "25x10", class: 'form-control' %>
+                  <%#= form.label :weight %>
+                  <%#= form.text_field :weight, size: "25x10", class: 'form-control' %>
                 </div>
                 <div class="col-6 form-group">
-                  <%= form.label :height %>
-                  <%= form.text_field :height, size: "25x10", class: 'form-control' %>
+                  <%#= form.label :height %>
+                  <%#= form.text_field :height, size: "25x10", class: 'form-control' %>
                 </div>
               </div>
               <div class="row">
                 <div class="col-6 form-group">
-                  <%= form.label :imc %>
-                  <%= form.text_field :imc, size: "25x10", class: 'form-control' %>
+                  <%#= form.label :imc %>
+                  <%#= form.text_field :imc, size: "25x10", class: 'form-control' %>
                 </div>
                 <div class="col-6 form-group">
-                  <%= form.label :general_state %>
-                  <%= form.text_field :general_state, size: "25x10", class: 'form-control' %>
+                  <%#= form.label :general_state %>
+                  <%#= form.text_field :general_state, size: "25x10", class: 'form-control' %>
                 </div>
               </div>
             </div>
-            <!--
+
             <div class="tab-pane fade show" id="thoracil-exam">
               <div class="row">
                 <div class="col-6 form-group">
@@ -141,23 +140,24 @@
                 </div>
               </div>
             </div>
-            -->
+
             <div class="tab-pane fade show" id="diagnostic">
               <div class="row">
                 <div class="form-group">
-                  <%= form.label :diagnostic_hypothesis %>
-                  <%= form.text_area :diagnostic_hypothesis, rows: 8, cols: '100%', class: 'form-control' %>
+                  <%#= form.label :diagnostic_hypothesis %>
+                  <%#= form.text_area :diagnostic_hypothesis, rows: 8, cols: '100%', class: 'form-control' %>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group">
-                  <%= form.label :conduct_adopt %>
-                  <%= form.text_area :conduct_adopt, rows: 8, cols: '100%',class: 'form-control' %>
+                  <%#= form.label :conduct_adopt %>
+                  <%#= form.text_area :conduct_adopt, rows: 8, cols: '100%',class: 'form-control' %>
                 </div>
               </div>
             </div>
           </div>
       </div>
+      -->
     </div>
   </div>
 

@@ -5,7 +5,7 @@ class ConsultationsController < ApplicationController
   # GET /consultations.json
   def index
     if params[:patient_id]
-      @consultations = Consultation.where(patient_id: params[:patient_id]).all
+      @consultations = Consultation.where(patient_id: params[:patient_id]).order(date_done: :desc).all
       @patient = Patient.find(params[:patient_id])
     else
       @consultations = Consultation.all
@@ -16,6 +16,7 @@ class ConsultationsController < ApplicationController
   # GET /consultations/1
   # GET /consultations/1.json
   def show
+    @patient = @consultation.patient
     respond_to :html, :json, :js
   end
 
@@ -33,6 +34,7 @@ class ConsultationsController < ApplicationController
 
   # GET /consultations/1/edit
   def edit
+    @patient = @consultation.patient
     respond_to :html, :json, :js
   end
 
@@ -43,7 +45,7 @@ class ConsultationsController < ApplicationController
     @patient = @consultation.patient
     respond_to do |format|
       if (!@patient.blank? && @consultation.save)
-        format.js { flash.now[:notice] = 'Consulta incluída com sucesso!'}
+        format.js { flash.now[:notice] = 'Prontuário incluído com sucesso!'}
         format.json { render :show, status: :created, location: @consultation }
       else
         @patient = @consultation.patient
@@ -57,13 +59,14 @@ class ConsultationsController < ApplicationController
   # PATCH/PUT /consultations/1.json
   def update
     respond_to do |format|
+      @patient = @consultation.patient
       if @consultation.update(consultation_params)
-        format.html { redirect_to @consultation, notice: 'Consulta alterada com sucesso!' }
-        format.js { flash.now[:notice] = 'Consulta alterada com sucesso!'}
+        format.html { redirect_to @consultation, notice: 'Prontuário alterado com sucesso!' }
+        format.js { flash.now[:notice] = 'Prontuário alterado com sucesso!'}
         format.json { render :show, status: :ok, location: @consultation }
       else
         format.html { render :edit }
-        format.js { render :edit }
+        format.js { render :edit, flash.now[:notice] = @consultation.errors }
         format.json { render json: @consultation.errors, status: :unprocessable_entity }
       end
     end
@@ -74,8 +77,8 @@ class ConsultationsController < ApplicationController
   def destroy
     @consultation.destroy
     respond_to do |format|
-      format.html { redirect_to exams_url, notice: 'Consulta removida com sucesso!' }
-      format.js   { flash.now[:notice] = 'Consulta removida com sucesso!'}
+      format.html { redirect_to exams_url, notice: 'Prontuário removido com sucesso!' }
+      format.js   { flash.now[:notice] = 'Prontuário removido com sucesso!'}
       format.json { head :no_content }
     end
   end
