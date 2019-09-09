@@ -26,12 +26,17 @@ class PatientsController < ApplicationController
 
   # GET /patients/new
   def new
-    @patient = Patient.new()
+    last_protocol_number = Patient.maximum(:protocol_number)
+    @patient = Patient.new(protocol_number: last_protocol_number + 1)
     respond_to :html, :json, :js
   end
 
   # GET /patients/1/edit
   def edit
+    if @patient.protocol_number.blank?
+      last_protocol_number = Patient.maximum(:protocol_number)
+      @patient.protocol_number = last_protocol_number + 1
+    end
     respond_to :html, :js, :json#, layout: false
   end
 
