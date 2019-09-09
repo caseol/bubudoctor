@@ -42,7 +42,7 @@ class ExamsController < ApplicationController
     _exam_params = exam_params.except('exam_table')
 
     @exam = Exam.new(_exam_params)
-    @exam.exam_table = eval(_exam_table)
+    @exam.exam_table = eval(_exam_table) unless _exam_table.blank?
 
     respond_to do |format|
       if @exam.save
@@ -65,7 +65,7 @@ class ExamsController < ApplicationController
       _exam_params = exam_params.except('exam_table')
 
       if @exam.update(_exam_params)
-        @exam.exam_table = eval(_exam_table)
+        @exam.exam_table = eval(_exam_table)  unless _exam_table.blank?
         @exam.save
         format.html { redirect_to @exam, notice: 'Exame atualizado com sucesso!' }
         format.js { flash.now[:notice] = 'Exame atualizado com sucesso!'}
