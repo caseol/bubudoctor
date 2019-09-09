@@ -1,66 +1,73 @@
 <div class="row">
   <div class="sectionform">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
-      <%= devise_anser_error_messages! %>
-<!--        <h3>Editar <%#= resource.model_name.human %></h3>-->
-        <h3>Minha Conta</h3>
-        <div class="row">
-          <div class="col-sm">
-            <div class="form-group">
-              <%= f.label :name %>
-              <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
-            </div>
-            <div class="form-group">
-              <%= f.label :email %>
-              <%= f.email_field :email, class: 'form-control' %>
-            </div>
-            <div class="form-group">
-              <%= f.label :mobile %>
-              <%= f.text_field :mobile, :autofocus => true, class: 'form-control masked_mobile' %>
-            </div>
-            <div class="form-group">
-              <%= f.label :cpf %>
-              <%= f.text_field :cpf, :autofocus => true, class: 'form-control masked_cpf' %>
-            </div>
-            <%  if current_user.admin? %>
+    <h3>Minha Conta</h3>
+    <%= devise_anser_error_messages! %>
+    <div class="row">
+      <div class="col-sm-8">
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
+          <div class="row">
+            <div class="col-sm-6">
               <div class="form-group">
-                <%= f.label :crm %>
-                <%= f.text_field  :crm, class: 'form-control' %>
+                <%= f.label :name %>
+                <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
               </div>
               <div class="form-group">
-                <%= f.label :speciality %>
-                <%= f.text_field  :speciality, class: 'form-control' %>
+                <%= f.label :email %>
+                <%= f.email_field :email, class: 'form-control' %>
               </div>
-            <% end %>
-            <div class="form-group">
-              <%= f.label :current_password %>
-              <p>Você precisa informar sua senha atual para confirmar as modificações.</p>
-              <%= f.password_field :current_password, class: 'form-control' %><br/>
-              <%= f.submit 'Atualizar', :class => 'button col-12' %>
+              <div class="form-group">
+                <%= f.label :mobile %>
+                <%= f.text_field :mobile, :autofocus => true, class: 'form-control masked_mobile' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :cpf %>
+                <%= f.text_field :cpf, :autofocus => true, class: 'form-control masked_cpf' %>
+              </div>
+              <%  if current_user.admin? %>
+                <div class="form-group">
+                  <%= f.label :crm %>
+                  <%= f.text_field  :crm, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :speciality %>
+                  <%= f.text_field  :speciality, class: 'form-control' %>
+                </div>
+              <% end %>
             </div>
-          </div>
-          <div class="col-sm">
-            <fieldset>
-              <legend>Alterar Senha</legend>
-              <div class="form-group">
-                <%= f.label :password %>
-                <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
-              </div>
-              <div class="form-group">
-                <%= f.label :password_confirmation %>
-                <%= f.password_field :password_confirmation, class: 'form-control' %>
-              </div>
-              <%= f.submit 'Atualizar', :class => 'button col-12' %>
-            </fieldset>
-            <div style="text-align: right">
+            <div class="col-sm-6">
               <fieldset>
-                <legend>Cancelar Conta</legend>
-                <h5>Não está satisfeito? Ficamos triste em vê-lo partir.</h5>
-                <%= button_to "Cancelar minha conta", registration_path(resource_name), :data => { :confirm => "Você tem certeza? :S" }, :method => :delete, :class => 'button col-12' %>
+                <legend>Alterar Senha</legend>
+                <div class="form-group">
+                  <%= f.label :password %>
+                  <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :password_confirmation %>
+                  <%= f.password_field :password_confirmation, class: 'form-control' %>
+                </div>
               </fieldset>
+              <div class="form-group">
+                <%= f.label :current_password %>
+                <p>Você precisa informar sua senha atual para confirmar as modificações.</p>
+                <%= f.password_field :current_password, class: 'form-control' %><br/>
+                <%= f.submit 'Atualizar', :class => 'button col-12' %>
+              </div>
             </div>
           </div>
-        </div>
-    <% end %>
+        <% end %>
+      </div>
+
+      <div class="col-sm-4">
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
+          <div style="text-align: right">
+            <fieldset>
+              <legend>Cancelar Conta</legend>
+              <h5>Não está satisfeito? Ficamos triste em vê-lo partir.</h5>
+              <%= button_to "Cancelar minha conta", registration_path(resource_name), :data => { :confirm => "Você tem certeza? :S" }, :method => :delete, :class => 'button col-12' %>
+            </fieldset>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_update_path_for(resource)
+    edit_user_registration_path(resource)
+  end
+
   def set_locale
     if params[:locale]
       I18n.locale = params[:locale]
