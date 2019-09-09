@@ -5,7 +5,19 @@ $(document).ready(function(){
 });
 
 function _init_protocol(){
+    setAppointmentsTable();
     setPatientsTable();
+}
+
+function setAppointmentsTable() {
+    // tabela com a lista de todos os agendamentos
+    var appointments_options = $.extend({}, default_table_options);
+    appointments_options["columnDefs"] = [{
+        targets: 1, render: function (data) {
+            return moment(data).format('DD/MM/YYYY HH:MM');
+        }
+    }];
+    dttbAppointments = $('#dttb-appointments').DataTable(appointments_options);
 }
 
 function setPatientsTable() {

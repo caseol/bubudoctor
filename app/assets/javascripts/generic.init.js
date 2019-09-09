@@ -165,8 +165,7 @@ $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Const
             clear: 'far fa-delete',
             close: 'far fa-times'
         }
-    }
-);
+    });
 
 function bind_autocomplete(){
     return $("input[data-autocomplete]").each(function() {
@@ -223,7 +222,7 @@ function _init(){
     // iniciando datatables
     if (dttb === undefined){
         dttb = $(".dttb").DataTable(default_table_modal_options);
-        dttbAppointments = $('#dttb-appointments').DataTable(default_table_options);
+        //dttbAppointments = $('#dttb-appointments').DataTable(default_table_options);
 
         // Fazendo a tabela ser editada diretamente na celula
         /*dttbAppointments.MakeCellsEditable({

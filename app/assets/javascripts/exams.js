@@ -32,7 +32,8 @@ function _init_exams(){
     $('.nav-tabs').find('a').on('shown.bs.tab', function (e) {
         // verifica se é a aba com id consultation
         if ($(this).attr("href")=="#exams") {
-            url=$("fieldset").find("#div-exams").data("url")
+            //url=$("fieldset").find("#div-exams").data("url")
+            url=$(".container").find("#div-exams").data("url")
             $.getScript(url, function(script, textStatus, XHR){
                 // executa o script retornado por index.js.erb
                 eval(script);
