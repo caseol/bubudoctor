@@ -1,4 +1,8 @@
 $("#modal-window").find(".modal-content").html("<%= j (render 'new') %>");
 $("#modal-window").modal(_init()).animate({ scrollTop: 0 }, 'slow');
 
-// reinicia configurações para a pagina modal
+// define o comportamento pelo tipo da consulta
+$('.appointment-kind').on("change", function(){
+    //$("input#sale_point_of_sale_attributes_id").val($(this).find('option:selected').val());
+    console.info(" OPCAO:" + $(this).val())
+});

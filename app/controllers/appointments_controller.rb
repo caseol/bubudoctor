@@ -34,6 +34,13 @@ class AppointmentsController < ApplicationController
   def create
     @appointment = Appointment.new(appointment_params)
     @appointment.user_id = (current_user.admin? && current_user.parent.blank?) ? current_user.id : current_user.parent
+    # verifica se o usuário já existe, caso contrário cria um novo
+    if @appointment.patient_id.blank?
+      new_patient = Patient.new(enable_complete_validation: false, name: params['search_patient'], mobile: params['patient_mobile'], user_id: @appointment.user_id)
+      new_patient.save
+      @appointment.patient = new_patient
+    end
+
     respond_to do |format|
       if @appointment.save
         format.html { redirect_to @appointment, notice: 'Consulta agendada com sucesso' }

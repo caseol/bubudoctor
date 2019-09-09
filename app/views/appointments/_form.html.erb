@@ -13,10 +13,23 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
+          <%= form.label :appointment_kind %>
+          <%= form.select(:appointment_kind, Appointment.appointment_kinds.keys.collect { |ak| [Appointment.human_enum_name(:appointment_kinds, ak), ak] }, {}, class: "form-control appointment-kind") %>
+        </div>
+
+        <div class="form-group">
           <%= form.label :patient_id %>
           <%= form.hidden_field :patient_id, value: "#{appointment.try(:patient).try(:id)}", class: "autocomplete-target" %>
           <%= text_field_tag :search_patient, (appointment.try(:patient).try(:name) || params[:search_patient]), data: { autocomplete: autocomplete_patient_name_patients_path, hidden:{target: ".autocomplete-target"} }, class: 'form-control' %>
         </div>
+
+        <div class="form-group">
+          <%= form.label "Telefone" %>
+          <%= text_field_tag :patient_mobile, (appointment.try(:patient).try(:mobile)), class: 'form-control patient-mobile masked_mobile' %>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
         <div class="form-group">
           <%= form.label :appointment_date %>
           <div class="input-group date-time-picker" id="datepicker-appointment-date" data-target-input="nearest">
@@ -26,13 +39,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <%= form.label :appointment_kind %>
-          <%= form.select(:appointment_kind, Appointment.appointment_kinds.keys.collect { |ak| [Appointment.human_enum_name(:appointment_kinds, ak), ak] }, {}, class: "form-control") %>
-        </div>
-      </div>
 
-      <div class="col-sm-6">
         <div class="form-group">
           <%= form.label :status %>
           <%= form.select(:status, Appointment.status_kinds.keys.collect { |sk| [Appointment.human_enum_name(:status_kinds, sk), sk] }, {}, class: "form-control") %>
@@ -40,7 +47,7 @@
 
         <div class="form-group">
           <%= form.label :obs %>
-          <%= form.text_area :obs,size: "20x05", class: 'form-control' %>
+          <%= form.text_area :obs,size: "20x03", class: 'form-control' %>
         </div>
       </div>
     </div>

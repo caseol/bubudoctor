@@ -178,9 +178,10 @@ function bind_autocomplete(){
             delay: 500,
             position: { at: "left bottom" },
             focus: function (event, ui) {
-                console.log(target);
                 $(target).val(ui.item.id);
-                console.log($(target).val());
+                console.log("Nome:" + ui.item.name);
+                console.log("Celular:" + ui.item.mobile);
+                $(".patient-mobile").val(ui.item.mobile)
                 // or $('#autocomplete-input').val(ui.item.label);
 
                 // Prevent the default focus behavior.
