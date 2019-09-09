@@ -10,7 +10,7 @@
       </div>
     <% end %>
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-5">
         <div class="form-group">
           <%= form.label :patient_id %>
           <%= form.hidden_field :patient_id, value: exam.try(:patient).try(:id) %>
@@ -34,7 +34,7 @@
           <%= form.text_area :conclusion, class: 'form-control', rows: 8, disabled: disable_field %>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-7">
         <div class="form-group">
           <%= form.label :exam_files %>
           <%= form.file_field :exam_files, multiple: true, class: 'form-control', disabled: disable_field %>
@@ -85,12 +85,14 @@
 
         </div>
       </div>
+      <!--
       <div class="col-sm-4">
-          <%= form.label :exam_table %><br />
-          <%= form.hidden_field :exam_table, value: exam.try(:exam_table) %>
-          <%= button_tag "Incluir valor", {id:'add-exam-row', class:"btn btn-primary", type:"button"} unless disable_field %><br clear="all"/>
-          <table class="responsive nowrap table table-hover" id="dttb-exam-table" data-sort="false" data-data="<%=  exam.exam_table %>" <%= disable_field ? 'disabled' : '' %>></table>
+          <%#= form.label :exam_table %><br />
+          <%#= form.hidden_field :exam_table, value: exam.try(:exam_table) %>
+          <%#= button_tag "Incluir valor", {id:'add-exam-row', class:"btn btn-primary", type:"button"} unless disable_field %><br clear="all"/>
+          <table class="responsive nowrap table table-hover" id="dttb-exam-table" data-sort="false" data-data="<%#=  exam.exam_table %>" <%#= disable_field ? 'disabled' : '' %>></table>
       </div>
+      -->
     </div>
   </div>
 

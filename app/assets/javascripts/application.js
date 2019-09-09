@@ -36,13 +36,12 @@
 
 function bindZipField(address_div){
     // pega o campo zip dentro da div passada
-    var address_zip = address_div.find("#address_zip");
+    var address_zip = address_div.find("#patient_zip");
 
     //Quando o campo cep perde o foco.
     address_zip.focusout(function() {
         //Nova variável com valor do campo "cep".
         var cep = $(this).val();
-
         //Verifica se campo cep possui valor informado.
         if (cep != "") {
 
@@ -55,16 +54,16 @@ function bindZipField(address_div){
                 $("submit").attr('disabled', true);
                 //Preenche os campos com "..." enquanto consulta webservice.
 
-                var address_street = address_div.find("#address_street")
+                var address_street = address_div.find("#patient_address")
                 //address_street.val("...");
 
-                var address_district = address_div.find("#address_district")
+                var address_district = address_div.find("#patient_district")
                 //address_district.val("...");
 
-                var address_city = address_div.find("#address_city")
+                var address_city = address_div.find("#patient_city")
                 //address_city.val("...");
 
-                var address_state = address_div.find("#address_state")
+                var address_state = address_div.find("#patient_uf")
                 //address_state.val("...");
 
                 //Consulta o webservice viacep.com.br/
