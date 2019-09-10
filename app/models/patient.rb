@@ -78,7 +78,7 @@ class Patient < ApplicationRecord
   validate :validate_format_of_document_number
 
   scope :filter, -> (user_id, term) {
-    limit(10)
+    limit(15)
     .where(user_id: user_id)
     .where("name like '%#{term}%' or protocol_number like '%#{term}%' or cpf like '%#{term}%' or email like '%#{term}%' or birth like '%#{term}%'")
     .order(protocol_number: :desc)

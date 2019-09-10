@@ -1,4 +1,4 @@
-<table class="responsive nowrap table table-hover" id="dttb-consultations" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<table class="responsive nowrap table table-hover" id="dttb-consultations" data-sort="true" data-source="<%= url_for(patient_id: @patient.id, format: :json)%>">
   <thead>
   <tr>
     <th data-data="date_done">Data</th>
