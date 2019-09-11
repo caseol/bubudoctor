@@ -14,7 +14,7 @@ function setAppointmentsTable() {
     var appointments_options = $.extend({}, default_table_options);
     appointments_options["columnDefs"] = [{
         targets: 1, render: function (data) {
-            return moment(data).format('DD/MM/YYYY HH:MM');
+            return moment(data).format('DD/MM/YYYY HH:mm');
         }
     }];
     dttbAppointments = $('#dttb-appointments').DataTable(appointments_options);
