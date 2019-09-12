@@ -12,11 +12,13 @@ function _init_protocol(){
 function setAppointmentsTable() {
     // tabela com a lista de todos os agendamentos
     var appointments_options = $.extend({}, default_table_options);
-    appointments_options["columnDefs"] = [{
+    appointments_options["columnDefs"] = [
+        {
         targets: 1, render: function (data) {
             return moment(data).format('DD/MM/YYYY HH:mm');
-        }
+        },
     }];
+    appointments_options["order"] = [[ 1, "desc" ]]
     dttbAppointments = $('#dttb-appointments').DataTable(appointments_options);
 }
 
@@ -30,6 +32,14 @@ function setPatientsTable() {
                                 "type": "GET",
                                 "url": "/p.json"
     };
+    patient_options["columnDefs"] = [
+        {
+            targets: [2, 6], render: function (data) {
+                return moment(data).format('DD/MM/YYYY');
+            },
+        }
+    ];
+
     dttbPatients = $("#dttb-patients").DataTable(patient_options);
 
     dttbPatients.on( 'xhr', function () {

@@ -109,3 +109,59 @@ function bindZipField(address_div){
         $(this).mask("99999-999");
     });
 }
+
+jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+    "date-month-pre": function ( a ) {
+        if (a == null || a == "") {
+            return 0;
+        }
+        var monthYear = a.split('/');
+        return (monthYear[1] + monthYear[0]) * 1;
+    },
+
+    "date-month-asc": function ( a, b ) {
+        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+    },
+
+    "date-month-desc": function ( a, b ) {
+        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+    }
+} );
+
+jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+    "datetime-ptBR-pre": function ( a ) {
+        if (a == null || a == "") {
+            return 0;
+        }
+        var dateArray = a.split("/");
+        var hour = dateArray[2].split(" ")[1].split(":")[0]
+        var minute = dateArray[2].split(" ")[1].split(":")[1]
+        return (dateArray[2].split(" ")[0] + dateArray[1] + dateArray[0]) + (hour + minute) * 1;
+    },
+
+    "datetime-ptBR-asc": function ( a, b ) {
+        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+    },
+
+    "datetime-ptBR-desc": function ( a, b ) {
+        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+    }
+} );
+
+jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+    "date-ptBR-pre": function ( a ) {
+        if (a == null || a == "") {
+            return 0;
+        }
+        var dateArray = a.split("/");
+        return (dateArray[2] + dateArray[1] + dateArray[0]) * 1;
+    },
+
+    "datetime-ptBR-asc": function ( a, b ) {
+        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+    },
+
+    "datetime-ptBR-desc": function ( a, b ) {
+        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+    }
+} );
