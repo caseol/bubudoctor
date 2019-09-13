@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users, path: "u", path_names: { edit: "e", new: "novo" }
   resources :appointments, path: "consulta", path_names: { edit: "e", new: "novo" }
   resources :patients, path: "p", path_names: { edit: "e", new: "novo" } do
-    get :autocomplete_patient_name, on: :collection
+    get :autocomplete_patient_all, on: :collection
   end
 
   get '/protocolo' => 'protocol#protocol', as: :protocol#, format: false

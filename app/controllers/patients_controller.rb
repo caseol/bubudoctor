@@ -3,7 +3,7 @@ class PatientsController < ApplicationController
   #before_action :admin_only#, :except => [:show]
 
   #autocomplete :patient, :name, :display_value => :funky_method#, label_method: :name, full_mode: true #, scopes: [:active_users]
-  autocomplete :patient, :name, :display_value => :funky_method, additional_data: [:mobile]
+  autocomplete :patient, :all, :display_value => :funky_method, additional_data: [:cpf, :mobile], full_model: true, order: "patients.name ASC"
 
   # GET /patients
   # GET /patients.json
@@ -89,6 +89,41 @@ class PatientsController < ApplicationController
   end
 
   private
+    # sobrescrevendo métodos do autocomplete para pesquisar em diversas colunas (campos)
+    def autocomplete_select_clause(model, value_method, label_method, options)
+      table_name = model.table_name
+      selects = []
+      selects << "#{table_name}.#{model.primary_key}"
+      selects << (value_method == 'all') ? "#{table_name}.*" : "#{table_name}.#{value_method}"
+      selects << "#{table_name}.#{label_method}" if label_method
+      options[:additional_data].each { |datum| selects << "#{table_name}.#{datum}" } if options[:additional_data] && (value_method != 'all')
+      selects
+    end
+    def autocomplete_where_clause(term, model, value_method, options)
+      term = term.gsub(/[_%]/) { |x| "\\#{x}" } # escape any _'s or %'s in the search term
+      term = "#{term}%"
+      term = "%#{term}" if options[:full_search]
+      table_name = model.table_name
+      lower = options[:case_sensitive] ? '' : 'LOWER'
+      #["#{lower}(#{table_name}.#{value_method}) LIKE #{lower}(?)", term] # escape default: \ on postgres, mysql, sqlite
+
+      # marretando a consulta na mão mesmo
+      ["#{lower}(patients.name) LIKE #{lower}(?) OR #{lower}(patients.cpf) LIKE #{lower}(?) OR #{lower}(patients.email) LIKE #{lower}(?) OR #{lower}(patients.mobile) LIKE #{lower}(?)", term, term, term, term] # escape default: \ on postgres, mysql, sqlite
+
+    end
+    def autocomplete_build_json(results, value_method, label_method, options)
+      results.collect do |result|
+        data = HashWithIndifferentAccess.new(id: result.id,
+                                             label: result.send(:name),
+                                             value: result.send(:name))
+        options[:additional_data].each do |method|
+          data[method] = result.send(method)
+        end if options[:additional_data]
+        data
+      end
+    end
+    ## fim da sobrescrita dos métodos da gem autocomplete
+
     # Use callbacks to share common setup or constraints between actions.
     def set_patient
       @patient = Patient.find(params[:id])
