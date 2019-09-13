@@ -16,7 +16,10 @@ function setAppointmentsTable() {
     appointments_options["columnDefs"] = [
         {
         targets: 1, render: function (data) {
-            return moment(data).format('DD/MM/YYYY HH:mm');
+            if (data == null || data == "")
+                return ""
+            else
+                return moment(data).format('DD/MM/YYYY HH:mm');
         },
     }];
     appointments_options["order"] = [[ 1, "desc" ]]
@@ -39,7 +42,10 @@ function setPatientsTable() {
 
         {
             targets: [2, 6], render: function (data) {
-                return moment(data).format('DD/MM/YYYY');
+                if (data == null || data == "")
+                    return ""
+                else
+                    return moment(data).format('DD/MM/YYYY');
             },
         }
     ];
