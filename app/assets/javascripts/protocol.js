@@ -12,6 +12,7 @@ function _init_protocol(){
 function setAppointmentsTable() {
     // tabela com a lista de todos os agendamentos
     var appointments_options = $.extend({}, default_table_options);
+    appointments_options["autoWidth"]= false;
     appointments_options["columnDefs"] = [
         {
         targets: 1, render: function (data) {
