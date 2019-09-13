@@ -20,6 +20,8 @@ function setAppointmentsTable() {
     }];
     appointments_options["order"] = [[ 1, "desc" ]]
     dttbAppointments = $('#dttb-appointments').DataTable(appointments_options);
+    // fixando o tamanho final da tabela de consultas em 575px
+    $('#dttb-appointments').css("width","575px");
 }
 
 function setPatientsTable() {
@@ -33,6 +35,7 @@ function setPatientsTable() {
                                 "url": "/p.json"
     };
     patient_options["columnDefs"] = [
+
         {
             targets: [2, 6], render: function (data) {
                 return moment(data).format('DD/MM/YYYY');
