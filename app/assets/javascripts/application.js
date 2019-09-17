@@ -31,6 +31,7 @@
 
 //= require generic.init
 //= require protocol
+//= require patients
 //= require exams
 //= require consultations
 

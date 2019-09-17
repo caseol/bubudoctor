@@ -1,3 +1,5 @@
 $("#modal-window").find(".modal-content").html("<%= j (render 'edit') %>");
 $("#modal-window").modal(_init()).animate({ scrollTop: 0 }, 'slow');
 
+setPatientAge($("#patients_birth"));
+
