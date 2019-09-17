@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_08_053216) do
+ActiveRecord::Schema.define(version: 2019_09_17_200158) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 2019_07_08_053216) do
 
   create_table "consultations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "patient_id"
-    t.date "date_done"
     t.text "main_complain"
+    t.date "date_done"
     t.text "biometric_exam"
     t.text "thoracil_exam"
     t.text "abdominal_exam"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2019_07_08_053216) do
 
   create_table "patients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
+    t.integer "protocol_number"
     t.date "patient_since"
     t.string "name"
     t.date "birth"
@@ -96,7 +97,6 @@ ActiveRecord::Schema.define(version: 2019_07_08_053216) do
     t.string "health_plan"
     t.date "plan_validation"
     t.string "plan_number"
-    t.integer "protocol_number"
     t.text "history_current_disease"
     t.text "previous_pathological_history"
     t.text "mother_history"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2019_07_08_053216) do
     t.text "physiological_history"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "health_insurance"
     t.index ["user_id"], name: "index_patients_on_user_id"
   end
 

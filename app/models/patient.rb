@@ -109,6 +109,21 @@ class Patient < ApplicationRecord
       cafuzo: "Cafuzo"
   }
 
+  HEALTH_INSURANCE= {
+      cortesia: "Cortesia",
+      particular: "Particular",
+      amil: "Amil",
+      bradesco: "Bradesco",
+      cassi: "CASSI",
+      embratel_claro: "Embratel-CLARO",
+      embratel_pame: "Embratel-PAME",
+      embratel_telos: "Embratel-TELOS",
+      petrobras_ams: "Petrobras-AMS",
+      petrobras_di: "Petrobras-DI",
+      sulamerica: "Sulamérica",
+      unimed: "Unimed"
+  }
+
   SCHOLARITY = {
       none: "Nenhuma",
       first_degree_incomplete: "1o Grau Incompleto",
