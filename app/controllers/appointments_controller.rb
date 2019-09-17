@@ -36,10 +36,19 @@ class AppointmentsController < ApplicationController
     @appointment.user_id = (current_user.admin? && current_user.parent.blank?) ? current_user.id : current_user.parent
     # verifica se o usuário já existe, caso contrário cria um novo
     if @appointment.patient_id.blank?
-      new_patient = Patient.new(enable_complete_validation: false, name: params['search_patient'], mobile: params['patient_mobile'], user_id: @appointment.user_id)
-      new_patient.save
-      @appointment.patient = new_patient
+      patient = Patient.new(enable_complete_validation: false, name: params['search_patient'], mobile: params['patient_mobile'], health_insurance: params['patient_health_insurance'], user_id: @appointment.user_id)
+    else
+      patient = Patient.find_by_id(@appointment.patient_id)
+      if patient.health_insurance != params['patient_health_insurance']
+        patient.health_insurance = params['patient_health_insurance']
+      end
+      if patient.mobile != params['patient_mobile']
+        patient.mobile = params['patient_mobile']
+      end
     end
+    patient.enable_complete_validation=false
+    patient.save
+    @appointment.patient = patient
 
     respond_to do |format|
       if @appointment.save
@@ -59,6 +68,15 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
+        patient = Patient.find_by_id(@appointment.patient_id)
+        if patient.health_insurance != params['patient_health_insurance']
+          patient.health_insurance = params['patient_health_insurance']
+        end
+        if patient.mobile != params['patient_mobile']
+          patient.mobile = params['patient_mobile']
+        end
+        patient.enable_complete_validation=false
+        patient.save
         format.html { redirect_to @appointment, notice: 'Consulta atualizada com sucesso' }
         format.js { flash.now[:notice] = 'Consulta atualizada com sucesso'}
         format.json { render :show, status: :ok, location: @appointment }

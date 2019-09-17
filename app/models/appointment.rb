@@ -2,13 +2,13 @@
 #
 # Table name: appointments
 #
-#  id               :integer          not null, primary key
-#  user_id          :integer
-#  patient_id       :integer
+#  id               :bigint           not null, primary key
+#  user_id          :bigint
+#  patient_id       :bigint
 #  appointment_date :datetime
-#  appointment_kind :string
-#  status           :string
-#  obs              :text
+#  appointment_kind :string(255)
+#  status           :string(255)
+#  obs              :text(65535)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #

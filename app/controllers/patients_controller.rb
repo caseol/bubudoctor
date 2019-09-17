@@ -3,7 +3,7 @@ class PatientsController < ApplicationController
   #before_action :admin_only#, :except => [:show]
 
   #autocomplete :patient, :name, :display_value => :funky_method#, label_method: :name, full_mode: true #, scopes: [:active_users]
-  autocomplete :patient, :all, :display_value => :funky_method, additional_data: [:cpf, :mobile], full_model: true, order: "patients.name ASC"
+  autocomplete :patient, :all, :display_value => :funky_method, additional_data: [:cpf, :mobile, :health_insurance], full_model: true, order: "patients.name ASC"
 
   # GET /patients
   # GET /patients.json
@@ -47,7 +47,7 @@ class PatientsController < ApplicationController
 
     # associa paciente ao médico
     @patient.user_id = (current_user.admin? && current_user.parent.blank?) ? current_user.id : current_user.parent
-
+    @patient.enable_complete_validation=true
     respond_to do |format|
       if @patient.save
         format.html { redirect_to @patient, notice: 'Paciente criado com sucesso' }
@@ -131,7 +131,7 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:search_patient, :protocol_number, :patient_since, :name, :birth, :age, :cpf, :gender, :etnia, :civil_status, :occupation, :scholarity, :zip, :address, :city, :uf, :telephone, :mobile, :email, :indication_by, :health_plan, :plan_validation, :plan_number, :created_at, :updated_at,
+      params.require(:patient).permit(:protocol_number, :patient_since, :name, :birth, :age, :cpf, :gender, :etnia, :civil_status, :occupation, :scholarity, :zip, :address, :city, :uf, :telephone, :mobile, :email, :indication_by, :health_insurance, :health_plan, :plan_validation, :plan_number, :created_at, :updated_at,
                                       :main_complaint, :history_of_disease,
                                       :suffered_accidents, :have_allergy, :suffers_asthma,:cardiopathies,
                                       :previous_surgeries, :convulsions, :diabetes_mellitus, :dyslipidemia,

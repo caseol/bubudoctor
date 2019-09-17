@@ -2,33 +2,33 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
+#  id                     :bigint           not null, primary key
+#  email                  :string(255)      default(""), not null
+#  encrypted_password     :string(255)      default(""), not null
+#  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  confirmation_token     :string
+#  confirmation_token     :string(255)
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
-#  unconfirmed_email      :string
+#  unconfirmed_email      :string(255)
 #  parent                 :integer
-#  name                   :string
+#  name                   :string(255)
 #  role                   :integer
-#  mobile                 :string
-#  cpf                    :string
-#  crm                    :string
-#  speciality             :string
-#  plan                   :string
-#  invitation_token       :string
+#  mobile                 :string(255)
+#  cpf                    :string(255)
+#  crm                    :string(255)
+#  speciality             :string(255)
+#  plan                   :string(255)
+#  invitation_token       :string(255)
 #  invitation_created_at  :datetime
 #  invitation_sent_at     :datetime
 #  invitation_accepted_at :datetime
 #  invitation_limit       :integer
-#  invited_by_type        :string
-#  invited_by_id          :integer
+#  invited_by_type        :string(255)
+#  invited_by_id          :bigint
 #  invitations_count      :integer          default(0)
 #
 

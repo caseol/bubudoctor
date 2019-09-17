@@ -2,38 +2,40 @@
 #
 # Table name: patients
 #
-#  id                            :integer          not null, primary key
-#  user_id                       :integer
+#  id                            :bigint           not null, primary key
+#  user_id                       :bigint
+#  protocol_number               :integer
 #  patient_since                 :date
-#  name                          :string
+#  name                          :string(255)
 #  birth                         :date
 #  age                           :integer
-#  cpf                           :string
-#  gender                        :string
-#  etnia                         :string
-#  civil_status                  :string
-#  occupation                    :string
-#  scholarity                    :string
-#  zip                           :string
-#  district                      :string
-#  address                       :string
-#  city                          :string
-#  uf                            :string
-#  telephone                     :string
-#  mobile                        :string
-#  email                         :string
-#  indication_by                 :text
-#  health_plan                   :string
+#  cpf                           :string(255)
+#  gender                        :string(255)
+#  etnia                         :string(255)
+#  civil_status                  :string(255)
+#  occupation                    :string(255)
+#  scholarity                    :string(255)
+#  zip                           :string(255)
+#  district                      :string(255)
+#  address                       :string(255)
+#  city                          :string(255)
+#  uf                            :string(255)
+#  telephone                     :string(255)
+#  mobile                        :string(255)
+#  email                         :string(255)
+#  indication_by                 :text(65535)
+#  health_plan                   :string(255)
 #  plan_validation               :date
-#  plan_number                   :string
+#  plan_number                   :string(255)
+#  history_current_disease       :text(65535)
+#  previous_pathological_history :text(65535)
+#  mother_history                :text(65535)
+#  father_history                :text(65535)
+#  social_history                :text(65535)
+#  physiological_history         :text(65535)
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
-#  history_current_disease       :text
-#  previous_pathological_history :text
-#  mother_history                :text
-#  social_history                :text
-#  father_history                :text
-#  physiological_history         :text
+#  health_insurance              :string(255)
 #
 
 class Patient < ApplicationRecord

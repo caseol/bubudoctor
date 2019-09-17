@@ -2,17 +2,18 @@
 #
 # Table name: consultations
 #
-#  id                    :integer          not null, primary key
-#  patient_id            :integer
-#  biometric_exam        :text
-#  thoracil_exam         :text
-#  abdominal_exam        :text
-#  members               :text
-#  diagnostic_hypothesis :text
-#  conduct_adopt         :text
+#  id                    :bigint           not null, primary key
+#  patient_id            :bigint
+#  main_complain         :text(65535)
+#  date_done             :date
+#  biometric_exam        :text(65535)
+#  thoracil_exam         :text(65535)
+#  abdominal_exam        :text(65535)
+#  members               :text(65535)
+#  diagnostic_hypothesis :text(65535)
+#  conduct_adopt         :text(65535)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
-#  date_done             :date
 #
 
 class Consultation < ApplicationRecord

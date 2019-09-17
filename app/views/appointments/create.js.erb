@@ -3,7 +3,7 @@
 //});
 $("#modal-window").modal('toggle');
 $("#application-messages").html('<%= j render partial: 'layouts/messages' %>');
-$(".alert").delay(3000).slideUp(200, function () {
+$(".alert").delay(2000).slideUp(200, function () {
     //location.reload();
     $('#dttb-appointments').DataTable().ajax.reload();
 })

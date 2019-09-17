@@ -5,7 +5,7 @@ $(".dtr-modal-display").toggle(false)
 
 //Renderiza as mensagens
 $("#application-messages").html('<%= j render partial: 'layouts/messages' %>');
-$(".alert").delay(3000).slideUp(200, function () {
+$(".alert").delay(2000).slideUp(200, function () {
     //atualiza datatable
     $('#dttb-patients').DataTable().ajax.reload();
 })

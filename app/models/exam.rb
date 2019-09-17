@@ -2,11 +2,11 @@
 #
 # Table name: exams
 #
-#  id         :integer          not null, primary key
-#  patient_id :integer
-#  title      :string
-#  conclusion :text
-#  exam_table :text
+#  id         :bigint           not null, primary key
+#  patient_id :bigint
+#  title      :string(255)
+#  conclusion :text(65535)
+#  exam_table :text(65535)
 #  date_done  :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
