@@ -111,7 +111,7 @@ class PatientsController < ApplicationController
       #["#{lower}(#{table_name}.#{value_method}) LIKE #{lower}(?)", term] # escape default: \ on postgres, mysql, sqlite
 
       # marretando a consulta na mão mesmo
-      ["#{lower}(patients.name) LIKE #{lower}(?) OR #{lower}(patients.cpf) LIKE #{lower}(?) OR #{lower}(patients.email) LIKE #{lower}(?) OR #{lower}(patients.mobile) LIKE #{lower}(?)", term.tr(" ", "%"), term.tr(" ", "%"), term.tr(" ", "%"), term].tr(" ", "%") # escape default: \ on postgres, mysql, sqlite
+      ["#{lower}(patients.name) LIKE #{lower}(?) OR #{lower}(patients.cpf) LIKE #{lower}(?) OR #{lower}(patients.email) LIKE #{lower}(?) OR #{lower}(patients.mobile) LIKE #{lower}(?)", term.tr(" ", "%"), term.tr(" ", "%"), term.tr(" ", "%"), term.tr(" ", "%")] # escape default: \ on postgres, mysql, sqlite
 
     end
     def autocomplete_build_json(results, value_method, label_method, options)
