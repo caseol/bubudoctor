@@ -1,4 +1,5 @@
 var dttbPatients = "";
+var dttbAppointments = "";
 
 $(document).ready(function(){
     _init_protocol();
@@ -7,12 +8,26 @@ $(document).ready(function(){
 function _init_protocol(){
     setAppointmentsTable();
     setPatientsTable();
+
+    // faz o bind com o campo de data para alterar os valores qdo outra data for escolhida
+    $("#datepicker-date-appointments").on("change.datetimepicker", function(){
+        dttbAppointments.ajax.reload();
+        //setAppointmentsTable();
+    });
 }
 
 function setAppointmentsTable() {
     // tabela com a lista de todos os agendamentos
-    var appointments_options = $.extend({}, default_table_options);
-    appointments_options["autoWidth"]= false;
+    var appointments_options = $.extend({}, default_table_modal_options);
+    //appointments_options["autoWidth"]= true;
+    appointments_options["serverSide"] = true;
+    appointments_options["ajax"] = {
+        "type": "GET",
+        "data": function () {
+            return {"appointments_date": $("#appointements_date").val()}
+        },
+        "url": "/consulta.json"
+    };
     appointments_options["columnDefs"] = [
         {
         targets: 1, render: function (data) {
@@ -22,16 +37,20 @@ function setAppointmentsTable() {
                 return moment(data).format('DD/MM/YYYY HH:mm');
         },
     }];
-    appointments_options["order"] = [[ 1, "desc" ]]
+    //appointments_options["order"] = [[ 1, "desc" ]]
     dttbAppointments = $('#dttb-appointments').DataTable(appointments_options);
-    // fixando o tamanho final da tabela de consultas em 575px
-    $('#dttb-appointments').css("width","575px");
+    dttbAppointments.on( 'xhr', function () {
+        var json = dttbAppointments.ajax.json();
+        console.log( json.data.length +' row(s) were loaded' );
+        //$('#dttb-patients').DataTable().ajax.reload();
+    } );
 }
 
 function setPatientsTable() {
     // tabela com a lista de todos os exames
     var patient_options = $.extend({}, default_table_modal_options);
     //patient_options["dom"] = 'frtiBp';
+    //patient_options["autoWidth"]= true;
     patient_options["dom"] = 'frt';
     patient_options["serverSide"] = true;
     patient_options["ajax"] = {
@@ -39,7 +58,6 @@ function setPatientsTable() {
                                 "url": "/p.json"
     };
     patient_options["columnDefs"] = [
-
         {
             targets: [2, 6], render: function (data) {
                 if (data == null || data == "")
@@ -47,9 +65,10 @@ function setPatientsTable() {
                 else
                     return moment(data).format('DD/MM/YYYY');
             },
-        }
+        },
+        { "order": [[ 3, "desc" ]]},
+        { targets: 'no-sort', orderable: false }
     ];
-
     dttbPatients = $("#dttb-patients").DataTable(patient_options);
 
     dttbPatients.on( 'xhr', function () {

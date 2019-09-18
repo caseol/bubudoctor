@@ -24,5 +24,6 @@ class Appointment < ApplicationRecord
   # <%#= f.select(:appointment_kind, Appointment.appointment_kind.keys.collect { |apk| [Appointment.human_enum_name(:appointment_kind, apk), apk] }, {}, class: "form-control") %>
 
   validates_presence_of :patient, :appointment_date, :appointment_kind, :user
+  validates_uniqueness_of :appointment_date, scope: :user_id, allow_nil: true, allow_blank: true, message: "Horário já preenchido!"
 
 end

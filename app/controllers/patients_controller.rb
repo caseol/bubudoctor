@@ -9,12 +9,15 @@ class PatientsController < ApplicationController
   # GET /patients.json
   def index
     respond_to :html, :json, :js
+    _field_index = params["order"]["0"]["column"]
+    _field_name = params["columns"][_field_index]["data"]
+    _order_dir = params["order"]["0"]["dir"]
     if current_user.admin?
-      @patients = Patient.filter(current_user.id, params["search"]["value"])
+      @patients = Patient.filter(current_user.id, params["search"]["value"], _field_name, _order_dir)
     else
-      @patients = Patient.filter(current_user.parent, params["search"]["value"])
+      @patients = Patient.filter(current_user.parent, params["search"]["value"], _field_name, _order_dir)
     end
-    @patients.order(protocol_number: :desc).all
+    @patients.all
     # faz a paginação
 
   end
@@ -108,7 +111,7 @@ class PatientsController < ApplicationController
       #["#{lower}(#{table_name}.#{value_method}) LIKE #{lower}(?)", term] # escape default: \ on postgres, mysql, sqlite
 
       # marretando a consulta na mão mesmo
-      ["#{lower}(patients.name) LIKE #{lower}(?) OR #{lower}(patients.cpf) LIKE #{lower}(?) OR #{lower}(patients.email) LIKE #{lower}(?) OR #{lower}(patients.mobile) LIKE #{lower}(?)", term, term, term, term] # escape default: \ on postgres, mysql, sqlite
+      ["#{lower}(patients.name) LIKE #{lower}(?) OR #{lower}(patients.cpf) LIKE #{lower}(?) OR #{lower}(patients.email) LIKE #{lower}(?) OR #{lower}(patients.mobile) LIKE #{lower}(?)", term.tr(" ", "%"), term.tr(" ", "%"), term.tr(" ", "%"), term].tr(" ", "%") # escape default: \ on postgres, mysql, sqlite
 
     end
     def autocomplete_build_json(results, value_method, label_method, options)

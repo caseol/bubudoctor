@@ -79,11 +79,11 @@ class Patient < ApplicationRecord
             if: (:enable_complete_validation)
   validate :validate_format_of_document_number
 
-  scope :filter, -> (user_id, term) {
+  scope :filter, -> (user_id, term, order_field, order_dir) {
     limit(15)
     .where(user_id: user_id)
-    .where("name like '%#{term}%' or protocol_number like '%#{term}%' or cpf like '%#{term}%' or email like '%#{term}%' or birth like '%#{term}%'")
-    .order(protocol_number: :desc)
+    .where("name like '%#{term.tr(" ", "%")}%' or protocol_number like '#{term}%' or cpf like '#{term}%' or email like '%#{term}%' or birth like '%#{term}%'")
+    .order("#{order_field} #{order_dir}")
   }
 
 

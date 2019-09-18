@@ -197,6 +197,7 @@ function set_date_picker() {
 // iniciando date picker
     $('.date-picker').datetimepicker({locale: 'pt-BR', format: 'L'})
     $('.date-time-picker').datetimepicker({locale: 'pt-BR'})
+
 }
 
 function _init(){
@@ -223,7 +224,6 @@ function _init(){
     if (dttb === undefined){
         dttb = $(".dttb").DataTable(default_table_modal_options);
         //dttbAppointments = $('#dttb-appointments').DataTable(default_table_options);
-
         // Fazendo a tabela ser editada diretamente na celula
         /*dttbAppointments.MakeCellsEditable({
             "onUpdate": myDttbCallbackFunction,
