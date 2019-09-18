@@ -1,5 +1,10 @@
 $("#modal-window").find(".modal-content").html("<%= j (render 'edit') %>");
 $("#modal-window").modal(_init()).animate({ scrollTop: 0 }, 'slow');
 
-setPatientAge($("#patients_birth"));
+if ($("#patients_birth").val() == "" || $("#patients_birth").val() === undefined){
+    bind_patient_birth()
+}
+else{
+    setPatientAge($("#patients_birth").val());
+}
 
