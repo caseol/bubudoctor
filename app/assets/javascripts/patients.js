@@ -8,6 +8,12 @@ function bind_patient_birth(){
     $("#datepicker-pacient-birth").on("change.datetimepicker", function(){
         setPatientAge($("#patient_birth").val())
     });
+    $("#patient_birth").on("focusout", function(){
+        setPatientAge($("#patient_birth").val())
+    });
+    $("#patient_form").on("submit", function(){
+        setPatientAge($("#patient_birth").val())
+    });
 }
 
 function setPatientAge(dateString) {
