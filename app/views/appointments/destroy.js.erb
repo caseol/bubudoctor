@@ -1,5 +1,12 @@
-$("#modal-window").modal('toggle');
+//Fecha o fundo do modal com detalhes do datatable
+$(".dtr-modal").toggle(false)
+//Fecha a div de detalhes do modal do datatable
+$(".dtr-modal-display").toggle(false)
+
+//Renderiza as mensagens
 $("#application-messages").html('<%= j render partial: 'layouts/messages' %>');
 $(".alert").delay(2000).slideUp(200, function () {
-    location.reload();
-})
+    //atualiza datatable
+    dttbAppointments.ajax.url("/consulta.json?appointments_date="+ $("#appointements_date").val());
+    dttbAppointments.ajax.reload();
+});

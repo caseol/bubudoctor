@@ -1,9 +1,9 @@
 //$('#modal-window').on('hidden.bs.modal', function () {
 //    location.reload();
 //});
-// Não vamos sumir com o modal do data table para o usuário ficar com a informaçao do paciente em questão
-//$(".dtr-modal").toggle(false)
-//$(".dtr-modal-display").toggle(false)
+
+$(".dtr-modal").toggle(false)
+$(".dtr-modal-display").toggle(false)
 // fechamos o modal principal
 $("#modal-window").modal('toggle');
 $("#application-messages").html('<%= j render partial: 'layouts/messages' %>');

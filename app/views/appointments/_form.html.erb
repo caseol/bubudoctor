@@ -38,7 +38,7 @@
         <div class="form-group">
           <%= form.label :appointment_date %>
           <div class="input-group date-time-picker" id="datepicker-appointment-date" data-target-input="nearest">
-            <%= form.text_field :appointment_date, value:"#{appointment.appointment_date.strftime('%d/%m/%Y %H:%M') unless appointment.try(:appointment_date).blank?}", class:'form-control datetimepicker-input', data:{target:'#datepicker-appointment-date'} %>
+            <%= form.text_field :appointment_date, value:"#{appointment.try(:appointment_date).blank? ? Time.now().strftime('%d/%m/%Y %H:%M') : appointment.appointment_date.strftime('%d/%m/%Y %H:%M')}", class:'form-control datetimepicker-input', data:{target:'#datepicker-appointment-date'} %>
             <div class="input-group-append" data-target="#datepicker-appointment-date" data-toggle="datetimepicker">
               <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
             </div>

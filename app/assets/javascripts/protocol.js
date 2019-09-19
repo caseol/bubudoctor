@@ -19,18 +19,9 @@ function _init_protocol(){
 function setAppointmentsTable() {
     // tabela com a lista de todos os agendamentos
     var appointments_options = $.extend({}, default_table_options);
-    //appointments_options["autoWidth"]= true;
-    //appointments_options["serverSide"] = true;
-    /*appointments_options["ajax"] = {
-        "type": "GET",
-        "data": function () {
-            return {"appointments_date": $("#appointements_date").val()}
-        },
-        "url": "/consulta.json"
-    };*/
     appointments_options["columnDefs"] = [
         {
-        targets: 1, render: function (data) {
+        targets: 0, render: function (data) {
             if (data == null || data == "")
                 return ""
             else

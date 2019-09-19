@@ -103,8 +103,8 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: 'Consulta apagada com sucesso' }
-      format.js { render :destroy, flash.now[:notice] = 'Consulta apagada com sucesso'}
+      format.html {redirect_to protocol_url, notice: 'Consulta apagada com sucesso'}
+      format.js {flash.now[:notice] = 'Consulta apagada com sucesso'}
       format.json { head :no_content }
     end
   end
