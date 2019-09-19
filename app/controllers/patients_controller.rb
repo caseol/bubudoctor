@@ -9,13 +9,14 @@ class PatientsController < ApplicationController
   # GET /patients.json
   def index
     respond_to :html, :json, :js
+    _search_value = params["search"]["value"]
     _field_index = params["order"]["0"]["column"]
     _field_name = params["columns"][_field_index]["data"]
     _order_dir = params["order"]["0"]["dir"]
     if current_user.admin?
-      @patients = Patient.filter(current_user.id, params["search"]["value"], _field_name, _order_dir)
+      @patients = Patient.filter(current_user.id, _search_value, _field_name, _order_dir)
     else
-      @patients = Patient.filter(current_user.parent, params["search"]["value"], _field_name, _order_dir)
+      @patients = Patient.filter(current_user.parent, _search_value, _field_name, _order_dir)
     end
     @patients.all
     # faz a paginação

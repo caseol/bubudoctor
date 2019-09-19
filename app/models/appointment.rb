@@ -18,6 +18,15 @@ class Appointment < ApplicationRecord
 
   attr_accessor :empty_collumn
 
+  scope :filter, -> (user_id, term, beginning, finishing, order_field, order_dir) {
+    where(user_id: user_id)
+    .joins(:patient)
+    .where("patients.name like '%#{term.tr(" ", "%")}%' or patients.protocol_number like '#{term}%' or patients.cpf like '#{term}%' or patients.email like '%#{term}%'")
+    .or("appointments.kind like '%#{term.tr(" ", "%")}%'")
+    .or("appointment_date between (#{beginning}) and (#{finishing})")
+    .order("#{order_field} #{order_dir}")
+  }
+
   enum appointment_kinds: [:first_time, :return, :show_exam, :procedure]
   enum status_kinds: [:scheduled, :done, :absence, :canceled]
   # Uso na view:

@@ -11,23 +11,27 @@ function _init_protocol(){
 
     // faz o bind com o campo de data para alterar os valores qdo outra data for escolhida
     $("#datepicker-date-appointments").on("change.datetimepicker", function(){
+        alert("Aqui");
+        //dttbAppointments.ajax.type("GET");
+        dttbAppointments.ajax.url("/consulta.json?appointments_date="+ $("#appointements_date").val());
         dttbAppointments.ajax.reload();
+        alert("PAssou");
         //setAppointmentsTable();
     });
 }
 
 function setAppointmentsTable() {
     // tabela com a lista de todos os agendamentos
-    var appointments_options = $.extend({}, default_table_modal_options);
+    var appointments_options = $.extend({}, default_table_options);
     //appointments_options["autoWidth"]= true;
-    appointments_options["serverSide"] = true;
-    appointments_options["ajax"] = {
+    //appointments_options["serverSide"] = true;
+    /*appointments_options["ajax"] = {
         "type": "GET",
         "data": function () {
             return {"appointments_date": $("#appointements_date").val()}
         },
         "url": "/consulta.json"
-    };
+    };*/
     appointments_options["columnDefs"] = [
         {
         targets: 1, render: function (data) {
@@ -39,11 +43,11 @@ function setAppointmentsTable() {
     }];
     //appointments_options["order"] = [[ 1, "desc" ]]
     dttbAppointments = $('#dttb-appointments').DataTable(appointments_options);
-    dttbAppointments.on( 'xhr', function () {
+    /*dttbAppointments.on( 'xhr', function () {
         var json = dttbAppointments.ajax.json();
         console.log( json.data.length +' row(s) were loaded' );
         //$('#dttb-patients').DataTable().ajax.reload();
-    } );
+    } );*/
 }
 
 function setPatientsTable() {
