@@ -51,7 +51,6 @@ class PatientsController < ApplicationController
 
     # associa paciente ao médico
     @patient.user_id = (current_user.admin? && current_user.parent.blank?) ? current_user.id : current_user.parent
-    @patient.enable_complete_validation=true
     respond_to do |format|
       if @patient.save
         format.html { redirect_to @patient, notice: 'Paciente criado com sucesso' }

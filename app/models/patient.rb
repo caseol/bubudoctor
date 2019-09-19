@@ -73,10 +73,8 @@ class Patient < ApplicationRecord
 
   attr_accessor :enable_complete_validation
 
-  validates :name, presence: true,
-            if: (:enable_complete_validation)
-  validates :mobile, presence: true,
-            if: (:enable_complete_validation)
+  validates :name, presence: true
+  validate :mobile_or_telephone
   validate :validate_format_of_document_number
 
   scope :filter, -> (user_id, term, order_field, order_dir) {
@@ -144,10 +142,17 @@ class Patient < ApplicationRecord
     OpenStruct.new self[:options] || {}
   end
 
-  def validate_format_of_document_number(cpf=self.cpf)
-    if (enable_complete_validation)
-      return errors.add(:cpf, " não é válido") if cpf.nil?
+  def mobile_or_telephone
+    if (self.mobile.blank? || self.telephone.blank?)
+      return errors.add(:mobile, " não pode ficar em branco")
+    else
+      return true
+    end
+  end
 
+  def validate_format_of_document_number(cpf=self.cpf)
+    if (enable_complete_validation || !cpf.blank?)
+      return errors.add(:cpf, " não é válido") if cpf.blank?
       nulos = %w{12345678909 11111111111 22222222222 33333333333 44444444444 55555555555 66666666666 77777777777 88888888888 99999999999 00000000000}
       valor = cpf.scan /[0-9]/
       if valor.length == 11
