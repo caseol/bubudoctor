@@ -11,12 +11,8 @@ function _init_protocol(){
 
     // faz o bind com o campo de data para alterar os valores qdo outra data for escolhida
     $("#datepicker-date-appointments").on("change.datetimepicker", function(){
-        alert("Aqui");
-        //dttbAppointments.ajax.type("GET");
         dttbAppointments.ajax.url("/consulta.json?appointments_date="+ $("#appointements_date").val());
         dttbAppointments.ajax.reload();
-        alert("PAssou");
-        //setAppointmentsTable();
     });
 }
 
