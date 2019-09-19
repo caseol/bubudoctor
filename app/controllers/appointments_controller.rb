@@ -13,9 +13,9 @@ class AppointmentsController < ApplicationController
         @appointments = Appointment.where(user_id: current_user.parent).where("appointment_date between (?) and (?)", _beginning, _finishing).order(appointment_date: :asc).all
       end
     else
+      _beginning = Date::strptime(params["appointments_date"], "%d/%m/%Y").beginning_of_day
+      _finishing = Date::strptime(params["appointments_date"], "%d/%m/%Y").end_of_day
       if current_user.admin?
-        _beginning = Date::strptime(params["appointments_date"], "%d/%m/%Y").beginning_of_day
-        _finishing = Date::strptime(params["appointments_date"], "%d/%m/%Y").end_of_day
         @appointments = Appointment.where(user_id: current_user.id).where("appointment_date between (?) and (?)", _beginning, _finishing).order(appointment_date: :asc).all
       else
         @appointments = Appointment.where(user_id: current_user.parent).where("appointment_date between (?) and (?)", _beginning, _finishing).order(appointment_date: :asc).all

@@ -14,7 +14,7 @@
       <div class="col-sm-4 patient-info">
         <div class="form-group">
           <%= form.label :protocol_number %>
-          <%= form.number_field :protocol_number, class: 'form-control'  %>
+          <%= form.number_field :protocol_number, class: 'form-control', disabled: true  %>
         </div>
         <div class="form-group">
           <%= form.label :patient_since %>
@@ -32,6 +32,10 @@
         <div class="form-group">
           <%= form.label :cpf %>
           <%= form.text_field :cpf, class: 'form-control masked_cpf' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :national_identification %>
+          <%= form.text_field :national_identification, class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= form.label :email %>
@@ -60,17 +64,14 @@
             </div>
           </div>
         </div>
-
         <div class="form-group">
           <%= form.label :age %>
           <%= form.number_field :age, class: 'form-control' %>
         </div>
-
         <div class="form-group">
           <%= form.label :civil_status %>
           <%= form.select(:civil_status, Patient::CIVIL_STATUS.to_h.values, {}, class: "form-control") %>
         </div>
-
         <div class="form-group">
           <%= form.label :zip %>
           <%= form.text_field :zip, class: 'form-control masked_cep' %>
@@ -83,15 +84,17 @@
           <%= form.label :address %>
           <%= form.text_field :address, class: 'form-control' %>
         </div>
-
         <div class="form-group">
           <%= form.label :city %>
           <%= form.text_field :city, class: 'form-control' %>
         </div>
-
         <div class="form-group">
           <%= form.label :district %>
           <%= form.text_field :district, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: 'form-control' %>
         </div>
       </div>
       <div class="col-sm-4">
@@ -104,7 +107,6 @@
           <%= form.label :occupation %>
           <%= form.text_field :occupation, class: 'form-control' %>
         </div>
-
         <div class="form-group">
           <%= form.label :scholarity %>
           <%= form.select(:scholarity, Patient::SCHOLARITY.to_h.values, {}, class: "form-control") %>
@@ -122,7 +124,6 @@
           <%= form.label :health_plan %>
           <%= form.text_field :health_plan, class: 'form-control' %>
         </div>
-
         <div class="form-group">
           <%= form.label :plan_validation %>
           <div class="input-group date-picker" id="datepicker-plan_validation" data-target-input="nearest">
@@ -133,22 +134,11 @@
             </div>
           </div>
         </div>
-
         <div class="form-group">
           <%= form.label :plan_number %>
           <%= form.text_field :plan_number, class: 'form-control' %>
         </div>
 
-<!--        <div class="form-group">-->
-          <%#= form.label :created_at %>
-          <%#= form.datetime_select :created_at, class: 'form-control' %>
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-          <%#= form.label :updated_at %>
-          <%#= form.datetime_select :updated_at, class: 'form-control' %>
-<!--        </div>-->
-<!--      </div>-->
     </div>
       <div class="actions col-12">
         <%= form.submit({class: 'btn btn-primary'}) %>

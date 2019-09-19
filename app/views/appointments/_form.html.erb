@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group">
-          <%= form.label "Telefone" %>
+          <%= form.label "Convênio" %>
           <%= select_tag(:patient_health_insurance, options_for_select(Patient::HEALTH_INSURANCE.to_h.values, appointment.try(:patient).try(:health_insurance)), prompt: "Selecione um Convênio", class: "form-control patient-health-insurance" ) %>
         </div>
       </div>

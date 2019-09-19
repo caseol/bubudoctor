@@ -63,6 +63,8 @@ pt-BR:
         telephone: "Telefone"
         mobile: "Celular"
         email: "Email"
+        description: "Observação"
+        national_identification: "Identidade"
         indication_by: "Indicador por"
         health_insurance: "Convênio"
         health_plan: "Nome do Plano"

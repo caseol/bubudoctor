@@ -28,13 +28,8 @@ function setAppointmentsTable() {
                 return moment(data).format('DD/MM/YYYY HH:mm');
         },
     }];
-    //appointments_options["order"] = [[ 1, "desc" ]]
+    //appointments_options["order"] = [[ 0, "desc" ]]
     dttbAppointments = $('#dttb-appointments').DataTable(appointments_options);
-    /*dttbAppointments.on( 'xhr', function () {
-        var json = dttbAppointments.ajax.json();
-        console.log( json.data.length +' row(s) were loaded' );
-        //$('#dttb-patients').DataTable().ajax.reload();
-    } );*/
 }
 
 function setPatientsTable() {

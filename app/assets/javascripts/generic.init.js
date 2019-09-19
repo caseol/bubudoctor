@@ -56,7 +56,8 @@ var default_table_options = {
     pageLength: 10,
     searchDelay: 850,
     columnDefs: [
-        {"targets": 'no-sort', "orderable": false}
+        {"targets": 'no-sort', "orderable": false},
+        {"targets": 'do-sort', "orderable": true}
     ],
     dom: 'frtiBp',
     buttons: [

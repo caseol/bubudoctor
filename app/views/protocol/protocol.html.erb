@@ -10,7 +10,7 @@
           </div>
         </div>
       </div>
-      <table class="responsive table table-hover" id="dttb-appointments" data-sort="false" data-source="<%= appointments_path(appointments_date: Time.now().strftime('%d/%m/%Y'), format: :json) %>">
+      <table class="responsive table table-hover" id="dttb-appointments" data-sort="true" data-source="<%= appointments_path(appointments_date: Time.now().strftime('%d/%m/%Y'), format: :json) %>">
         <thead>
         <tr>
           <!--<th data-data="empty_collumn"></th>-->
