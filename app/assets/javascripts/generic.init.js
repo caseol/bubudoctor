@@ -180,10 +180,9 @@ function bind_autocomplete(){
             position: { at: "left bottom" },
             select: function (event, ui) {
                 $(target).val(ui.item.id);
-                $(".patient-mobile").val(ui.item.mobile)
-                $(".patient-health-insurance").val(ui.item.health_insurance)
-
-                $('#autocomplete-input').val(ui.item.name);
+                $("#patient_mobile").val(ui.item.mobile)
+                $("#patient_health_insurance").val(ui.item.health_insurance)
+                $('#search_patient').val(ui.item.label);
 
                 // Prevent the default focus behavior.
                 event.preventDefault();
