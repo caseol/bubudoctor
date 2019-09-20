@@ -182,7 +182,7 @@ function bind_autocomplete(){
                 $(target).val(ui.item.id);
                 $(".patient-mobile").val(ui.item.mobile)
                 $(".patient-health-insurance").val(ui.item.health_insurance)
-                // or $('#autocomplete-input').val(ui.item.label);
+                $('#autocomplete-input').val(ui.item.label);
 
                 // Prevent the default focus behavior.
                 event.preventDefault();
