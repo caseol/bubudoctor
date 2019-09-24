@@ -143,7 +143,7 @@ class Patient < ApplicationRecord
   end
 
   def mobile_or_telephone
-    if (self.mobile.blank? || self.telephone.blank?)
+    if (enable_complete_validation && (self.mobile.blank? || self.telephone.blank?))
       return errors.add(:mobile, " não pode ficar em branco")
     else
       return true

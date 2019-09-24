@@ -46,7 +46,7 @@ class AppointmentsController < ApplicationController
     @appointment.user_id = (current_user.admin? && current_user.parent.blank?) ? current_user.id : current_user.parent
     # verifica se o usuário já existe, caso contrário cria um novo
     if @appointment.patient_id.blank?
-      patient = Patient.new(enable_complete_validation: false, name: params['search_patient'], mobile: params['patient_mobile'], health_insurance: params['patient_health_insurance'], user_id: @appointment.user_id)
+      patient = Patient.create(enable_complete_validation: false, name: params['search_patient'], mobile: params['patient_mobile'], health_insurance: params['patient_health_insurance'], user_id: @appointment.user_id)
     else
       patient = Patient.find_by_id(@appointment.patient_id)
       if patient.health_insurance != params['patient_health_insurance']
@@ -57,15 +57,21 @@ class AppointmentsController < ApplicationController
       end
     end
     patient.enable_complete_validation=false
-    patient.save
-    @appointment.patient = patient
-
-    respond_to do |format|
-      if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Consulta agendada com sucesso' }
-        format.js { flash.now[:notice] = 'Consulta agendada com sucesso'}
-        format.json { render :show, status: :created, location: @appointment }
-      else
+    if patient.save
+      @appointment.patient = patient
+      respond_to do |format|
+        if @appointment.save
+          format.html { redirect_to @appointment, notice: 'Consulta agendada com sucesso' }
+          format.js { flash.now[:notice] = 'Consulta agendada com sucesso'}
+          format.json { render :show, status: :created, location: @appointment }
+        else
+          format.html { render :new }
+          format.js { render :new }
+          format.json { render json: @appointment.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
         format.html { render :new }
         format.js { render :new }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
