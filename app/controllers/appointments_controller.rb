@@ -59,6 +59,17 @@ class AppointmentsController < ApplicationController
     patient.enable_complete_validation=false
     if patient.save
       @appointment.patient = patient
+      if @appointment.patient_id.blank?
+        patient = Patient.create(enable_complete_validation: false, name: params['search_patient'], mobile: params['patient_mobile'], health_insurance: params['patient_health_insurance'], user_id: @appointment.user_id)
+      else
+        patient = Patient.find_by_id(@appointment.patient_id)
+        if patient.health_insurance != params['patient_health_insurance']
+          patient.health_insurance = params['patient_health_insurance']
+        end
+        if patient.mobile != params['patient_mobile']
+          patient.mobile = params['patient_mobile']
+        end
+      end
       respond_to do |format|
         if @appointment.save
           format.html { redirect_to @appointment, notice: 'Consulta agendada com sucesso' }
