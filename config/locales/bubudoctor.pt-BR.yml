@@ -19,6 +19,9 @@ pt-BR:
       consultation:
         one: "Consulta"
         other: "Consultas"
+      disease:
+        one: "Doença"
+        other: "Doenças"
     attributes:
       user:
         name: "Nome"
@@ -173,6 +176,11 @@ pt-BR:
         created_at: "Criado em"
         updated_at: "Alterado em"
         consultation_files: "Arquivos relacionados"
+      disease:
+        code: "Identificador"
+        name: "Nome"
+        description: "Descrição"
+        icd: "CID"
     errors: &erros
       format: ! ' %{message}'
       models: &models

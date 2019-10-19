@@ -1,0 +1,16 @@
+<table class="responsive nowrap table table-hover dttb" id="dttb-diseases" data-sort="true" data-source="<%= url_for(patient_id: @patient.id, format: :json)%>">
+  <thead>
+  <tr>
+    <!-- <th data-data="patient">Paciente</th> -->
+    <th data-data="code">Identificação</th>
+    <th data-data="name">Nome</th>
+    <th data-data="description">descrição</th>
+    <th data-data="icd">CID</th>
+    <th data-data="url" data-orderable="false" data-searchable="false" class="skip-export">Ações</th>
+  </tr>
+  </thead>
+
+</table>
+<br>
+<%= link_to 'Incluir Doença', new_disease_path(patient_id: @patient.try(:id)),  {:remote => true, data:{toggle:  "modal", target: '#modal-patient'}, class:"btn btn-primary"} %>
+

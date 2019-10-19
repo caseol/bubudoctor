@@ -1,4 +1,4 @@
-$("#modal-exams").modal('toggle');
+$("#modal-patient").modal('toggle');
 $("#application-messages").html('<%= j render partial: 'layouts/messages' %>');
 $(".alert").delay(2000).slideUp(200, function () {
     dttbExams.ajax.reload();

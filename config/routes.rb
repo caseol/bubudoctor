@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :diseases
   resources :consultations
   resources :exams
   devise_for :users, :controllers => { :registrations => :registrations }

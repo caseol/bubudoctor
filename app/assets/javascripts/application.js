@@ -34,6 +34,7 @@
 //= require patients
 //= require exams
 //= require consultations
+//= require diseases
 
 function bindZipField(address_div){
     // pega o campo zip dentro da div passada

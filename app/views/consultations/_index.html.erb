@@ -15,5 +15,5 @@
   </thead>
 </table>
 <br>
-<%= link_to 'Incluir Prontuário', new_consultation_path(patient_id: @patient.try(:id)),  {:remote => true, data:{toggle:  "modal", target: '#modal-consultations'}, class:"btn btn-primary"} %>
+<%= link_to 'Incluir Prontuário', new_consultation_path(patient_id: @patient.try(:id)),  {:remote => true, data:{toggle:  "modal", target: '#modal-patient'}, class:"btn btn-primary"} %>
 

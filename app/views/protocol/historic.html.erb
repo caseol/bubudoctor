@@ -6,67 +6,35 @@
         <li class="nav-item">
           <a class="nav-link active" data-toggle="tab" href="#profile" style="font-size: 1.2em; text-align: left">Dados Pessoais</a>
         </li>
-        <!--
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#current-history" style="font-size: 1.2em; text-align: left">Queixa Principal e História</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#family-history" style="font-size: 1.2em; text-align: left">Histórico Familiar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#social-history" style="font-size: 1.2em; text-align: left">Histórico Fisiológio e Social</a>
-        </li>
-        -->
         <li class="nav-item">
           <a class="nav-link" data-toggle="tab" href="#consultations" style="font-size: 1.2em; text-align: left">Prontuário</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="tab" href="#exams" style="font-size: 1.2em; text-align: left">Exames</a>
         </li>
-        <!--
         <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#problems" style="font-size: 1.2em; text-align: left">Problemas do paciente</a>
+          <a class="nav-link" data-toggle="tab" href="#diseases" style="font-size: 1.2em; text-align: left">Problemas do paciente</a>
         </li>
-        -->
       </ul>
       <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade show active" id="profile">
+        <div class="tab-pane show active" id="profile">
           <%= render 'patients/form', patient: @patient %>
         </div>
-        <!--
-        <div class="tab-pane fade" id="current-history">
-          <%#= render 'patients/history', patient: @patient %>
-        </div>
-        <div class="tab-pane fade" id="family-history">
-          <%#= render 'patients/family_history', patient: @patient %>
-        </div>
-        <div class="tab-pane fade" id="social-history">
-          <%#= render 'patients/physiological_social_history', patient: @patient %>
-        </div>
-        -->
-        <div class="tab-pane fade" id="consultations">
+        <div class="tab-pane" id="consultations">
           <%= render 'patients/consultations', patient: @patient %>
         </div>
-        <div class="tab-pane fade" id="exams">
+        <div class="tab-pane" id="exams">
           <%= render 'patients/exams', patient: @patient %>
         </div>
-        <!--
-        <div class="tab-pane fade" id="problems">
-          <%#= render 'patients/exams', patient: @patient %>
+        <div class="tab-pane" id="diseases">
+          <%= render 'patients/diseases', patient: @patient %>
         </div>
-        -->
       </div>
     </div>
   </div>
 </div>
 
-<div id="modal-exams" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog mw-100 w-75" role="document">
-    <div class="modal-content"></div>
-  </div>
-</div>
-
-<div id="modal-consultations" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="modal-patient" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog mw-100 w-75" role="document">
     <div class="modal-content"></div>
   </div>

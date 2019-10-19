@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="sectionform">
+        <h1>Diseases</h1>
+
+        <table class="responsive nowrap table table-hover" id="dttb-diseases" data-sort="true" data-source="<%= url_for(format: :json)%>">
+          <thead>
+            <tr>
+                      <th data-data="code">Code</th>
+                      <th data-data="name">Name</th>
+                      <th data-data="description">Description</th>
+                      <th data-data="icd">Icd</th>
+                      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+            </tr>
+          </thead>
+
+        </table>
+
+        <br>
+
+        <%= link_to 'New Disease', new_disease_path %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+
 class ExamsController < ApplicationController
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
 

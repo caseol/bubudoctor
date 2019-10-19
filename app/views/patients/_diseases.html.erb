@@ -1,0 +1,18 @@
+<%= form_with(model: patient, remote: true, id:"form-diaseses") do |form| %>
+  <div class="container col-sm-12">
+    <% if patient.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% patient.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+      <div class="col-sm-12">
+          <div id="div-diseases" class="col-12" data-url="<%= diseases_path(patient_id: patient.id) %>">
+
+          </div>
+      </div>
+  </div>
+<% end %>

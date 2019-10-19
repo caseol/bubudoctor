@@ -41,6 +41,7 @@
 class Patient < ApplicationRecord
   has_many :appointments, dependent: :destroy
   has_many :exams, inverse_of: :patient, dependent: :destroy
+  has_and_belongs_to_many :diseases, dependent: :destroy
   #has_many :users, through: :appointments
   belongs_to :user
 
