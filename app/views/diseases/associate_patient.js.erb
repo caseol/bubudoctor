@@ -1,0 +1,6 @@
+$("#disease_id").val('');
+$("#search_disease").val('');
+$("#application-messages").html('<%= j render partial: 'layouts/messages' %>');
+$(".alert").delay(2000).slideUp(200, function () {
+    dttbDiseases.ajax.reload();
+});

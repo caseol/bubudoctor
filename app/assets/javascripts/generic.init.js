@@ -175,7 +175,7 @@ function bind_autocomplete(){
         target = $(this).data('hidden')['target']
         var autocopmplete_field = $(this).autocomplete({
             source: url,
-            appendTo: '.modal',
+            appendTo: '.modal-content',
             delay: 500,
             position: { at: "left bottom" },
             select: function (event, ui) {
@@ -195,10 +195,9 @@ function bind_autocomplete(){
 }
 
 function set_date_picker() {
-// iniciando date picker
+    // iniciando date picker
     $('.date-picker').datetimepicker({locale: 'pt-BR', format: 'L'})
     $('.date-time-picker').datetimepicker({locale: 'pt-BR'})
-
 }
 
 function _init(){
@@ -278,7 +277,6 @@ function _init(){
 
     // Faz o bind de campos com autocomplete
     bind_autocomplete();
-
 }
 
 function myDttbCallbackFunction (updatedCell, updatedRow, oldValue, newValue) {

@@ -1,37 +1,44 @@
-<%= form_with(model: disease, local: true) do |form| %>
-  <% if disease.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(disease.errors.count, "error") %> prohibited this disease from being saved:</h2>
+<%= form_with(model: disease, remote: true) do |form| %>
+  <div class="container col-sm-12">
+    <% if disease.errors.any? %>
+      <div id="error_explanation">
+        <!--      <h2><%#= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>-->
+        <ul>
+          <% disease.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= form.label :code %>
+          <%= form.hidden_field :code, value: "#{disease.try(:code)}", class: "autocomplete-target" %>
+          <%= text_field_tag :search_disease, (disease.try(:code) || params[:search_disease]), data: { autocomplete_disease: autocomplete_disease_code_diseases_path, hidden:{target: ".autocomplete-target"} }, class: 'form-control autocomplete-disease' %>
+        </div>
 
-      <ul>
-      <% disease.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <div class="form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= form.label :icd %>
+          <%= form.text_field :icd, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, size: "20x03", class: 'form-control' %>
+        </div>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :code %>
-    <%= form.text_field :code %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :icd %>
-    <%= form.text_field :icd %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions col-12">
+      <%= form.submit({class: 'btn btn-primary right'}) %>
+    </div>
   </div>
 <% end %>

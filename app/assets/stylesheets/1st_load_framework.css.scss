@@ -243,3 +243,6 @@ section {
 .ui-menu-item-wrapper{
   @extend .form-control;
 }
+
+// esconde mensagens do autocomplete
+.ui-helper-hidden-accessible { display:none; }

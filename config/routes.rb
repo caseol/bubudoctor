@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :diseases
+  post '/d/new_and_associate' => 'diseases#new_and_associate_patient', as: :new_and_associate_patient, format: :js
+  resources :diseases, path: "d", path_names: { edit: "e", new: "novo" } do
+    get :autocomplete_disease_code, on: :collection
+    get ':patient_id/associate' => 'diseases#associate_patient', as: :associate_patient
+    delete ':patient_id/delete' => 'diseases#delete_associate_patient', as: :delete_associate_patient
+  end
   resources :consultations
   resources :exams
   devise_for :users, :controllers => { :registrations => :registrations }
