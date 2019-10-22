@@ -3,7 +3,7 @@ class PatientsController < ApplicationController
   #before_action :admin_only#, :except => [:show]
 
   #autocomplete :patient, :name, :display_value => :funky_method#, label_method: :name, full_mode: true #, scopes: [:active_users]
-  autocomplete :patient, :all, :display_value => :funky_method, additional_data: [:cpf, :mobile, :health_insurance], full_model: true, order: "patients.name ASC"
+  autocomplete :patient, :all, :display_value => :funky_method, additional_data: [:cpf, :mobile, :mobile_work, :health_insurance, :telephone_work, :telephone], full_model: true, order: "patients.name ASC"
 
   # GET /patients
   # GET /patients.json
@@ -129,14 +129,16 @@ class PatientsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_patient
+
       @patient = Patient.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
       params.require(:patient).permit(:protocol_number, :patient_since, :name, :birth, :age, :cpf, :gender, :etnia,
-                                      :civil_status, :occupation, :scholarity, :zip, :address, :city, :district, :uf, :telephone,
-                                      :mobile, :email, :indication_by, :health_insurance, :health_plan, :plan_validation,
+                                      :civil_status, :occupation, :scholarity, :zip, :address, :city, :district, :uf,
+                                      :telephone, :mobile, :telephone_work, :mobile_work,
+                                      :email, :indication_by, :health_insurance, :health_plan, :plan_validation,
                                       :plan_number, :created_at, :updated_at, :description, :national_identification,
                                       :main_complaint, :history_of_disease,
                                       :suffered_accidents, :have_allergy, :suffers_asthma,:cardiopathies,

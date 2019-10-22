@@ -13,24 +13,29 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <%= form.label :appointment_kind %>
-          <%= form.select(:appointment_kind, Appointment.appointment_kinds.keys.collect { |ak| [Appointment.human_enum_name(:appointment_kinds, ak), ak] }, {}, class: "form-control appointment-kind") %>
-        </div>
-
-        <div class="form-group">
           <%= form.label :patient_id %>
           <%= form.hidden_field :patient_id, value: "#{appointment.try(:patient).try(:id)}", class: "autocomplete-target" %>
           <%= text_field_tag :search_patient, (appointment.try(:patient).try(:name) || params[:search_patient]), data: { autocomplete: autocomplete_patient_all_patients_path, hidden:{target: ".autocomplete-target"} }, class: 'form-control' %>
         </div>
 
         <div class="form-group">
-          <%= form.label "Telefone" %>
-          <%= text_field_tag :patient_mobile, (appointment.try(:patient).try(:mobile)), class: 'form-control patient-mobile masked_mobile' %>
+          <%= form.label "Celular" %>
+          <%= text_field_tag :patient_mobile, (appointment.try(:patient).try(:mobile)), class: 'form-control patient-mobile masked_phone' %>
         </div>
 
         <div class="form-group">
-          <%= form.label "Convênio" %>
-          <%= select_tag(:patient_health_insurance, options_for_select(Patient::HEALTH_INSURANCE.to_h.values, appointment.try(:patient).try(:health_insurance)), prompt: "Selecione um Convênio", class: "form-control patient-health-insurance" ) %>
+          <%= form.label "Celular Trabalho" %>
+          <%= text_field_tag :patient_mobile_work, (appointment.try(:patient).try(:mobile_work)), class: 'form-control patient-mobile-work masked_phone' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label "Fixo Residencial" %>
+          <%= text_field_tag :patient_phone, (appointment.try(:patient).try(:telephone)), class: 'form-control patient-phone masked_phone' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label "Fixo Trabalho" %>
+          <%= text_field_tag :patient_phone_work, (appointment.try(:patient).try(:telephone_work)), class: 'form-control patient-phone-work masked_phone' %>
         </div>
       </div>
 
@@ -46,8 +51,18 @@
         </div>
 
         <div class="form-group">
+          <%= form.label :appointment_kind %>
+          <%= form.select(:appointment_kind, Appointment.appointment_kinds.keys.collect { |ak| [Appointment.human_enum_name(:appointment_kinds, ak), ak] }, {}, class: "form-control appointment-kind") %>
+        </div>
+
+        <div class="form-group">
           <%= form.label :status %>
           <%= form.select(:status, Appointment.status_kinds.keys.collect { |sk| [Appointment.human_enum_name(:status_kinds, sk), sk] }, {}, class: "form-control") %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label "Convênio" %>
+          <%= select_tag(:patient_health_insurance, options_for_select(Patient::HEALTH_INSURANCE.to_h.values, appointment.try(:patient).try(:health_insurance)), prompt: "Selecione um Convênio", class: "form-control patient-health-insurance" ) %>
         </div>
 
         <div class="form-group">

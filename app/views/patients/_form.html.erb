@@ -43,15 +43,19 @@
         </div>
         <div class="form-group">
           <%= form.label :mobile %>
-          <%= form.text_field :mobile, class: 'form-control masked_mobile' %>
+          <%= form.text_field :mobile, class: 'form-control masked_phone' %>
         </div>
         <div class="form-group">
           <%= form.label :telephone %>
           <%= form.text_field :telephone, class: 'form-control masked_phone' %>
         </div>
         <div class="form-group">
-          <%= form.label :indication_by %>
-          <%= form.text_area :indication_by, class: 'form-control' %>
+          <%= form.label :telephone_work %>
+          <%= form.text_field :telephone_work, class: 'form-control masked_phone' %>
+        </div>
+        <div class="form-group">
+          <%= form.label :mobile_work %>
+          <%= form.text_field :mobile_work, class: 'form-control masked_phone' %>
         </div>
       </div>
       <div class="col-sm-4 patient-address">
@@ -94,7 +98,7 @@
         </div>
         <div class="form-group">
           <%= form.label :description %>
-          <%= form.text_area :description, class: 'form-control' %>
+          <%= form.text_area :description, size: "20x05", class: 'form-control' %>
         </div>
       </div>
       <div class="col-sm-4">
@@ -138,7 +142,10 @@
           <%= form.label :plan_number %>
           <%= form.text_field :plan_number, class: 'form-control' %>
         </div>
-
+        <div class="form-group">
+          <%= form.label :indication_by %>
+          <%= form.text_area :indication_by, class: 'form-control' %>
+        </div>
     </div>
       <div class="actions col-12">
         <%= form.submit({class: 'btn btn-primary'}) %>

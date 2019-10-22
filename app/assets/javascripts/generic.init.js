@@ -181,6 +181,9 @@ function bind_autocomplete(){
             select: function (event, ui) {
                 $(target).val(ui.item.id);
                 $("#patient_mobile").val(ui.item.mobile)
+                $("#patient_mobile_work").val(ui.item.mobile_work)
+                $("#patient_phone").val(ui.item.telephone)
+                $("#patient_phone_work").val(ui.item.telephone_work)
                 $("#patient_health_insurance").val(ui.item.health_insurance)
                 $('#search_patient').val(ui.item.label);
 
@@ -207,9 +210,18 @@ function _init(){
     //dá 15seg e esconde qq div com mensagem de sucesso/erro
     $(".alert").delay(12000).slideUp(200);
 
+
     // Definindo máscaras
-    $(".masked_phone").mask("(99) 9999-9999");
-    $(".masked_mobile").mask("(99) 99999-9999");
+    var behavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+        options = {
+            onKeyPress: function (val, e, field, options) {
+                field.mask(behavior.apply({}, arguments), options);
+            }
+        };
+
+    $('.masked_phone').mask(behavior, options);
 
     // mácaras das infos pessoais CPF
     $(".masked_cpf").mask("999.999.999-99");

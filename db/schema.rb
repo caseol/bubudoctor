@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_153837) do
+ActiveRecord::Schema.define(version: 2019_10_22_074134) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(version: 2019_10_18_153837) do
     t.string "health_insurance"
     t.string "national_identification"
     t.text "description"
+    t.string "telephone_work"
+    t.string "mobile_work"
     t.index ["user_id"], name: "index_patients_on_user_id"
   end
 

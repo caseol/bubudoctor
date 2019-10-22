@@ -65,6 +65,8 @@ pt-BR:
         uf: "UF"
         telephone: "Telefone"
         mobile: "Celular"
+        telephone_work: "Outro Telefone"
+        mobile_work: "Outro Celular"
         email: "Email"
         description: "Observação"
         national_identification: "Identidade"

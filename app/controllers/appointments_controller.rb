@@ -46,7 +46,14 @@ class AppointmentsController < ApplicationController
     @appointment.user_id = (current_user.admin? && current_user.parent.blank?) ? current_user.id : current_user.parent
     # verifica se o usuário já existe, caso contrário cria um novo
     if @appointment.patient_id.blank?
-      patient = Patient.create(enable_complete_validation: false, name: params['search_patient'], mobile: params['patient_mobile'], health_insurance: params['patient_health_insurance'], user_id: @appointment.user_id)
+      patient = Patient.create(enable_complete_validation: false,
+                               name: params['search_patient'],
+                               mobile: params['patient_mobile'],
+                               mobile_work: params['patient_mobile_work'],
+                               telephone: params['patient_phone'],
+                               telephone_work: params['patient_phone_work'],
+                               health_insurance: params['patient_health_insurance'],
+                               user_id: @appointment.user_id)
     else
       patient = Patient.find_by_id(@appointment.patient_id)
       if patient.health_insurance != params['patient_health_insurance']
@@ -54,6 +61,15 @@ class AppointmentsController < ApplicationController
       end
       if patient.mobile != params['patient_mobile']
         patient.mobile = params['patient_mobile']
+      end
+      if patient.mobile_work != params['patient_mobile_work']
+        patient.mobile_work = params['patient_mobile_work']
+      end
+      if patient.telephone != params['patient_phone']
+        patient.telephone = params['patient_phone']
+      end
+      if patient.telephone_work != params['patient_phone_work']
+        patient.telephone_work = params['patient_phone_work']
       end
     end
     patient.enable_complete_validation=false
@@ -68,6 +84,15 @@ class AppointmentsController < ApplicationController
         end
         if patient.mobile != params['patient_mobile']
           patient.mobile = params['patient_mobile']
+        end
+        if patient.mobile_work != params['patient_mobile_work']
+          patient.mobile_work = params['patient_mobile_work']
+        end
+        if patient.telephone != params['patient_phone']
+          patient.telephone = params['patient_phone']
+        end
+        if patient.telephone_work != params['patient_phone_work']
+          patient.telephone_work = params['patient_phone_work']
         end
       end
       respond_to do |format|
@@ -101,6 +126,15 @@ class AppointmentsController < ApplicationController
         end
         if patient.mobile != params['patient_mobile']
           patient.mobile = params['patient_mobile']
+        end
+        if patient.mobile_work != params['patient_mobile_work']
+          patient.mobile_work = params['patient_mobile_work']
+        end
+        if patient.telephone != params['patient_phone']
+          patient.telephone = params['patient_phone']
+        end
+        if patient.telephone_work != params['patient_phone_work']
+          patient.telephone_work = params['patient_phone_work']
         end
         patient.enable_complete_validation=false
         patient.save

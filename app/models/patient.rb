@@ -85,7 +85,6 @@ class Patient < ApplicationRecord
     .order("#{order_field} #{order_dir}")
   }
 
-
   GENDER = {
       male: "Masculino",
       female: "Feminino",
