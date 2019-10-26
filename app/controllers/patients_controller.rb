@@ -30,7 +30,12 @@ class PatientsController < ApplicationController
 
   # GET /patients/new
   def new
-    last_protocol_number = Patient.maximum(:protocol_number)
+    if current_user.admin?
+      _user_id = current_user.id
+    else
+      _user_id = current_user.parent
+    end
+    last_protocol_number = Patient.where(user_id: _user_id).maximum(:protocol_number) || 0
     @patient = Patient.new(protocol_number: last_protocol_number + 1)
     respond_to :html, :json, :js
   end
@@ -38,7 +43,12 @@ class PatientsController < ApplicationController
   # GET /patients/1/edit
   def edit
     if @patient.protocol_number.blank?
-      last_protocol_number = Patient.maximum(:protocol_number)
+      if current_user.admin?
+        _user_id = current_user.id
+      else
+        _user_id = current_user.parent
+      end
+      last_protocol_number = Patient.where(user_id: _user_id).maximum(:protocol_number)  || 0
       @patient.protocol_number = last_protocol_number + 1
     end
     respond_to :html, :js, :json#, layout: false

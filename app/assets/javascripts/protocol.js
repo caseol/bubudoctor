@@ -43,6 +43,7 @@ function setPatientsTable() {
                                 "type": "GET",
                                 "url": "/p.json"
     };
+    patient_options["order"] = [[ 0, "desc" ]];
     patient_options["columnDefs"] = [
         {
             targets: [2, 6], render: function (data) {
@@ -52,7 +53,6 @@ function setPatientsTable() {
                     return moment(data).format('DD/MM/YYYY');
             },
         },
-        { "order": [[ 3, "desc" ]]},
         { targets: 'no-sort', orderable: false }
     ];
     dttbPatients = $("#dttb-patients").DataTable(patient_options);
