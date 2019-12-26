@@ -34,8 +34,12 @@ function _init_consultations() {
 function setConsultations() {
     // tabela com a lista de todos os exames
     var consultation_options = $.extend({}, default_table_options);
-    consultation_options["columnDefs"] = [{
+    consultation_options["order"] = [[ 0, "desc" ]]
+    consultation_options["columnDefs"] = [
+        { type: 'date-ptBR', targets: [0] },
+        {
         targets: 0, render: function (data) {
+
             return moment(data).format('DD/MM/YYYY');
         }
     }];

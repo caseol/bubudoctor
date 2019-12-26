@@ -159,11 +159,11 @@ jQuery.extend( jQuery.fn.dataTableExt.oSort, {
         return (dateArray[2] + dateArray[1] + dateArray[0]) * 1;
     },
 
-    "datetime-ptBR-asc": function ( a, b ) {
+    "date-ptBR-asc": function ( a, b ) {
         return ((a < b) ? -1 : ((a > b) ? 1 : 0));
     },
 
-    "datetime-ptBR-desc": function ( a, b ) {
+    "date-ptBR-desc": function ( a, b ) {
         return ((a < b) ? 1 : ((a > b) ? -1 : 0));
     }
 } );

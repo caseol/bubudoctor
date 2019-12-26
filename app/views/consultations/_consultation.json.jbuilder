@@ -1,6 +1,6 @@
 #json.extract! consultation, :id, :patient_id, :date_done, :biometric_exam, :thoracil_exam, :abdominal_exam, :members, :diagnostic_hypothesis, :conduct_adopt, :created_at, :updated_at, :consultation_files
 #
-json.date_done consultation.date_done.strftime("%m/%d/%Y")
+json.date_done consultation.date_done.strftime("%Y/%m/%d")
 file_array =[]
 consultation.consultation_files.each_with_index do |upload, idx|
   if upload.variable?
