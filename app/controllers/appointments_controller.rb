@@ -109,7 +109,7 @@ class AppointmentsController < ApplicationController
     else
       respond_to do |format|
         format.html { render :new }
-        format.js { render :new }
+        format.js { render :new, flash.now[:notice] = patient.erros.first}
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
     end

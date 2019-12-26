@@ -41,7 +41,10 @@
 class Patient < ApplicationRecord
   has_many :appointments, dependent: :destroy
   has_many :exams, inverse_of: :patient, dependent: :destroy
-  has_and_belongs_to_many :diseases, dependent: :destroy
+  has_many :diseases_patients
+  has_many :diseases, through: :diseases_patients, dependent: :destroy
+
+
   #has_many :users, through: :appointments
   belongs_to :user
 
@@ -77,6 +80,7 @@ class Patient < ApplicationRecord
   validates :name, presence: true
   validate :mobile_or_telephone
   validate :validate_format_of_document_number
+
 
   scope :filter, -> (user_id, term, order_field, order_dir) {
     limit(15)

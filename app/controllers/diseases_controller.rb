@@ -109,7 +109,9 @@ class DiseasesController < ApplicationController
     patient = Patient.find_by_id(patient_id)
     disease = Disease.find_by_id(disease_id)
 
-    patient.diseases.delete(disease)
+    #patient.diseases.delete(disease) -- estava apagando todas as doenças repetidas, então agora apaga apenas a última repetida
+    last_disease = patient.diseases_patients.where(disease_id: disease_id).last
+    patient.diseases_patients.destroy(last_disease)
     patient.save
     respond_to do |format|
       #format.html { redirect_to diseases_url, notice: 'Doença/Problema não está mais relacionado com o paciente' }

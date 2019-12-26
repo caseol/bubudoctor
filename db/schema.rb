@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_074134) do
+ActiveRecord::Schema.define(version: 2019_12_26_054729) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -70,9 +70,11 @@ ActiveRecord::Schema.define(version: 2019_10_22_074134) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "diseases_patients", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "diseases_patients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "disease_id", null: false
     t.bigint "patient_id", null: false
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["disease_id"], name: "index_diseases_patients_on_disease_id"
     t.index ["patient_id"], name: "index_diseases_patients_on_patient_id"
   end
