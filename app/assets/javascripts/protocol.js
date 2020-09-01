@@ -47,7 +47,12 @@ function setPatientsTable() {
     patient_options["columnDefs"] = [
         {
             targets: 0, render: function (protocol_number) {
-                return protocol_number.pad(5)
+                if (protocol_number == null || protocol_number == ""){
+                    return ""
+                }
+                else{
+                    return protocol_number.pad(5)
+                }
             }
         },
         {
