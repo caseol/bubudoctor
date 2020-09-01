@@ -85,7 +85,7 @@ class Patient < ApplicationRecord
   scope :filter, -> (user_id, term, order_field, order_dir) {
     limit(15)
     .where(user_id: user_id)
-    .where("name like '%#{term.tr(" ", "%")}%' or protocol_number like '#{term}%' or cpf like '#{term}%' or email like '%#{term}%' or birth like '%#{term}%'")
+    .where("name like '%#{term.tr(" ", "%")}%' or protocol_number like '#{term}%' or lpad(protocol_number, 5, 0) like '%#{term}%' or cpf like '#{term}%' or email like '%#{term}%' or birth like '%#{term}%'")
     .order("#{order_field} #{order_dir}")
   }
 
@@ -141,6 +141,10 @@ class Patient < ApplicationRecord
       doctorate_degree: "Doutorado",
       pos_doctorate: "Pós Doutorado"
   }
+
+  def protocol_and_name
+    self.protocol_number.blank? ? self.name : "#{self.protocol_number.to_s.rjust(5, "0")}-#{self.name}"
+  end
 
   def options
     OpenStruct.new self[:options] || {}

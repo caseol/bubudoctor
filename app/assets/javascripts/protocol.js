@@ -46,6 +46,11 @@ function setPatientsTable() {
     patient_options["order"] = [[ 0, "desc" ]];
     patient_options["columnDefs"] = [
         {
+            targets: 0, render: function (protocol_number) {
+                return protocol_number.pad(5)
+            }
+        },
+        {
             targets: [2, 6], render: function (data) {
                 if (data == null || data == "")
                     return ""

@@ -121,13 +121,13 @@ class PatientsController < ApplicationController
       #["#{lower}(#{table_name}.#{value_method}) LIKE #{lower}(?)", term] # escape default: \ on postgres, mysql, sqlite
 
       # marretando a consulta na mão mesmo
-      ["#{lower}(patients.name) LIKE #{lower}(?) OR #{lower}(patients.cpf) LIKE #{lower}(?) OR #{lower}(patients.email) LIKE #{lower}(?) OR #{lower}(patients.mobile) LIKE #{lower}(?)", term.tr(" ", "%"), term.tr(" ", "%"), term.tr(" ", "%"), term.tr(" ", "%")] # escape default: \ on postgres, mysql, sqlite
+      ["#{lower}(patients.name) LIKE #{lower}(?) OR #{lower}(lpad(patients.protocol_number, 5, 0)) LIKE #{lower}(?) OR #{lower}(patients.cpf) LIKE #{lower}(?) OR #{lower}(patients.email) LIKE #{lower}(?) OR #{lower}(patients.mobile) LIKE #{lower}(?)", term.tr(" ", "%"), term.tr(" ", "%"), term.tr(" ", "%"), term.tr(" ", "%"), term.tr(" ", "%")] # escape default: \ on postgres, mysql, sqlite
 
     end
     def autocomplete_build_json(results, value_method, label_method, options)
       results.collect do |result|
         data = HashWithIndifferentAccess.new(id: result.id,
-                                             label: result.send(:name),
+                                             label: result.send(:protocol_and_name),
                                              value: result.send(:name))
         options[:additional_data].each do |method|
           data[method] = result.send(method)
