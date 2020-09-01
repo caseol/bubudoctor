@@ -146,6 +146,10 @@ class Patient < ApplicationRecord
     self.protocol_number.blank? ? self.name : "#{self.protocol_number.to_s.rjust(5, "0")}-#{self.name}"
   end
 
+  def last_appointment
+    self.appointments.where(status: :done).try(:last).try(:appointment_date).try(:strftime, "%d/%m/%Y")
+  end
+
   def options
     OpenStruct.new self[:options] || {}
   end
