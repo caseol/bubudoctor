@@ -1,71 +1,35 @@
 <div class="row">
-  <div class="col-sm-12 col-md-6">
+  <div class="col-sm-12">
     <div class="sectionform">
       <h3>Agenda</h3>
-      <div class="form-group">
-        <div class="input-group date-picker" id="datepicker-date-appointments" data-target-input="nearest">
+      <div class="form-group row">
+        <div class="input-group date-picker col-sm-6" id="datepicker-date-appointments" data-target-input="nearest">
           <%= text_field_tag :appointements_date, @today.strftime('%d/%m/%Y'), class:'form-control datetimepicker-input', data:{target:'#datepicker-date-appointments'} %>
           <div class="input-group-append" data-target="#datepicker-date-appointments" data-toggle="datetimepicker">
             <div class="input-group-text"><%= icon('far', 'calendar-alt') %></div>
           </div>
+        </div>
+        <div class="col-sm-6">
+          <%= link_to 'Marcar Novo Horário', new_appointment_path,  {:remote => true, data:{toggle: "modal", target: '#modal-window'}, class:"btn btn-primary"} %>
         </div>
       </div>
       <table class="responsive table table-hover" id="dttb-appointments" data-sort="true" data-source="<%= appointments_path(appointments_date: Time.now().strftime('%d/%m/%Y'), format: :json) %>">
         <thead>
         <tr>
           <!--<th data-data="empty_collumn"></th>-->
-          <th data-data="appointment_date">Horário</th>
-          <th data-data="name">Paciente</th>
-          <th data-data="appointment_kind">Tipo</th>
-          <th data-data="status">Status</th>
-          <th data-data="health_insurance">Convênio</th>
-          <th data-data="mobile">Telefone</th>
+          <th data-data="appointment_date" style="max-width: 90px">Horário</th>
+          <th data-data="name" style="min-width: 220px">Paciente</th>
+          <th data-data="appointment_kind" style="max-width: 70px">Tipo</th>
+          <th data-data="status" style="max-width: 70px">Status</th>
+          <th data-data="health_insurance" style="max-width: 120px">Convênio</th>
+          <th data-data="mobile" style="max-width: 90px">Telefone</th>
           <th data-data="url" data-orderable="false" data-searchable="false" class="skip-export">Ações</th>
         </tr>
         </thead>
       </table>
       <br>
       <%#= link_to 'Marcar Horário', new_appointment_path,  {:local => true, class:"btn btn-primary"} %>
-      <%= link_to 'Marcar Horário', new_appointment_path,  {:remote => true, data:{toggle: "modal", target: '#modal-window'}, class:"btn btn-primary"} %>
-    </div>
-  </div>
-  <div class="col-sm-12 col-md-6">
-    <div class="sectionform">
-      <h3>Pacientes</h3>
-      <table class="responsive table table-hover " id="dttb-patients" data-sort="true">
-        <thead>
-        <tr>
-          <th data-data="protocol_number" class="all">Num. Protocolo</th>
-          <th data-data="name" class="all" style="min-width: 90px">Nome</th>
-          <th data-data="birth" class="">Nascimento</th>
-          <th data-data="age" class="">Idade</th>
-          <th data-data="cpf" class="no-sort" style="min-width: 90px">CPF</th>
-          <th data-data="last_appointment" class="none no-sort" style="min-width: 90px">Última Consulta</th>
-          <th data-data="gender" class="none no-sort">Gênero</th>
-          <th data-data="patient_since" class="none no-sort">Paciente Desde</th>
-          <th data-data="etnia" class="none no-sort">Etnia</th>
-          <th data-data="civil_status" class="none no-sort">Estado Civil</th>
-          <th data-data="occupation" class="none no-sort">Profissão</th>
-          <th data-data="scholarity" class="none no-sort">Escolaridade</th>
-          <th data-data="zip" class="none no-sort">CEP</th>
-          <th data-data="address" class="none no-sort">Endereço</th>
-          <th data-data="city" class="none no-sort">Cidade</th>
-          <th data-data="district" class="none no-sort">Bairro</th>
-          <th data-data="uf" class="none no-sort">UF</th>
-          <th data-data="telephone" class="none no-sort">Telefone</th>
-          <th data-data="mobile" class="none no-sort">Celular</th>
-          <th data-data="email" class="none no-sort">Email</th>
-          <th data-data="indication_by" class="none no-sort">Indicado por</th>
-          <th data-data="health_insurance" class="none no-sort">Convênio</th>
-          <th data-data="health_plan" class="none no-sort">Nome do Plano</th>
-          <th data-data="plan_validation" class="none no-sort">Valido até</th>
-          <th data-data="plan_number" class="none no-sort">Número Carteirinha</th>
-          <th data-data="url" data-orderable="false" data-searchable="false" class="none skip-export no-sort" width="100px">Ações</th>
-        </tr>
-        </thead>
-      </table>
-      <br>
-      <%= link_to 'Novo Paciente', new_patient_path,  {:remote => true, data:{toggle:  "modal", target: '#modal-window'}, class:"btn btn-primary"} %>
+      <%= link_to 'Marcar Novo Horário', new_appointment_path,  {:remote => true, data:{toggle: "modal", target: '#modal-window'}, class:"btn btn-primary"} %>
     </div>
   </div>
 </div>

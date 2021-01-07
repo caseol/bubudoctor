@@ -5,6 +5,10 @@ class ProtocolController < ApplicationController
     @today = Time.now
   end
 
+  def search
+    @today = Time.now
+  end
+
   def historic
     # recupera histórico do paciente
     @patient = Patient.find(params[:id])

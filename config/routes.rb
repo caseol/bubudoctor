@@ -14,8 +14,9 @@ Rails.application.routes.draw do
     get :autocomplete_patient_all, on: :collection
   end
 
-  get '/protocolo' => 'protocol#protocol', as: :protocol#, format: false
-  get '/historico/*id' => 'protocol#historic', as: :historic#, format: false
+  get '/agenda' => 'protocol#protocol', as: :protocol #, format: false
+  get '/pesquisar' => 'protocol#search', as: :search #, format: false
+  get '/historico/*id' => 'protocol#historic', as: :historic #, format: false
 
   # config/routes.rb
   get "/pages/*id" => 'pages#show', as: :page, format: false

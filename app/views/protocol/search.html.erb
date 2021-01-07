@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="sectionform">
+      <h3>Pacientes</h3>
+      <table class="responsive table table-hover " id="dttb-patients" data-sort="true">
+        <thead>
+        <tr>
+          <th data-data="protocol_number"  style="max-width: 55px">Protocolo</th>
+          <th data-data="name" class="all" style="min-width: 150px">Nome</th>
+          <th data-data="birth" class="">Nascimento</th>
+          <th data-data="age" class="" style="max-width: 31px">Idade</th>
+          <th data-data="cpf" class="no-sort" style="min-width: 100px">CPF</th>
+          <th data-data="last_appointment" class="no-sort" style="min-width: 90px">Última Consulta</th>
+          <th data-data="gender" class="none no-sort">Gênero</th>
+          <th data-data="patient_since" class="none no-sort">Paciente Desde</th>
+          <th data-data="etnia" class="none no-sort">Etnia</th>
+          <th data-data="civil_status" class="none no-sort">Estado Civil</th>
+          <th data-data="occupation" class="none no-sort">Profissão</th>
+          <th data-data="scholarity" class="none no-sort">Escolaridade</th>
+          <th data-data="zip" class="none no-sort">CEP</th>
+          <th data-data="address" class="none no-sort">Endereço</th>
+          <th data-data="city" class="none no-sort">Cidade</th>
+          <th data-data="district" class="none no-sort">Bairro</th>
+          <th data-data="uf" class="none no-sort">UF</th>
+          <th data-data="telephone" class="no-sort" style="min-width: 100px">Telefone</th>
+          <th data-data="mobile" class="no-sort" style="min-width: 100px">Celular</th>
+          <th data-data="email" class="no-sort">Email</th>
+          <th data-data="indication_by" class="none no-sort">Indicado por</th>
+          <th data-data="health_insurance" class="none no-sort">Convênio</th>
+          <th data-data="health_plan" class="none no-sort">Nome do Plano</th>
+          <th data-data="plan_validation" class="none no-sort">Valido até</th>
+          <th data-data="plan_number" class="none no-sort">Número Carteirinha</th>
+          <th data-data="url" data-orderable="false" data-searchable="false" class="none skip-export no-sort" width="100px">Ações</th>
+        </tr>
+        </thead>
+      </table>
+      <br>
+      <%= link_to 'Novo Paciente', new_patient_path,  {:remote => true, data:{toggle:  "modal", target: '#modal-window'}, class:"btn btn-primary"} %>
+    </div>
+  </div>
+</div>
+<%#= link_to 'TESTE MODAL', new_patient_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-appointment', class: 'btn btn-primary btn-lg'}  %>
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog mw-100 w-75" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
