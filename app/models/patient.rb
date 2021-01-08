@@ -147,7 +147,7 @@ class Patient < ApplicationRecord
   end
 
   def last_appointment
-    self.appointments.where(status: :done).try(:last).try(:appointment_date).try(:strftime, "%d/%m/%Y")
+    self.appointments.where(status: :done).order(appointment_date: :asc).try(:last).try(:appointment_date).try(:strftime, "%d/%m/%Y")
   end
 
   def options
